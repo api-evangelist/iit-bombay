@@ -1,0 +1,45 @@
+---
+name: Indian Institute of Technology Bombay
+description: Indian Institute of Technology Bombay public developer/API footprint review for APIs.json cataloging.
+url: https://raw.githubusercontent.com/api-evangelist/iit-bombay/refs/heads/main/review.yml
+created: '2026-06-03'
+modified: '2026-06-03'
+reviews:
+  - date: '2026-06-03'
+    rating: 2
+    summary: >-
+      IIT Bombay has no central, unified developer portal. The public API
+      footprint is community- and library-driven: the Students' Gymkhana OAuth
+      2.0 Profiles API (documented, but gated to IIT Bombay server
+      infrastructure), the Institute Technical Council ITC SSO service
+      (documented session-based auth), and a live DSpace OAI-PMH 2.0 endpoint
+      over the Central Library institutional repository. All three documentation
+      pages and the OAI-PMH Identify verb resolved with HTTP 200 and the OAI
+      response was verified as valid OAI-PMH 2.0. No fabricated endpoints; all
+      base URLs were probed live. LinkedIn returned HTTP 999 (standard bot block)
+      but the school page exists.
+    endpoints:
+      - url: https://gymkhana.iitb.ac.in/profiles/doc/
+        status: 200
+        note: Gymkhana Profiles OAuth 2.0 API docs (authorize/token/revoke/user endpoints).
+      - url: https://sso.tech-iitb.org/docs/
+        status: 200
+        note: ITC Single Sign-On integration docs (ssocall + getuserdata flow).
+      - url: https://dspace.library.iitb.ac.in/
+        status: 200
+        note: DSpace institutional repository home (Central Library).
+      - url: https://dspace.library.iitb.ac.in/oai/request?verb=Identify
+        status: 200
+        note: Live OAI-PMH 2.0 endpoint; Identify verb returns valid OAI-PMH response.
+      - url: https://www.iitb.ac.in/
+        status: 200
+        note: Official institutional website.
+      - url: https://github.com/DevCom-IITB
+        status: 200
+        note: DevCom student developer community GitHub org (InstiApp and related projects).
+      - url: https://github.com/iitb-gymkhana
+        status: 200
+        note: Gymkhana IIT Bombay GitHub org.
+      - url: https://www.linkedin.com/school/indian-institute-of-technology-bombay/
+        status: 999
+        note: LinkedIn school page; 999 is LinkedIn's standard bot-block, page exists.

@@ -1,0 +1,100 @@
+---
+aid: iit-bombay
+name: Indian Institute of Technology Bombay
+description: >-
+  The Indian Institute of Technology Bombay (IIT Bombay), founded in 1958 and
+  located in Powai, Mumbai, is one of India's premier engineering and research
+  institutions, ranked #97 in the QS World University Rankings 2025. Its public
+  developer footprint is largely student- and community-driven rather than a
+  central institutional API program: the Students' Gymkhana operates an OAuth 2.0
+  "Profiles" identity API, the Institute Technical Council runs an ITC Single
+  Sign-On service, and the Central Library exposes an OAI-PMH 2.0 interface over
+  its DSpace institutional repository. No unified central developer portal was
+  found; access to several APIs is gated to IIT Bombay infrastructure.
+type: Index
+position: Consumer
+access: 3rd-Party
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+url: https://raw.githubusercontent.com/api-evangelist/iit-bombay/refs/heads/main/apis.yml
+tags:
+  - Education
+  - Higher Education
+  - University
+  - Research
+  - India
+  - Open Access
+  - Identity
+created: '2026-06-03'
+modified: '2026-06-03'
+specificationVersion: '0.19'
+apis:
+  - aid: iit-bombay:gymkhana-profiles
+    name: Gymkhana Profiles OAuth API
+    description: >-
+      An OAuth 2.0 (RFC 6749) identity and profile API operated by the IIT Bombay
+      Students' Gymkhana. It exposes authorization, token, and token-revocation
+      endpoints plus a user resource endpoint returning profile, program, and
+      contact data by scope. Intended for applications running on IIT Bombay
+      Students' Gymkhana server infrastructure.
+    humanURL: https://gymkhana.iitb.ac.in/profiles/doc/
+    baseURL: https://gymkhana.iitb.ac.in/profiles/
+    tags: [ Identity, OAuth, Authentication, Profiles, Students ]
+    properties:
+      - type: Documentation
+        url: https://gymkhana.iitb.ac.in/profiles/doc/
+      - type: Authentication
+        url: https://gymkhana.iitb.ac.in/profiles/doc/
+      - type: GitHub
+        url: https://github.com/iitb-gymkhana
+  - aid: iit-bombay:itc-sso
+    name: ITC Single Sign-On API
+    description: >-
+      A session-based Single Sign-On service maintained by the Institute Technical
+      Council (ITC) for authenticating IIT Bombay users in student and club
+      projects. A redirect-based ssocall flow returns an access id that the
+      backend exchanges via a getuserdata POST for user profile fields (name,
+      roll number, department, degree, graduation year). Sessions last one hour.
+    humanURL: https://sso.tech-iitb.org/docs/
+    baseURL: https://sso.tech-iitb.org/
+    tags: [ Identity, SSO, Authentication, Students ]
+    properties:
+      - type: Documentation
+        url: https://sso.tech-iitb.org/docs/
+      - type: Authentication
+        url: https://sso.tech-iitb.org/docs/
+      - type: GitHub
+        url: https://github.com/Institute-Technical-Council
+  - aid: iit-bombay:dspace-oai-pmh
+    name: DSpace Institutional Repository OAI-PMH
+    description: >-
+      The IIT Bombay Central Library institutional repository is built on DSpace
+      and exposes an OAI-PMH 2.0 metadata harvesting interface over its theses,
+      journal articles, and conference papers. The Identify verb returns a valid
+      OAI-PMH 2.0 response, confirming a live harvesting endpoint for open-access
+      scholarly metadata.
+    humanURL: https://dspace.library.iitb.ac.in/
+    baseURL: https://dspace.library.iitb.ac.in/oai/request
+    tags: [ Repository, OAI-PMH, Open Access, Library, Research, Metadata ]
+    properties:
+      - type: Documentation
+        url: https://dspace.library.iitb.ac.in/
+      - type: OpenAPI
+        url: https://dspace.library.iitb.ac.in/oai/request?verb=Identify
+common:
+  - type: Website
+    url: https://www.iitb.ac.in/
+  - type: GitHub
+    url: https://github.com/DevCom-IITB
+  - type: LinkedIn
+    url: https://www.linkedin.com/school/indian-institute-of-technology-bombay/
+  - type: Plans
+    url: plans/iit-bombay-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/iit-bombay-rate-limits.yml
+  - type: FinOps
+    url: finops/iit-bombay-finops.yml
+  - type: Review
+    url: review.yml
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
