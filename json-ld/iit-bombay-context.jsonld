@@ -1,0 +1,69 @@
+{
+  "@context": {
+    "schema": "https://schema.org/",
+    "iitb": "https://www.iitb.ac.in/ns#",
+    "name": "schema:name",
+    "url": "schema:url",
+    "description": "schema:description",
+    "logo": "schema:logo",
+    "foundingDate": "schema:foundingDate",
+    "address": "schema:address",
+    "sameAs": "schema:sameAs",
+    "department": "schema:department",
+    "Organization": "schema:CollegeOrUniversity",
+    "EducationalOrganization": "schema:CollegeOrUniversity",
+
+    "api": "iitb:api",
+    "humanURL": "schema:url",
+    "baseURL": "iitb:baseURL",
+
+    "profile": "iitb:profile",
+    "rollNumber": "iitb:rollNumber",
+    "degree": "schema:educationalCredentialAwarded",
+    "program": "iitb:program",
+    "graduationYear": "iitb:graduationYear",
+    "department_field": "iitb:department",
+    "accessId": "iitb:accessId",
+    "scope": "iitb:scope",
+
+    "record": "iitb:record",
+    "identifier": "schema:identifier",
+    "title": "schema:headline",
+    "creator": "schema:author",
+    "publicationDate": "schema:datePublished",
+    "subject": "schema:about",
+    "metadataPrefix": "iitb:metadataPrefix",
+    "setSpec": "iitb:setSpec"
+  },
+  "@type": "EducationalOrganization",
+  "name": "Indian Institute of Technology Bombay",
+  "url": "https://www.iitb.ac.in/",
+  "description": "Public engineering and research university in Powai, Mumbai, India, founded in 1958. Its public developer footprint is community-driven, including a Gymkhana Profiles OAuth identity API, an ITC Single Sign-On service, and a DSpace OAI-PMH institutional repository.",
+  "foundingDate": "1958",
+  "sameAs": [
+    "https://www.linkedin.com/school/indian-institute-of-technology-bombay/",
+    "https://github.com/DevCom-IITB",
+    "https://github.com/iitb-gymkhana",
+    "https://github.com/Institute-Technical-Council"
+  ],
+  "api": [
+    {
+      "@type": "iitb:api",
+      "name": "Gymkhana Profiles OAuth API",
+      "humanURL": "https://gymkhana.iitb.ac.in/profiles/doc/",
+      "baseURL": "https://gymkhana.iitb.ac.in/profiles/"
+    },
+    {
+      "@type": "iitb:api",
+      "name": "ITC Single Sign-On API",
+      "humanURL": "https://sso.tech-iitb.org/docs/",
+      "baseURL": "https://sso.tech-iitb.org/"
+    },
+    {
+      "@type": "iitb:api",
+      "name": "DSpace Institutional Repository OAI-PMH",
+      "humanURL": "https://dspace.library.iitb.ac.in/",
+      "baseURL": "https://dspace.library.iitb.ac.in/oai/request"
+    }
+  ]
+}
