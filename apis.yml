@@ -81,6 +81,8 @@ apis:
       - type: OpenAPI
         url: https://dspace.library.iitb.ac.in/oai/request?verb=Identify
 common:
+  - type: DomainSecurity
+    url: security/iit-bombay-domain-security.yml
   - type: Website
     url: https://www.iitb.ac.in/
   - type: GitHub
