@@ -12,9 +12,21 @@ description: >-
   its DSpace institutional repository. No unified central developer portal was
   found; access to several APIs is gated to IIT Bombay infrastructure.
 type: Index
+accessModel:
+  pricing: free
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Free
+  confidence: medium
+  source:
+  - plans
+  generated: '2026-07-22'
+  method: derived
 position: Consumer
 access: 3rd-Party
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/iit-bombay.png
 url: https://raw.githubusercontent.com/api-evangelist/iit-bombay/refs/heads/main/apis.yml
 tags:
   - Education
