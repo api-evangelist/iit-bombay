@@ -50,7 +50,17 @@ apis:
       Students' Gymkhana server infrastructure.
     humanURL: https://gymkhana.iitb.ac.in/profiles/doc/
     baseURL: https://gymkhana.iitb.ac.in/profiles/
-    tags: [ Identity, OAuth, Authentication, Profiles, Students ]
+    tags:
+    - Identity
+    - Authentication
+    - Profiles
+    - Students
+    tags_raw:
+    - Identity
+    - OAuth
+    - Authentication
+    - Profiles
+    - Students
     properties:
       - type: Documentation
         url: https://gymkhana.iitb.ac.in/profiles/doc/
