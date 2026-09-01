@@ -61,6 +61,19 @@ tags:
   - OpenID Connect
   - Campus Life
   - Research Repository
+  - Open-Source
+tags_raw:
+  - University
+  - Higher Education
+  - Education
+  - India
+  - Institute of Technology
+  - Research
+  - Identity
+  - Single Sign-On
+  - OpenID Connect
+  - Campus Life
+  - Research Repository
   - Open Source
 created: '2026-06-03'
 modified: '2026-08-30'
@@ -120,7 +133,20 @@ apis:
       drf-yasg from the live Django routes and is served at /docs/.
     humanURL: https://gymkhana.iitb.ac.in/instiapp/api/docs/
     baseURL: https://gymkhana.iitb.ac.in/instiapp/api
-    tags: [ Campus Life, Events, Students, Open Source, Open Data, Identity ]
+    tags:
+    - Campus Life
+    - Event
+    - Students
+    - Open-Source
+    - Open Data
+    - Identity
+    tags_raw:
+    - Campus Life
+    - Events
+    - Students
+    - Open Source
+    - Open Data
+    - Identity
     properties:
       - type: OpenAPI
         url: openapi/iit-bombay-instiapp-api-openapi.yml
@@ -201,7 +227,17 @@ apis:
       authorization-server metadata is published.
     humanURL: https://gymkhana.iitb.ac.in/profiles/doc/
     baseURL: https://gymkhana.iitb.ac.in/profiles/
-    tags: [ Identity, OAuth, Authentication, Profiles, Students ]
+    tags:
+    - Identity
+    - Authentication
+    - Profiles
+    - Students
+    tags_raw:
+    - Identity
+    - OAuth
+    - Authentication
+    - Profiles
+    - Students
     properties:
       - type: Documentation
         url: https://gymkhana.iitb.ac.in/profiles/doc/
@@ -279,6 +315,9 @@ apis:
         url: https://github.com/Institute-Technical-Council
 
 common:
+  - type: License
+    name: AGPL-3.0
+    url: https://github.com/DevCom-IITB/instiapp-api/blob/master/LICENSE
   - type: Website
     url: https://www.iitb.ac.in/
   - type: APIReference
