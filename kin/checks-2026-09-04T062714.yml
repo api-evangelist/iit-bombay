@@ -1,17 +1,17 @@
 ---
 kin_checks:
   slug: iit-bombay
-  schema_version: 0.17.2
-  scored_at: '2026-09-01'
-  run_ts: 2026-09-01T063623
+  schema_version: 0.18.2
+  scored_at: '2026-09-04'
+  run_ts: 2026-09-04T062714
   note: Actionable checks only (missed + partial). earned/na are every other check
-    in rubric/scoring-0.17.2.yml; counts below let you verify that.
+    in rubric/scoring-0.18.2.yml; counts below let you verify that.
   counts:
-    total: 130
+    total: 132
     earned: 39
-    partial: 5
-    missed: 63
-    na: 23
+    partial: 8
+    missed: 61
+    na: 24
   checks:
   - id: multiple_apis
     status: missed
@@ -33,8 +33,6 @@ kin_checks:
   - id: info_complete
     status: missed
     detail: 0 of 1 openapi documents pass
-  - id: servers_resolvable
-    status: missed
   - id: operations_summary_coverage
     status: missed
     detail: 0 of 1 openapi documents pass
@@ -55,8 +53,6 @@ kin_checks:
   - id: json_schema_per_resource
     status: missed
   - id: json_ld_property_depth
-    status: missed
-  - id: lifecycle_documented
     status: missed
   - id: domain_standard_conformance
     status: missed
@@ -148,9 +144,18 @@ kin_checks:
     status: missed
   - id: agentic_commerce
     status: missed
+  - id: contract_self_operated
+    status: partial
+    earned: 3.6
   - id: examples_present
     status: partial
     earned: 1.0
+  - id: rules_present
+    status: partial
+    earned: 2.5
+  - id: vocabulary_published
+    status: partial
+    earned: 1.25
   - id: github_org_present
     status: partial
     earned: 1.0

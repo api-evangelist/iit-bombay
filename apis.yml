@@ -45,7 +45,7 @@ accessModel:
   - examples/iit-bombay-instiapp-examples.yml
   generated: '2026-08-30'
   method: probed
-position: Provider
+position: Producing
 access: 1st-Party
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/iit-bombay.png
 url: https://raw.githubusercontent.com/api-evangelist/iit-bombay/refs/heads/main/apis.yml
