@@ -646,45 +646,6 @@ apis:
     url: https://github.com/DevCom-IITB/instiapp-api/issues
   - type: Website
     url: https://insti.app/
-- aid: iit-bombay:iit-bombay-communityposts-api
-  name: Indian Institute of Technology Bombay Communityposts API
-  description: >-
-    The communityposts API from Indian Institute of Technology Bombay — 3 operation(s) for communityposts.
-  humanURL: https://gymkhana.iitb.ac.in/instiapp/api/docs/
-  baseURL: https://gymkhana.iitb.ac.in/instiapp/api
-  tags:
-  - communityposts
-  properties:
-  - type: OpenAPI
-    url: openapi/iit-bombay-communityposts-api-openapi.yml
-  - type: OpenAPIOriginal
-    url: openapi/_original/iit-bombay-instiapp-api-openapi.json
-  - type: APIReference
-    url: https://gymkhana.iitb.ac.in/instiapp/api/docs/
-  - type: JSONSchema
-    url: json-schema/iit-bombay-instiapp-schemas.json
-  - type: Examples
-    url: examples/iit-bombay-instiapp-examples.yml
-  - type: Vocabulary
-    url: vocabulary/iit-bombay-vocabulary.yml
-  - type: Rules
-    url: rules/iit-bombay-rules.yml
-  - type: Errors
-    url: errors/iit-bombay-problem-types.yml
-  - type: Lifecycle
-    url: lifecycle/iit-bombay-lifecycle.yml
-  - type: Authentication
-    url: authentication/iit-bombay-authentication.yml
-  - type: Conformance
-    url: conformance/iit-bombay-conformance.yml
-  - type: SourceCode
-    url: https://github.com/DevCom-IITB/instiapp-api
-  - type: TermsOfService
-    url: https://insti.app/tos.html
-  - type: Support
-    url: https://github.com/DevCom-IITB/instiapp-api/issues
-  - type: Website
-    url: https://insti.app/
 - aid: iit-bombay:iit-bombay-delete-api
   name: Indian Institute of Technology Bombay Delete API
   description: The delete API from Indian Institute of Technology Bombay — 1 operation(s) for delete.
@@ -2163,6 +2124,46 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/iit-bombay-verifier-events-api-openapi.yml
+  - type: OpenAPIOriginal
+    url: openapi/_original/iit-bombay-instiapp-api-openapi.json
+  - type: APIReference
+    url: https://gymkhana.iitb.ac.in/instiapp/api/docs/
+  - type: JSONSchema
+    url: json-schema/iit-bombay-instiapp-schemas.json
+  - type: Examples
+    url: examples/iit-bombay-instiapp-examples.yml
+  - type: Vocabulary
+    url: vocabulary/iit-bombay-vocabulary.yml
+  - type: Rules
+    url: rules/iit-bombay-rules.yml
+  - type: Errors
+    url: errors/iit-bombay-problem-types.yml
+  - type: Lifecycle
+    url: lifecycle/iit-bombay-lifecycle.yml
+  - type: Authentication
+    url: authentication/iit-bombay-authentication.yml
+  - type: Conformance
+    url: conformance/iit-bombay-conformance.yml
+  - type: SourceCode
+    url: https://github.com/DevCom-IITB/instiapp-api
+  - type: TermsOfService
+    url: https://insti.app/tos.html
+  - type: Support
+    url: https://github.com/DevCom-IITB/instiapp-api/issues
+  - type: Website
+    url: https://insti.app/
+- aid: iit-bombay:iit-bombay-community-posts-api
+  name: Indian Institute of Technology Bombay Community Posts API
+  description: >-
+    The Community Posts API from Indian Institute of Technology Bombay — 3 operation(s) for community
+    posts.
+  humanURL: https://sso.iitb.ac.in/
+  baseURL: https://sso.iitb.ac.in
+  tags:
+  - Community Posts
+  properties:
+  - type: OpenAPI
+    url: openapi/iit-bombay-community-posts-api-openapi.yml
   - type: OpenAPIOriginal
     url: openapi/_original/iit-bombay-instiapp-api-openapi.json
   - type: APIReference
