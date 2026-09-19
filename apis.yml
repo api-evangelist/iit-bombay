@@ -57,7 +57,7 @@ tags:
   - Institute of Technology
   - Research
   - Identity
-  - Single Sign-On
+  - SSO
   - OpenID Connect
   - Campus Life
   - Research Repository
@@ -129,6 +129,12 @@ apis:
   humanURL: https://sso.iitb.ac.in/
   baseURL: https://sso.iitb.ac.in
   tags:
+  - Identity
+  - SSO
+  - OpenID Connect
+  - Authentication
+  - Federation
+  tags_raw:
   - Identity
   - Single Sign-On
   - OpenID Connect
@@ -250,6 +256,11 @@ apis:
   baseURL: https://sso.tech-iitb.org/
   tags:
   - Identity
+  - SSO
+  - Authentication
+  - Students
+  tags_raw:
+  - Identity
   - Single Sign-On
   - Authentication
   - Students
@@ -267,6 +278,8 @@ apis:
   humanURL: https://gymkhana.iitb.ac.in/instiapp/api/docs/
   baseURL: https://gymkhana.iitb.ac.in/instiapp/api
   tags:
+  - Achievements
+  tags_raw:
   - achievements
   properties:
   - type: OpenAPI
@@ -344,7 +357,8 @@ apis:
     The alumni_login API from Indian Institute of Technology Bombay — 1 operation(s) for alumni_login.
   humanURL: https://gymkhana.iitb.ac.in/instiapp/api/docs/
   baseURL: https://gymkhana.iitb.ac.in/instiapp/api
-  tags:
+  tags: []
+  tags_raw:
   - alumni_login
   properties:
   - type: OpenAPI
@@ -383,7 +397,8 @@ apis:
     The alumni_otp_conf API from Indian Institute of Technology Bombay — 1 operation(s) for alumni_otp_conf.
   humanURL: https://gymkhana.iitb.ac.in/instiapp/api/docs/
   baseURL: https://gymkhana.iitb.ac.in/instiapp/api
-  tags:
+  tags: []
+  tags_raw:
   - alumni_otp_conf
   properties:
   - type: OpenAPI
@@ -422,6 +437,8 @@ apis:
   humanURL: https://gymkhana.iitb.ac.in/instiapp/api/docs/
   baseURL: https://gymkhana.iitb.ac.in/instiapp/api
   tags:
+  - Bans
+  tags_raw:
   - bans
   properties:
   - type: OpenAPI
@@ -460,6 +477,8 @@ apis:
   humanURL: https://gymkhana.iitb.ac.in/instiapp/api/docs/
   baseURL: https://gymkhana.iitb.ac.in/instiapp/api
   tags:
+  - Bodies
+  tags_raw:
   - bodies
   properties:
   - type: OpenAPI
@@ -498,6 +517,8 @@ apis:
   humanURL: https://gymkhana.iitb.ac.in/instiapp/api/docs/
   baseURL: https://gymkhana.iitb.ac.in/instiapp/api
   tags:
+  - Buy
+  tags_raw:
   - buy
   properties:
   - type: OpenAPI
@@ -537,6 +558,8 @@ apis:
   humanURL: https://gymkhana.iitb.ac.in/instiapp/api/docs/
   baseURL: https://gymkhana.iitb.ac.in/instiapp/api
   tags:
+  - Calendar
+  tags_raw:
   - calendar
   properties:
   - type: OpenAPI
@@ -575,6 +598,8 @@ apis:
   humanURL: https://gymkhana.iitb.ac.in/instiapp/api/docs/
   baseURL: https://gymkhana.iitb.ac.in/instiapp/api
   tags:
+  - Check
+  tags_raw:
   - check
   properties:
   - type: OpenAPI
@@ -614,6 +639,8 @@ apis:
   humanURL: https://gymkhana.iitb.ac.in/instiapp/api/docs/
   baseURL: https://gymkhana.iitb.ac.in/instiapp/api
   tags:
+  - Communities
+  tags_raw:
   - communities
   properties:
   - type: OpenAPI
@@ -651,7 +678,8 @@ apis:
   description: The delete API from Indian Institute of Technology Bombay — 1 operation(s) for delete.
   humanURL: https://gymkhana.iitb.ac.in/instiapp/api/docs/
   baseURL: https://gymkhana.iitb.ac.in/instiapp/api
-  tags:
+  tags: []
+  tags_raw:
   - delete
   properties:
   - type: OpenAPI
@@ -690,6 +718,8 @@ apis:
   humanURL: https://gymkhana.iitb.ac.in/instiapp/api/docs/
   baseURL: https://gymkhana.iitb.ac.in/instiapp/api
   tags:
+  - Event
+  tags_raw:
   - events
   properties:
   - type: OpenAPI
@@ -728,7 +758,8 @@ apis:
     The external_blog API from Indian Institute of Technology Bombay — 1 operation(s) for external_blog.
   humanURL: https://gymkhana.iitb.ac.in/instiapp/api/docs/
   baseURL: https://gymkhana.iitb.ac.in/instiapp/api
-  tags:
+  tags: []
+  tags_raw:
   - external_blog
   properties:
   - type: OpenAPI
@@ -767,7 +798,8 @@ apis:
     The get_all_user_tags API from Indian Institute of Technology Bombay — 1 operation(s) for get_all_user_tags.
   humanURL: https://gymkhana.iitb.ac.in/instiapp/api/docs/
   baseURL: https://gymkhana.iitb.ac.in/instiapp/api
-  tags:
+  tags: []
+  tags_raw:
   - get_all_user_tags
   properties:
   - type: OpenAPI
@@ -806,7 +838,8 @@ apis:
     The get_bodies API from Indian Institute of Technology Bombay — 2 operation(s) for get_bodies.
   humanURL: https://gymkhana.iitb.ac.in/instiapp/api/docs/
   baseURL: https://gymkhana.iitb.ac.in/instiapp/api
-  tags:
+  tags: []
+  tags_raw:
   - get_bodies
   properties:
   - type: OpenAPI
@@ -846,6 +879,8 @@ apis:
   humanURL: https://gymkhana.iitb.ac.in/instiapp/api/docs/
   baseURL: https://gymkhana.iitb.ac.in/instiapp/api
   tags:
+  - Get Notifications
+  tags_raw:
   - get_notifications
   properties:
   - type: OpenAPI
@@ -883,7 +918,8 @@ apis:
   description: The getEncr API from Indian Institute of Technology Bombay — 1 operation(s) for getencr.
   humanURL: https://gymkhana.iitb.ac.in/instiapp/api/docs/
   baseURL: https://gymkhana.iitb.ac.in/instiapp/api
-  tags:
+  tags: []
+  tags_raw:
   - getEncr
   properties:
   - type: OpenAPI
@@ -922,7 +958,8 @@ apis:
     The getUserMess API from Indian Institute of Technology Bombay — 1 operation(s) for getusermess.
   humanURL: https://gymkhana.iitb.ac.in/instiapp/api/docs/
   baseURL: https://gymkhana.iitb.ac.in/instiapp/api
-  tags:
+  tags: []
+  tags_raw:
   - getUserMess
   properties:
   - type: OpenAPI
@@ -962,6 +999,8 @@ apis:
   humanURL: https://gymkhana.iitb.ac.in/instiapp/api/docs/
   baseURL: https://gymkhana.iitb.ac.in/instiapp/api
   tags:
+  - Interests
+  tags_raw:
   - interests
   properties:
   - type: OpenAPI
@@ -1001,6 +1040,8 @@ apis:
   humanURL: https://gymkhana.iitb.ac.in/instiapp/api/docs/
   baseURL: https://gymkhana.iitb.ac.in/instiapp/api
   tags:
+  - Internship
+  tags_raw:
   - internship
   properties:
   - type: OpenAPI
@@ -1039,7 +1080,8 @@ apis:
     The list_all API from Indian Institute of Technology Bombay — 1 operation(s) for list_all.
   humanURL: https://gymkhana.iitb.ac.in/instiapp/api/docs/
   baseURL: https://gymkhana.iitb.ac.in/instiapp/api
-  tags:
+  tags: []
+  tags_raw:
   - list_all
   properties:
   - type: OpenAPI
@@ -1078,7 +1120,8 @@ apis:
     The list_body API from Indian Institute of Technology Bombay — 1 operation(s) for list_body.
   humanURL: https://gymkhana.iitb.ac.in/instiapp/api/docs/
   baseURL: https://gymkhana.iitb.ac.in/instiapp/api
-  tags:
+  tags: []
+  tags_raw:
   - list_body
   properties:
   - type: OpenAPI
@@ -1156,6 +1199,8 @@ apis:
   humanURL: https://gymkhana.iitb.ac.in/instiapp/api/docs/
   baseURL: https://gymkhana.iitb.ac.in/instiapp/api
   tags:
+  - Location
+  tags_raw:
   - locations
   properties:
   - type: OpenAPI
@@ -1194,6 +1239,8 @@ apis:
   humanURL: https://gymkhana.iitb.ac.in/instiapp/api/docs/
   baseURL: https://gymkhana.iitb.ac.in/instiapp/api
   tags:
+  - Login
+  tags_raw:
   - login
   properties:
   - type: OpenAPI
@@ -1232,6 +1279,8 @@ apis:
   humanURL: https://gymkhana.iitb.ac.in/instiapp/api/docs/
   baseURL: https://gymkhana.iitb.ac.in/instiapp/api
   tags:
+  - Logout
+  tags_raw:
   - logout
   properties:
   - type: OpenAPI
@@ -1309,6 +1358,8 @@ apis:
   humanURL: https://gymkhana.iitb.ac.in/instiapp/api/docs/
   baseURL: https://gymkhana.iitb.ac.in/instiapp/api
   tags:
+  - My Events
+  tags_raw:
   - my_events
   properties:
   - type: OpenAPI
@@ -1347,6 +1398,8 @@ apis:
   humanURL: https://gymkhana.iitb.ac.in/instiapp/api/docs/
   baseURL: https://gymkhana.iitb.ac.in/instiapp/api
   tags:
+  - Nearest
+  tags_raw:
   - nearest
   properties:
   - type: OpenAPI
@@ -1386,6 +1439,8 @@ apis:
   humanURL: https://gymkhana.iitb.ac.in/instiapp/api/docs/
   baseURL: https://gymkhana.iitb.ac.in/instiapp/api
   tags:
+  - News Feed
+  tags_raw:
   - news_feed
   properties:
   - type: OpenAPI
@@ -1425,6 +1480,8 @@ apis:
   humanURL: https://gymkhana.iitb.ac.in/instiapp/api/docs/
   baseURL: https://gymkhana.iitb.ac.in/instiapp/api
   tags:
+  - Notification
+  tags_raw:
   - notifications
   properties:
   - type: OpenAPI
@@ -1463,7 +1520,8 @@ apis:
     The pass_login API from Indian Institute of Technology Bombay — 1 operation(s) for pass_login.
   humanURL: https://gymkhana.iitb.ac.in/instiapp/api/docs/
   baseURL: https://gymkhana.iitb.ac.in/instiapp/api
-  tags:
+  tags: []
+  tags_raw:
   - pass_login
   properties:
   - type: OpenAPI
@@ -1502,7 +1560,8 @@ apis:
     The perform_action API from Indian Institute of Technology Bombay — 1 operation(s) for perform_action.
   humanURL: https://gymkhana.iitb.ac.in/instiapp/api/docs/
   baseURL: https://gymkhana.iitb.ac.in/instiapp/api
-  tags:
+  tags: []
+  tags_raw:
   - perform_action
   properties:
   - type: OpenAPI
@@ -1541,7 +1600,8 @@ apis:
     The placement_blog API from Indian Institute of Technology Bombay — 1 operation(s) for placement_blog.
   humanURL: https://gymkhana.iitb.ac.in/instiapp/api/docs/
   baseURL: https://gymkhana.iitb.ac.in/instiapp/api
-  tags:
+  tags: []
+  tags_raw:
   - placement_blog
   properties:
   - type: OpenAPI
@@ -1658,6 +1718,8 @@ apis:
   humanURL: https://gymkhana.iitb.ac.in/instiapp/api/docs/
   baseURL: https://gymkhana.iitb.ac.in/instiapp/api
   tags:
+  - Query
+  tags_raw:
   - query
   properties:
   - type: OpenAPI
@@ -1696,7 +1758,8 @@ apis:
     The resend_alumni_otp API from Indian Institute of Technology Bombay — 1 operation(s) for resend_alumni_otp.
   humanURL: https://gymkhana.iitb.ac.in/instiapp/api/docs/
   baseURL: https://gymkhana.iitb.ac.in/instiapp/api
-  tags:
+  tags: []
+  tags_raw:
   - resend_alumni_otp
   properties:
   - type: OpenAPI
@@ -1735,6 +1798,8 @@ apis:
   humanURL: https://gymkhana.iitb.ac.in/instiapp/api/docs/
   baseURL: https://gymkhana.iitb.ac.in/instiapp/api
   tags:
+  - Roles
+  tags_raw:
   - roles
   properties:
   - type: OpenAPI
@@ -1773,6 +1838,8 @@ apis:
   humanURL: https://gymkhana.iitb.ac.in/instiapp/api/docs/
   baseURL: https://gymkhana.iitb.ac.in/instiapp/api
   tags:
+  - Search
+  tags_raw:
   - search
   properties:
   - type: OpenAPI
@@ -1849,7 +1916,8 @@ apis:
   description: The test API from Indian Institute of Technology Bombay — 1 operation(s) for test.
   humanURL: https://gymkhana.iitb.ac.in/instiapp/api/docs/
   baseURL: https://gymkhana.iitb.ac.in/instiapp/api
-  tags:
+  tags: []
+  tags_raw:
   - test
   properties:
   - type: OpenAPI
@@ -1888,7 +1956,8 @@ apis:
     The training_blog API from Indian Institute of Technology Bombay — 1 operation(s) for training_blog.
   humanURL: https://gymkhana.iitb.ac.in/instiapp/api/docs/
   baseURL: https://gymkhana.iitb.ac.in/instiapp/api
-  tags:
+  tags: []
+  tags_raw:
   - training_blog
   properties:
   - type: OpenAPI
@@ -1927,6 +1996,8 @@ apis:
   humanURL: https://gymkhana.iitb.ac.in/instiapp/api/docs/
   baseURL: https://gymkhana.iitb.ac.in/instiapp/api
   tags:
+  - Upload
+  tags_raw:
   - upload
   properties:
   - type: OpenAPI
@@ -2005,6 +2076,8 @@ apis:
   humanURL: https://gymkhana.iitb.ac.in/instiapp/api/docs/
   baseURL: https://gymkhana.iitb.ac.in/instiapp/api
   tags:
+  - User Tags
+  tags_raw:
   - user-tags
   properties:
   - type: OpenAPI
@@ -2043,6 +2116,8 @@ apis:
   humanURL: https://gymkhana.iitb.ac.in/instiapp/api/docs/
   baseURL: https://gymkhana.iitb.ac.in/instiapp/api
   tags:
+  - User
+  tags_raw:
   - users
   properties:
   - type: OpenAPI
@@ -2119,7 +2194,8 @@ apis:
     The verifier_events API from Indian Institute of Technology Bombay — 1 operation(s) for verifier_events.
   humanURL: https://gymkhana.iitb.ac.in/instiapp/api/docs/
   baseURL: https://gymkhana.iitb.ac.in/instiapp/api
-  tags:
+  tags: []
+  tags_raw:
   - verifier_events
   properties:
   - type: OpenAPI
