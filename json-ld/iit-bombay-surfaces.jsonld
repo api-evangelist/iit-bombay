@@ -1,0 +1,86 @@
+{
+  "@context": {
+    "schema": "https://schema.org/",
+    "apis": "https://apis.json.org/ns#"
+  },
+  "@type": "schema:CollegeOrUniversity",
+  "@id": "https://www.iitb.ac.in/",
+  "schema:name": "Indian Institute of Technology Bombay",
+  "schema:alternateName": "IIT Bombay",
+  "schema:url": "https://www.iitb.ac.in/",
+  "schema:foundingDate": "1958",
+  "schema:address": {
+    "@type": "schema:PostalAddress",
+    "schema:addressLocality": "Powai, Mumbai",
+    "schema:addressRegion": "Maharashtra",
+    "schema:addressCountry": "IN"
+  },
+  "schema:sameAs": [
+    "https://www.linkedin.com/school/indian-institute-of-technology-bombay/",
+    "https://github.com/DevCom-IITB",
+    "https://github.com/iitb-gymkhana"
+  ],
+  "x-provenance": {
+    "generated": "2026-08-30",
+    "method": "derived",
+    "source": "apis.yml",
+    "note": "Derived mechanically from this repository's apis.yml after the 2026-08-30 university-pipeline pass. Every operator label is carried through unchanged."
+  },
+  "apis:surfaces": [
+    {
+      "@type": "schema:WebAPI",
+      "schema:name": "InstiApp API",
+      "schema:url": "https://gymkhana.iitb.ac.in/instiapp/api/docs/",
+      "apis:baseURL": "https://gymkhana.iitb.ac.in/instiapp/api",
+      "apis:operator": "institution",
+      "schema:provider": {
+        "@type": "schema:Organization",
+        "schema:name": "Indian Institute of Technology Bombay"
+      }
+    },
+    {
+      "@type": "schema:WebAPI",
+      "schema:name": "IITB Central SSO \u2014 OpenID Connect",
+      "schema:url": "https://sso.iitb.ac.in/",
+      "apis:baseURL": "https://sso.iitb.ac.in",
+      "apis:operator": "institution",
+      "schema:provider": {
+        "@type": "schema:Organization",
+        "schema:name": "Indian Institute of Technology Bombay"
+      }
+    },
+    {
+      "@type": "schema:WebAPI",
+      "schema:name": "Gymkhana Profiles OAuth API",
+      "schema:url": "https://gymkhana.iitb.ac.in/profiles/doc/",
+      "apis:baseURL": "https://gymkhana.iitb.ac.in/profiles/",
+      "apis:operator": "institution",
+      "schema:provider": {
+        "@type": "schema:Organization",
+        "schema:name": "Indian Institute of Technology Bombay"
+      }
+    },
+    {
+      "@type": "schema:WebAPI",
+      "schema:name": "DSpace Institutional Repository (Central Library)",
+      "schema:url": "https://dspace.library.iitb.ac.in/",
+      "apis:baseURL": "https://dspace.library.iitb.ac.in/oai/request",
+      "apis:operator": "institution",
+      "schema:provider": {
+        "@type": "schema:Organization",
+        "schema:name": "Indian Institute of Technology Bombay"
+      }
+    },
+    {
+      "@type": "schema:WebAPI",
+      "schema:name": "ITC Single Sign-On",
+      "schema:url": "https://sso.tech-iitb.org/docs/",
+      "apis:baseURL": "https://sso.tech-iitb.org/",
+      "apis:operator": "tenant",
+      "schema:provider": {
+        "@type": "schema:Organization",
+        "schema:name": "Institute Technical Council, IIT Bombay (non-institutional host)"
+      }
+    }
+  ]
+}

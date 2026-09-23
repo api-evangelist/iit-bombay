@@ -1,0 +1,209 @@
+openapi: 3.2.0
+info:
+  title: InstiApp Bans API
+  description: InstiApp IIT Bombay API
+  termsOfService: https://insti.app/tos.html
+  contact:
+    email: devcom@iitb.ac.in
+  license:
+    name: AGPLv3
+  version: v1
+servers:
+- url: https://gymkhana.iitb.ac.in/instiapp/api
+security:
+- Basic: []
+tags:
+- name: bans
+paths:
+  /bans/:
+    parameters: []
+    get:
+      operationId: bans_list
+      description: List all the banned Accounts.
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SSOBans'
+      tags:
+      - bans
+      summary: Bans list
+      x-summary-source: derived
+    post:
+      operationId: bans_create
+      description: ''
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SSOBans'
+      tags:
+      - bans
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SSOBans'
+        required: true
+      summary: Bans create
+      x-summary-source: derived
+  /bans/{id}/:
+    parameters:
+    - name: id
+      in: path
+      description: A UUID string identifying this sso ban.
+      required: true
+      schema:
+        type: string
+        format: uuid
+    get:
+      operationId: bans_read
+      description: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SSOBans'
+      tags:
+      - bans
+      summary: Bans read
+      x-summary-source: derived
+    put:
+      operationId: bans_update
+      description: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SSOBans'
+      tags:
+      - bans
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SSOBans'
+        required: true
+      summary: Bans update
+      x-summary-source: derived
+    patch:
+      operationId: bans_update
+      description: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SSOBans'
+      tags:
+      - bans
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SSOBans'
+        required: true
+      summary: Bans update
+      x-summary-source: derived
+    delete:
+      operationId: bans_delete
+      description: ''
+      responses:
+        '204':
+          description: ''
+      tags:
+      - bans
+      summary: Bans delete
+      x-summary-source: derived
+components:
+  schemas:
+    UserProfile:
+      type: object
+      properties:
+        id:
+          title: Id
+          type: string
+          format: uuid
+          readOnly: true
+        name:
+          title: Name
+          type: string
+          maxLength: 50
+        profile_pic:
+          title: Profile pic
+          type:
+          - string
+          - 'null'
+          format: uri
+          maxLength: 200
+        ldap_id:
+          title: Ldap id
+          type:
+          - string
+          - 'null'
+          maxLength: 50
+    SSOBans:
+      required:
+      - banned_by
+      - reason
+      - duration_of_ban
+      type: object
+      properties:
+        id:
+          title: Id
+          type: string
+          format: uuid
+        banned_by:
+          $ref: '#/components/schemas/UserProfile'
+        time_of_creation:
+          title: Time of creation
+          type: string
+          format: date-time
+          readOnly: true
+        reason:
+          title: Reason
+          type: string
+          enum:
+          - IDF
+          - Buy&Sell
+          - 'Graduated '
+          - InstiBan
+        detailed_reason:
+          title: Detailed reason
+          type: string
+        duration_of_ban:
+          title: Duration of ban
+          type: string
+          enum:
+          - 1 month
+          - 3 months
+          - 6 months
+          - 12 months
+          - Permanent
+        banned_user_ldapid:
+          title: Banned user ldapid
+          type:
+          - string
+          - 'null'
+          maxLength: 20
+        banned_user:
+          title: Banned user
+          type:
+          - string
+          - 'null'
+          format: uuid
+  securitySchemes:
+    Basic:
+      type: http
+      scheme: basic

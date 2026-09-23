@@ -1,0 +1,34 @@
+openapi: 3.2.0
+info:
+  title: InstiApp Placement Blog API
+  description: InstiApp IIT Bombay API
+  termsOfService: https://insti.app/tos.html
+  contact:
+    email: devcom@iitb.ac.in
+  license:
+    name: AGPLv3
+  version: v1
+servers:
+- url: https://gymkhana.iitb.ac.in/instiapp/api
+security:
+- Basic: []
+tags:
+- name: placement_blog
+paths:
+  /placement-blog:
+    parameters: []
+    get:
+      operationId: placement_blog
+      description: Get Placement Blog.
+      responses:
+        '200':
+          description: ''
+      tags:
+      - placement_blog
+      summary: Placement blog
+      x-summary-source: derived
+components:
+  securitySchemes:
+    Basic:
+      type: http
+      scheme: basic

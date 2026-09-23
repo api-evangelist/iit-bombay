@@ -1,0 +1,164 @@
+generated: '2026-08-30'
+method: probed
+source: openapi/iit-bombay-instiapp-api-openapi.yml
+regime: education
+regime_standards_checked:
+- scim
+- lti
+- oneroster
+- ed-fi
+- caliper
+- qti
+- oai-pmh
+- shibboleth
+- saml
+- orcid
+- datacite
+- crossref
+note: >-
+  Reward-only. A standard appears below only where a live probe or the institution's own
+  published contract carries the evidence quoted against it. Where a target could not be
+  reached, conforms is `unverified` and the blocking status code is recorded — that is a
+  statement about OUR probe, not a finding that the institution lacks the capability. Nine of
+  the twelve education-regime standards produced no evidence at all in IIT Bombay's public
+  footprint and are recorded as such rather than omitted, so the absence is legible.
+standards:
+
+- id: oai-pmh
+  conforms: unverified
+  x-operator: institution
+  evidence: >-
+    The IIT Bombay Central Library institutional repository at dspace.library.iitb.ac.in runs
+    DSpace and the OAI-PMH interface is the endpoint this repo has recorded since 2026-06-03 at
+    https://dspace.library.iitb.ac.in/oai/request. On 2026-08-30 that URL returned 403 Forbidden
+    from Apache with a broken ErrorDocument ("Additionally, a 500 Internal Server Error error was
+    encountered while trying to use an ErrorDocument to handle the request"), with a browser
+    User-Agent, an XML Accept header and a same-host Referer. /jspui/ returns 403 the same way,
+    while /jspui/oai/request renders a genuine DSpace "Document Not Found" page — so the DSpace
+    application is alive and it is the /oai path that is denied at the web-server layer.
+    /xmlui/OAI/request?verb=Identify returns HTTP 200 with Content-Length: 0, a soft-200 that is
+    dead, not a response. No verb (Identify, ListMetadataFormats, ListSets) produced a valid
+    OAI-PMH envelope from any path.
+  probes:
+  - { url: 'https://dspace.library.iitb.ac.in/oai/request?verb=Identify', status: 403 }
+  - { url: 'https://dspace.library.iitb.ac.in/jspui/', status: 403 }
+  - { url: 'https://dspace.library.iitb.ac.in/jspui/oai/request?verb=Identify', status: 404, detail: DSpace application error page — app is live }
+  - { url: 'https://dspace.library.iitb.ac.in/xmlui/OAI/request?verb=Identify', status: 200, detail: 'Content-Length: 0 — soft-200, no OAI envelope' }
+  - { url: 'https://dspace.library.iitb.ac.in/', status: 200, detail: meta-refresh to /jspui/ }
+  correction: >-
+    The previous profile asserted "The Identify verb returns a valid OAI-PMH 2.0 response,
+    confirming a live harvesting endpoint". That assertion is no longer reproducible and has been
+    withdrawn from apis.yml. It is downgraded to unverified rather than to false, because a
+    server-side 403 on the harvesting path is consistent with a repository that harvests fine for
+    allow-listed aggregators.
+
+- id: shibboleth
+  conforms: false
+  evidence: >-
+    No Shibboleth SP or IdP metadata was reachable. https://sso.iitb.ac.in/Shibboleth.sso/Metadata
+    and https://sso.iitb.ac.in/idp/shibboleth both return 404; idp.iitb.ac.in does not resolve.
+    The institution's central identity broker is OpenID Connect, not SAML — see the oidc entry
+    below.
+  probes:
+  - { url: 'https://sso.iitb.ac.in/Shibboleth.sso/Metadata', status: 404 }
+  - { url: 'https://sso.iitb.ac.in/idp/shibboleth', status: 404 }
+  - { url: 'https://idp.iitb.ac.in/idp/shibboleth', status: 0, detail: DNS does not resolve }
+
+- id: saml
+  conforms: false
+  evidence: >-
+    No SAML 2.0 entity descriptor found on any institution host, and no eduGAIN/INFED federation
+    entry was resolvable from a public API during this pass. Absence of evidence, recorded as
+    such.
+
+- id: scim
+  conforms: false
+  evidence: No /scim/v2 surface and no SCIM schema on any institution host.
+- id: lti
+  conforms: false
+  evidence: No LTI tool or platform registration surface found.
+- id: oneroster
+  conforms: false
+  evidence: No OneRoster REST surface found.
+- id: ed-fi
+  conforms: false
+  evidence: Ed-Fi is a US K-12/state-agency data standard; no surface found and none expected here.
+- id: caliper
+  conforms: false
+  evidence: No Caliper Analytics event store or sensor endpoint found.
+- id: qti
+  conforms: false
+  evidence: No QTI assessment interchange surface found.
+- id: orcid
+  conforms: false
+  evidence: >-
+    No ORCID integration is exposed on a machine-readable surface. The repository that would
+    normally carry it (dspace.library.iitb.ac.in) is 403 to us, so this is a not-found rather
+    than a checked-and-absent for the repository specifically.
+- id: datacite
+  conforms: false
+  evidence: No DataCite DOI minting or metadata surface found on an institution host.
+- id: crossref
+  conforms: false
+  evidence: No Crossref deposit or metadata surface found on an institution host.
+
+- id: openapi-2.0
+  conforms: true
+  x-operator: institution
+  evidence: >-
+    IIT Bombay publishes a live, autogenerated Swagger 2.0 document at
+    https://gymkhana.iitb.ac.in/instiapp/api/docs/?format=openapi (200, 85,661 bytes) with
+    host gymkhana.iitb.ac.in, basePath /instiapp/api, 112 paths, 164 operations, 37 definitions
+    and an operationId on every operation. info.contact.email is devcom@iitb.ac.in and
+    info.license is AGPLv3. This is a first-party institution-operated contract, not a vendor's.
+    Preserved byte-exact at openapi/_original/iit-bombay-instiapp-api-openapi.json.
+  probes:
+  - { url: 'https://gymkhana.iitb.ac.in/instiapp/api/docs/', status: 200 }
+  - { url: 'https://gymkhana.iitb.ac.in/instiapp/api/docs/?format=openapi', status: 200 }
+
+- id: openapi-3.0
+  conforms: partial
+  evidence: >-
+    The institution publishes Swagger 2.0, not OpenAPI 3. The 3.0.0 document in this repo is our
+    own mechanical conversion (swagger2openapi 7.0.8) and is marked method: derived. Partial
+    records that a valid 3.0 rendering exists and that the institution did not author it.
+
+- id: oidc-discovery
+  conforms: true
+  x-operator: institution
+  evidence: >-
+    https://sso.iitb.ac.in/.well-known/openid-configuration returns 200 with a valid OpenID
+    Connect Discovery 1.0 document — issuer https://sso.iitb.ac.in, authorization, token,
+    userinfo and jwks endpoints, scopes_supported ["openid"], response_types_supported ["code"],
+    token_endpoint_auth_methods_supported ["client_secret_basic"]. The JWKS at
+    https://sso.iitb.ac.in/.well-known/jwks.json returns 200 with one RSA key (kid "sso"). The
+    token endpoint answers 400 "method must be POST" and userinfo answers 401 unauthenticated,
+    both confirming live services rather than static files.
+  probes:
+  - { url: 'https://sso.iitb.ac.in/.well-known/openid-configuration', status: 200 }
+  - { url: 'https://sso.iitb.ac.in/.well-known/jwks.json', status: 200 }
+  - { url: 'https://sso.iitb.ac.in/token', status: 400 }
+  - { url: 'https://sso.iitb.ac.in/user', status: 401 }
+
+- id: rfc6749-oauth2
+  conforms: true
+  x-operator: institution
+  evidence: >-
+    The Gymkhana Profiles service documents itself as "following the RFC 6749 for OAuth 2.0" and
+    the endpoints answer accordingly — /profiles/oauth/authorize/ 200, /profiles/oauth/token/ 405
+    on GET (POST-only), /profiles/user/api/user/ 401 unauthenticated. Ten named scopes are
+    published. Implementation source at github.com/iitb-gymkhana/sso (GPL-3.0).
+
+- id: rfc8414-as-metadata
+  conforms: false
+  evidence: >-
+    Gymkhana Profiles publishes no authorization-server metadata document;
+    https://gymkhana.iitb.ac.in/profiles/.well-known/openid-configuration returns 404. Its
+    endpoints are discoverable only from prose documentation.
+
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: >-
+    Errors are Django REST Framework's flat {"detail": …} envelope, with a second
+    {"message","detail"} shape on /user-me and an HTML page on unrouted 404s. No
+    application/problem+json anywhere. See errors/iit-bombay-problem-types.yml.

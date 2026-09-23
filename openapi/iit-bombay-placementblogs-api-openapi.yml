@@ -1,0 +1,439 @@
+openapi: 3.2.0
+info:
+  title: InstiApp Placementblogs API
+  description: InstiApp IIT Bombay API
+  termsOfService: https://insti.app/tos.html
+  contact:
+    email: devcom@iitb.ac.in
+  license:
+    name: AGPLv3
+  version: v1
+servers:
+- url: https://gymkhana.iitb.ac.in/instiapp/api
+security:
+- Basic: []
+tags:
+- name: placementblogs
+paths:
+  /placementblogs/filters/:
+    parameters: []
+    get:
+      operationId: placementblogs_filters_list
+      description: ''
+      responses:
+        '200':
+          description: ''
+      tags:
+      - placementblogs
+      summary: Placementblogs filters list
+      x-summary-source: derived
+  /placementblogs/posts/:
+    parameters: []
+    get:
+      operationId: placementblogs_posts_list
+      description: ''
+      parameters:
+      - name: page
+        in: query
+        description: A page number within the paginated result set.
+        required: false
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                required:
+                - count
+                - results
+                type: object
+                properties:
+                  count:
+                    type: integer
+                  next:
+                    type:
+                    - string
+                    - 'null'
+                    format: uri
+                  previous:
+                    type:
+                    - string
+                    - 'null'
+                    format: uri
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/PlacementBlogPost'
+      tags:
+      - placementblogs
+      summary: Placementblogs posts list
+      x-summary-source: derived
+  /placementblogs/posts/latest/:
+    parameters: []
+    get:
+      operationId: placementblogs_posts_latest_list
+      description: ''
+      parameters:
+      - name: page
+        in: query
+        description: A page number within the paginated result set.
+        required: false
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                required:
+                - count
+                - results
+                type: object
+                properties:
+                  count:
+                    type: integer
+                  next:
+                    type:
+                    - string
+                    - 'null'
+                    format: uri
+                  previous:
+                    type:
+                    - string
+                    - 'null'
+                    format: uri
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/PlacementBlogPost'
+      tags:
+      - placementblogs
+      summary: Placementblogs posts latest list
+      x-summary-source: derived
+  /placementblogs/threads/:
+    parameters: []
+    get:
+      operationId: placementblogs_threads_list
+      description: ''
+      parameters:
+      - name: page
+        in: query
+        description: A page number within the paginated result set.
+        required: false
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                required:
+                - count
+                - results
+                type: object
+                properties:
+                  count:
+                    type: integer
+                  next:
+                    type:
+                    - string
+                    - 'null'
+                    format: uri
+                  previous:
+                    type:
+                    - string
+                    - 'null'
+                    format: uri
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/PlacementCompanyThread'
+      tags:
+      - placementblogs
+      summary: Placementblogs threads list
+      x-summary-source: derived
+  /placementblogs/threads/{company_slug}/:
+    parameters:
+    - name: company_slug
+      in: path
+      required: true
+      schema:
+        type: string
+        format: slug
+        pattern: ^[-a-zA-Z0-9_]+$
+    get:
+      operationId: placementblogs_threads_read
+      description: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlacementCompleteThread'
+      tags:
+      - placementblogs
+      summary: Placementblogs threads read
+      x-summary-source: derived
+components:
+  schemas:
+    PlacementBlogPost:
+      required:
+      - id
+      - post_type
+      - raw_company_name
+      - published
+      - link
+      - raw_content
+      type: object
+      properties:
+        id:
+          title: Id
+          type: string
+          format: uuid
+        company_slug:
+          title: Company slug
+          type: string
+          readOnly: true
+        post_type:
+          title: Post type
+          type: string
+          enum:
+          - JAF_OPEN
+          - TEST
+          - TEST_SHORTLIST
+          - TEST_UPDATE
+          - ASSIGNMENT_DETAILS
+          - ASSIGNMENT_SHORTLIST
+          - MANDATORY_FORM
+          - INTERVIEW_SHORTLIST
+          - INTERVIEW_SCHEDULE
+          - INTERVIEW_UPDATE
+          - GD_SCHEDULE
+          - GD_UPDATE
+          - ROUND2_SHORTLIST
+          - FINAL_SELECTION
+          - OTHER
+        post_type_display:
+          title: Post type display
+          type: string
+          readOnly: true
+          minLength: 1
+        raw_company_name:
+          title: Raw company name
+          type: string
+          maxLength: 200
+          minLength: 1
+        published:
+          title: Published
+          type: string
+          format: date-time
+        link:
+          title: Link
+          type: string
+          format: uri
+          maxLength: 200
+          minLength: 1
+        pinned:
+          title: Pinned
+          type: boolean
+        extracted_data:
+          $ref: '#/components/schemas/PlacementExtractedData'
+        raw_content:
+          title: Raw content
+          type: string
+          minLength: 1
+    PlacementExtractedData:
+      type: object
+      properties:
+        category:
+          title: Category
+          type: string
+          maxLength: 10
+        role:
+          title: Role
+          type: string
+        domain:
+          title: Domain
+          type: string
+          maxLength: 200
+        bonus_jaf:
+          title: Bonus jaf
+          type: string
+          maxLength: 100
+        cpi_cutoff:
+          title: Cpi cutoff
+          type: string
+        bond:
+          title: Bond
+          type:
+          - string
+          - 'null'
+          maxLength: 255
+        mode:
+          title: Mode
+          type:
+          - string
+          - 'null'
+          maxLength: 255
+        deadline:
+          title: Deadline
+          type:
+          - string
+          - 'null'
+          format: date-time
+        shortlisted_rolls:
+          title: Shortlisted rolls
+          type:
+          - object
+          - 'null'
+        event_date:
+          title: Event date
+          type:
+          - string
+          - 'null'
+          format: date-time
+        venue:
+          title: Venue
+          type: string
+          maxLength: 300
+        time:
+          title: Time
+          type: string
+          maxLength: 50
+        placement_slots:
+          title: Placement slots
+          type:
+          - object
+          - 'null'
+    PlacementCompleteThread:
+      required:
+      - company_name
+      - company_slug
+      - first_post_date
+      type: object
+      properties:
+        id:
+          title: ID
+          type: integer
+          readOnly: true
+        company_name:
+          title: Company name
+          type: string
+          maxLength: 200
+          minLength: 1
+        company_slug:
+          title: Company slug
+          type: string
+          format: slug
+          pattern: ^[-a-zA-Z0-9_]+$
+          maxLength: 50
+          minLength: 1
+        first_post_date:
+          title: First post date
+          type: string
+          format: date-time
+        role:
+          title: Role
+          type: string
+        domain:
+          title: Domain
+          type: string
+          maxLength: 200
+        bonus_jaf:
+          title: Bonus jaf
+          type: string
+          maxLength: 100
+        cpi_cutoff:
+          title: Cpi cutoff
+          type: string
+        bond:
+          title: Bond
+          type:
+          - string
+          - 'null'
+          maxLength: 255
+        mode:
+          title: Mode
+          type:
+          - string
+          - 'null'
+          maxLength: 255
+        jaf_deadline:
+          title: Jaf deadline
+          type:
+          - string
+          - 'null'
+          format: date-time
+        posts:
+          type: array
+          items:
+            $ref: '#/components/schemas/PlacementBlogPost'
+          readOnly: true
+    PlacementCompanyThread:
+      required:
+      - company_name
+      - company_slug
+      - first_post_date
+      type: object
+      properties:
+        id:
+          title: ID
+          type: integer
+          readOnly: true
+        company_name:
+          title: Company name
+          type: string
+          maxLength: 200
+          minLength: 1
+        company_slug:
+          title: Company slug
+          type: string
+          format: slug
+          pattern: ^[-a-zA-Z0-9_]+$
+          maxLength: 50
+          minLength: 1
+        first_post_date:
+          title: First post date
+          type: string
+          format: date-time
+        role:
+          title: Role
+          type: string
+        domain:
+          title: Domain
+          type: string
+          maxLength: 200
+        bonus_jaf:
+          title: Bonus jaf
+          type: string
+          maxLength: 100
+        cpi_cutoff:
+          title: Cpi cutoff
+          type: string
+        bond:
+          title: Bond
+          type:
+          - string
+          - 'null'
+          maxLength: 255
+        mode:
+          title: Mode
+          type:
+          - string
+          - 'null'
+          maxLength: 255
+        jaf_deadline:
+          title: Jaf deadline
+          type:
+          - string
+          - 'null'
+          format: date-time
+  securitySchemes:
+    Basic:
+      type: http
+      scheme: basic

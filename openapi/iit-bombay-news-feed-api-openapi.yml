@@ -1,0 +1,34 @@
+openapi: 3.2.0
+info:
+  title: InstiApp News Feed API
+  description: InstiApp IIT Bombay API
+  termsOfService: https://insti.app/tos.html
+  contact:
+    email: devcom@iitb.ac.in
+  license:
+    name: AGPLv3
+  version: v1
+servers:
+- url: https://gymkhana.iitb.ac.in/instiapp/api
+security:
+- Basic: []
+tags:
+- name: News Feed
+paths:
+  /news:
+    parameters: []
+    get:
+      operationId: news_feed
+      description: Get News feed.
+      responses:
+        '200':
+          description: ''
+      tags:
+      - News Feed
+      summary: News feed
+      x-summary-source: derived
+components:
+  securitySchemes:
+    Basic:
+      type: http
+      scheme: basic

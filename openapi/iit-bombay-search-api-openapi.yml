@@ -1,0 +1,46 @@
+openapi: 3.2.0
+info:
+  title: InstiApp Search API
+  description: InstiApp IIT Bombay API
+  termsOfService: https://insti.app/tos.html
+  contact:
+    email: devcom@iitb.ac.in
+  license:
+    name: AGPLv3
+  version: v1
+servers:
+- url: https://gymkhana.iitb.ac.in/instiapp/api
+security:
+- Basic: []
+tags:
+- name: Search
+paths:
+  /query:
+    parameters: []
+    get:
+      operationId: search
+      description: Get Search Results.
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Search
+      summary: Search
+      x-summary-source: derived
+  /search:
+    parameters: []
+    get:
+      operationId: search
+      description: ''
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Search
+      summary: Search
+      x-summary-source: derived
+components:
+  securitySchemes:
+    Basic:
+      type: http
+      scheme: basic

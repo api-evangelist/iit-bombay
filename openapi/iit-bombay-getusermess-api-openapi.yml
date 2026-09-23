@@ -1,0 +1,34 @@
+openapi: 3.2.0
+info:
+  title: InstiApp Get User Mess API
+  description: InstiApp IIT Bombay API
+  termsOfService: https://insti.app/tos.html
+  contact:
+    email: devcom@iitb.ac.in
+  license:
+    name: AGPLv3
+  version: v1
+servers:
+- url: https://gymkhana.iitb.ac.in/instiapp/api
+security:
+- Basic: []
+tags:
+- name: getUserMess
+paths:
+  /getUserMess:
+    parameters: []
+    get:
+      operationId: getUserMess_list
+      description: Get mess status for a user
+      responses:
+        '200':
+          description: ''
+      tags:
+      - getUserMess
+      summary: Get user mess list
+      x-summary-source: derived
+components:
+  securitySchemes:
+    Basic:
+      type: http
+      scheme: basic

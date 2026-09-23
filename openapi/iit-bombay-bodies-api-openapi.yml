@@ -1,0 +1,372 @@
+openapi: 3.2.0
+info:
+  title: InstiApp Bodies API
+  description: InstiApp IIT Bombay API
+  termsOfService: https://insti.app/tos.html
+  contact:
+    email: devcom@iitb.ac.in
+  license:
+    name: AGPLv3
+  version: v1
+servers:
+- url: https://gymkhana.iitb.ac.in/instiapp/api
+security:
+- Basic: []
+tags:
+- name: Bodies
+paths:
+  /bodies:
+    parameters: []
+    get:
+      operationId: bodies_list
+      description: Body
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Body'
+      tags:
+      - Bodies
+      summary: Bodies list
+      x-summary-source: derived
+    post:
+      operationId: bodies_create
+      description: 'Create Body.
+
+        Needs the `AddB` Institute Role permission.'
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Body'
+      tags:
+      - Bodies
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Body'
+        required: true
+      summary: Bodies create
+      x-summary-source: derived
+  /bodies/{id}:
+    parameters:
+    - name: id
+      in: path
+      description: A UUID string identifying this Body.
+      required: true
+      schema:
+        type: string
+        format: uuid
+    get:
+      operationId: bodies_read
+      description: 'Get Body.
+
+        Retrieve by `uuid` or `str_id`.'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Body'
+      tags:
+      - Bodies
+      summary: Bodies read
+      x-summary-source: derived
+    put:
+      operationId: bodies_update
+      description: 'Update Body.
+
+        Needs the `UpdB` permission.'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Body'
+      tags:
+      - Bodies
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Body'
+        required: true
+      summary: Bodies update
+      x-summary-source: derived
+    delete:
+      operationId: bodies_delete
+      description: 'Delete Body.
+
+        Needs the `DelB` institute permission.'
+      responses:
+        '204':
+          description: ''
+      tags:
+      - Bodies
+      summary: Bodies delete
+      x-summary-source: derived
+  /bodies/{id}/events:
+    parameters:
+    - name: id
+      in: path
+      description: A UUID string identifying this Body.
+      required: true
+      schema:
+        type: string
+        format: uuid
+    get:
+      operationId: bodies_get_events
+      description: 'Get all events from pk uuid or strid.
+
+        {?archived} is optional arguement to fetch all events'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Body'
+      tags:
+      - Bodies
+      summary: Bodies get events
+      x-summary-source: derived
+  /bodies/{id}/follow:
+    parameters:
+    - name: id
+      in: path
+      description: A UUID string identifying this Body.
+      required: true
+      schema:
+        type: string
+        format: uuid
+    get:
+      operationId: bodies_follow
+      description: Follow or unfollow a body {?action}=0,1
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Body'
+      tags:
+      - Bodies
+      summary: Bodies follow
+      x-summary-source: derived
+  /bodies/{id}/followers:
+    parameters:
+    - name: id
+      in: path
+      description: A UUID string identifying this Body.
+      required: true
+      schema:
+        type: string
+        format: uuid
+    get:
+      operationId: bodies_followers_read
+      description: List followers of body.
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BodyFollowers'
+      tags:
+      - Bodies
+      summary: Bodies followers read
+      x-summary-source: derived
+components:
+  schemas:
+    BodyFollowers:
+      type: object
+      properties:
+        id:
+          title: Id
+          type: string
+          format: uuid
+          readOnly: true
+        followers:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserProfile'
+          readOnly: true
+    RoleSerializerMin:
+      required:
+      - name
+      - body
+      type: object
+      properties:
+        id:
+          title: Id
+          type: string
+          format: uuid
+          readOnly: true
+        name:
+          title: Name
+          type: string
+          maxLength: 50
+          minLength: 1
+        body:
+          title: Body
+          type: string
+          format: uuid
+        users_detail:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserProfile'
+          readOnly: true
+        priority:
+          title: Priority
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+    UserProfile:
+      type: object
+      properties:
+        id:
+          title: Id
+          type: string
+          format: uuid
+          readOnly: true
+        name:
+          title: Name
+          type: string
+          maxLength: 50
+        profile_pic:
+          title: Profile pic
+          type:
+          - string
+          - 'null'
+          format: uri
+          maxLength: 200
+        ldap_id:
+          title: Ldap id
+          type:
+          - string
+          - 'null'
+          maxLength: 50
+    Body:
+      required:
+      - name
+      type: object
+      properties:
+        id:
+          title: Id
+          type: string
+          format: uuid
+          readOnly: true
+        str_id:
+          title: Str id
+          type:
+          - string
+          - 'null'
+          readOnly: true
+          minLength: 1
+        name:
+          title: Name
+          type: string
+          maxLength: 50
+          minLength: 1
+        short_description:
+          title: Short description
+          type: string
+          maxLength: 50
+        description:
+          title: Description
+          type: string
+        image_url:
+          title: Image url
+          type:
+          - string
+          - 'null'
+          format: uri
+          maxLength: 200
+        children:
+          title: Children
+          type: string
+          readOnly: true
+        parents:
+          title: Parents
+          type: string
+          readOnly: true
+        events:
+          title: Events
+          type: string
+          readOnly: true
+        followers_count:
+          title: Followers count
+          type: integer
+          readOnly: true
+        user_follows:
+          title: User follows
+          type: boolean
+          readOnly: true
+        roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/RoleSerializerMin'
+          readOnly: true
+        website_url:
+          title: Website url
+          type:
+          - string
+          - 'null'
+          format: uri
+          maxLength: 200
+        blog_url:
+          title: Blog url
+          type:
+          - string
+          - 'null'
+          format: uri
+          maxLength: 200
+        cover_url:
+          title: Cover url
+          type:
+          - string
+          - 'null'
+          format: uri
+          maxLength: 200
+        whatsapp_group_url:
+          title: Whatsapp group url
+          type:
+          - string
+          - 'null'
+          format: uri
+          maxLength: 200
+        instagram_url:
+          title: Instagram url
+          type:
+          - string
+          - 'null'
+          format: uri
+          maxLength: 200
+        photoalbum_urls:
+          title: Photoalbum urls
+          type:
+          - string
+          - 'null'
+        short_name:
+          title: Short name
+          type:
+          - string
+          - 'null'
+          maxLength: 20
+  securitySchemes:
+    Basic:
+      type: http
+      scheme: basic

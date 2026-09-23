@@ -1,0 +1,91 @@
+openapi: 3.2.0
+info:
+  title: InstiApp Upload API
+  description: InstiApp IIT Bombay API
+  termsOfService: https://insti.app/tos.html
+  contact:
+    email: devcom@iitb.ac.in
+  license:
+    name: AGPLv3
+  version: v1
+servers:
+- url: https://gymkhana.iitb.ac.in/instiapp/api
+security:
+- Basic: []
+tags:
+- name: Upload
+paths:
+  /upload:
+    parameters: []
+    post:
+      operationId: upload_create
+      description: Upload file.
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UploadedImage'
+      tags:
+      - Upload
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UploadedImage'
+        required: true
+      summary: Upload create
+      x-summary-source: derived
+  /upload/{id}:
+    parameters:
+    - name: id
+      in: path
+      description: A UUID string identifying this Uploaded Image.
+      required: true
+      schema:
+        type: string
+        format: uuid
+    get:
+      operationId: upload_read
+      description: Upload
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UploadedImage'
+      tags:
+      - Upload
+      summary: Upload read
+      x-summary-source: derived
+    delete:
+      operationId: upload_delete
+      description: Delete file entry.
+      responses:
+        '204':
+          description: ''
+      tags:
+      - Upload
+      summary: Upload delete
+      x-summary-source: derived
+components:
+  schemas:
+    UploadedImage:
+      type: object
+      properties:
+        id:
+          title: Id
+          type: string
+          format: uuid
+          readOnly: true
+        picture:
+          title: Picture
+          type: string
+          readOnly: true
+          format: uri
+  securitySchemes:
+    Basic:
+      type: http
+      scheme: basic

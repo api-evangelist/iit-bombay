@@ -1,0 +1,500 @@
+openapi: 3.2.0
+info:
+  title: InstiApp Events API
+  description: InstiApp IIT Bombay API
+  termsOfService: https://insti.app/tos.html
+  contact:
+    email: devcom@iitb.ac.in
+  license:
+    name: AGPLv3
+  version: v1
+servers:
+- url: https://gymkhana.iitb.ac.in/instiapp/api
+security:
+- Basic: []
+tags:
+- name: Events
+paths:
+  /events:
+    parameters: []
+    get:
+      operationId: events_list
+      description: 'List Events.
+
+        List fresh events prioritized for the current user.'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EventFull'
+      tags:
+      - Events
+      summary: Events list
+      x-summary-source: derived
+    post:
+      operationId: events_create
+      description: 'Create Event.
+
+        Needs `AddE` permission for each body to be associated.'
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventFull'
+      tags:
+      - Events
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EventFull'
+        required: true
+      summary: Events create
+      x-summary-source: derived
+  /events/{id}:
+    parameters:
+    - name: id
+      in: path
+      description: A UUID string identifying this Event.
+      required: true
+      schema:
+        type: string
+        format: uuid
+    get:
+      operationId: events_read
+      description: Get Event with permission check and retry-safe transaction.
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventFull'
+      tags:
+      - Events
+      summary: Events read
+      x-summary-source: derived
+    put:
+      operationId: events_update
+      description: 'Update Event.
+
+        Needs BodyRole with `UpdE` for at least one associated body.
+
+        Disassociating bodies from the event requires the `DelE`
+
+        permission and associating needs `AddE`'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventFull'
+      tags:
+      - Events
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EventFull'
+        required: true
+      summary: Events update
+      x-summary-source: derived
+    delete:
+      operationId: events_delete
+      description: 'Delete Event.
+
+        Needs `DelE` permission for all associated bodies.'
+      responses:
+        '204':
+          description: ''
+      tags:
+      - Events
+      summary: Events delete
+      x-summary-source: derived
+  /events/{id}/approve-mail:
+    parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+    post:
+      operationId: events_approve_mail
+      description: ''
+      responses:
+        '201':
+          description: ''
+      tags:
+      - Events
+      summary: Events approve mail
+      x-summary-source: derived
+  /events/{id}/reject-mail:
+    parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+    post:
+      operationId: events_reject_mail
+      description: ''
+      responses:
+        '201':
+          description: ''
+      tags:
+      - Events
+      summary: Events reject mail
+      x-summary-source: derived
+  /events/{id}/resubmit:
+    parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+    post:
+      operationId: events_resubmit
+      description: ''
+      responses:
+        '201':
+          description: ''
+      tags:
+      - Events
+      summary: Events resubmit
+      x-summary-source: derived
+components:
+  schemas:
+    OfferedAchievement:
+      required:
+      - title
+      - body
+      - event
+      type: object
+      properties:
+        id:
+          title: Id
+          type: string
+          format: uuid
+          readOnly: true
+        priority:
+          title: Priority
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+        title:
+          title: Title
+          type: string
+          maxLength: 80
+          minLength: 1
+        description:
+          title: Description
+          type: string
+        body:
+          title: Body
+          type: string
+          format: uuid
+        event:
+          title: Event
+          type: string
+          format: uuid
+        generic:
+          title: Generic
+          type: string
+          maxLength: 20
+          minLength: 1
+    EventFull:
+      required:
+      - name
+      - verification_bodies_id
+      - start_time
+      - end_time
+      - bodies_id
+      - interests_id
+      type: object
+      properties:
+        id:
+          title: Id
+          type: string
+          format: uuid
+          readOnly: true
+        str_id:
+          title: Str id
+          type:
+          - string
+          - 'null'
+          readOnly: true
+          minLength: 1
+        name:
+          title: Name
+          type: string
+          maxLength: 60
+          minLength: 1
+        tags:
+          title: Tags
+          type:
+          - string
+          - 'null'
+          enum:
+          - event
+          - announcement
+        description:
+          title: Description
+          type: string
+        email_subject:
+          title: Email subject
+          type: string
+          minLength: 1
+        longdescription:
+          title: Longdescription
+          type: string
+          minLength: 1
+        email_verified:
+          title: Email verified
+          type: boolean
+        email_rejected:
+          title: Email rejected
+          type: boolean
+        verification_bodies:
+          type: array
+          items:
+            $ref: '#/components/schemas/BodySerializerMin'
+          readOnly: true
+        verification_bodies_id:
+          type: array
+          items:
+            type: string
+            format: uuid
+          uniqueItems: true
+        image_url:
+          title: Image url
+          type:
+          - string
+          - 'null'
+          format: uri
+          maxLength: 200
+        start_time:
+          title: Start time
+          type: string
+          format: date-time
+        end_time:
+          title: End time
+          type: string
+          format: date-time
+        all_day:
+          title: All day
+          type: boolean
+        venues:
+          type: array
+          items:
+            $ref: '#/components/schemas/LocationSerializerMin'
+          readOnly: true
+        venue_room:
+          title: Venue room
+          type:
+          - string
+          - 'null'
+        venue_names:
+          type: array
+          items:
+            type: string
+          readOnly: true
+          uniqueItems: true
+        bodies:
+          type: array
+          items:
+            $ref: '#/components/schemas/BodySerializerMin'
+          readOnly: true
+        bodies_id:
+          type: array
+          items:
+            type: string
+            format: uuid
+          uniqueItems: true
+        interested_count:
+          title: Interested count
+          type: integer
+          readOnly: true
+        going_count:
+          title: Going count
+          type: integer
+          readOnly: true
+        interested:
+          title: Interested
+          type: string
+          readOnly: true
+        going:
+          title: Going
+          type: string
+          readOnly: true
+        venue_ids:
+          type: array
+          items:
+            type: string
+            format: uuid
+          uniqueItems: true
+        website_url:
+          title: Website url
+          type:
+          - string
+          - 'null'
+          format: uri
+          maxLength: 200
+        user_ues:
+          title: User ues
+          type: string
+          readOnly: true
+        notify:
+          title: Notify
+          type: boolean
+        user_tags:
+          type: array
+          items:
+            type: integer
+          default: []
+          uniqueItems: true
+        offered_achievements:
+          type: array
+          items:
+            $ref: '#/components/schemas/OfferedAchievement'
+          readOnly: true
+        event_interest:
+          type: array
+          items:
+            $ref: '#/components/schemas/Interest'
+          readOnly: true
+        interests_id:
+          type: array
+          items:
+            type: string
+            format: uuid
+          uniqueItems: true
+        verification_status:
+          title: Verification status
+          type: string
+          readOnly: true
+          minLength: 1
+        rejection_reason:
+          title: Rejection reason
+          type: string
+          default: ''
+        time_of_creation:
+          title: Time of creation
+          type: string
+          format: date-time
+          readOnly: true
+    LocationSerializerMin:
+      required:
+      - name
+      type: object
+      properties:
+        id:
+          title: Id
+          type: string
+          format: uuid
+          readOnly: true
+        name:
+          title: Name
+          type: string
+          maxLength: 150
+          minLength: 1
+        short_name:
+          title: Short name
+          type:
+          - string
+          - 'null'
+          maxLength: 80
+        lat:
+          title: Lat
+          type:
+          - string
+          - 'null'
+          format: decimal
+        lng:
+          title: Lng
+          type:
+          - string
+          - 'null'
+          format: decimal
+    Interest:
+      required:
+      - title
+      type: object
+      properties:
+        id:
+          title: Id
+          type: string
+          format: uuid
+          readOnly: true
+        title:
+          title: Title
+          type: string
+          maxLength: 80
+          minLength: 1
+    BodySerializerMin:
+      required:
+      - name
+      type: object
+      properties:
+        id:
+          title: Id
+          type: string
+          format: uuid
+          readOnly: true
+        str_id:
+          title: Str id
+          type:
+          - string
+          - 'null'
+          readOnly: true
+          minLength: 1
+        name:
+          title: Name
+          type: string
+          maxLength: 50
+          minLength: 1
+        short_description:
+          title: Short description
+          type: string
+          maxLength: 50
+        website_url:
+          title: Website url
+          type:
+          - string
+          - 'null'
+          format: uri
+          maxLength: 200
+        image_url:
+          title: Image url
+          type:
+          - string
+          - 'null'
+          format: uri
+          maxLength: 200
+        cover_url:
+          title: Cover url
+          type:
+          - string
+          - 'null'
+          format: uri
+          maxLength: 200
+        followers_count:
+          title: Followers count
+          type: string
+          readOnly: true
+        short_name:
+          title: Short name
+          type:
+          - string
+          - 'null'
+          maxLength: 20
+  securitySchemes:
+    Basic:
+      type: http
+      scheme: basic

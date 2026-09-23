@@ -1,0 +1,118 @@
+openapi: 3.2.0
+info:
+  title: InstiApp Lnf API
+  description: InstiApp IIT Bombay API
+  termsOfService: https://insti.app/tos.html
+  contact:
+    email: devcom@iitb.ac.in
+  license:
+    name: AGPLv3
+  version: v1
+servers:
+- url: https://gymkhana.iitb.ac.in/instiapp/api
+security:
+- Basic: []
+tags:
+- name: lnf
+paths:
+  /lnf/products/:
+    parameters: []
+    get:
+      operationId: lnf_products_list
+      description: Get list of products.
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProductFound'
+      tags:
+      - lnf
+      summary: Lnf products list
+      x-summary-source: derived
+  /lnf/products/{id}/:
+    parameters:
+    - name: id
+      in: path
+      description: A UUID string identifying this ProductFound.
+      required: true
+      schema:
+        type: string
+        format: uuid
+    get:
+      operationId: lnf_products_read
+      description: Get a product from pk uuid or strid.
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductFound'
+      tags:
+      - lnf
+      summary: Lnf products read
+      x-summary-source: derived
+components:
+  schemas:
+    ProductFound:
+      required:
+      - name
+      - contact_details
+      type: object
+      properties:
+        id:
+          title: Id
+          type: string
+          format: uuid
+          readOnly: true
+        name:
+          title: Name
+          type: string
+          maxLength: 60
+          minLength: 1
+        description:
+          title: Description
+          type: string
+        product_image:
+          title: Product image
+          type: string
+          readOnly: true
+        category:
+          title: Category
+          type:
+          - string
+          - 'null'
+          enum:
+          - electronics
+          - stationery
+          - Other
+        found_at:
+          title: Found at
+          type: string
+          maxLength: 60
+        claimed:
+          title: Claimed
+          type: string
+          readOnly: true
+        claimed_by:
+          title: Claimed by
+          type: string
+          readOnly: true
+        contact_details:
+          title: Contact details
+          type: string
+          maxLength: 300
+          minLength: 1
+        time_of_creation:
+          title: Time of creation
+          type: string
+          format: date-time
+          readOnly: true
+  securitySchemes:
+    Basic:
+      type: http
+      scheme: basic

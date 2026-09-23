@@ -1,0 +1,341 @@
+generated: '2026-08-30'
+method: probed
+source: https://gymkhana.iitb.ac.in/instiapp/api
+spec: openapi/iit-bombay-instiapp-api-openapi.yml
+x-operator: institution
+note: 'Real responses captured live from the InstiApp API on the institution''s own host on 2026-08-30.
+  Nothing here is invented: every payload below was returned by an unauthenticated GET against https://gymkhana.iitb.ac.in/instiapp/api.
+  Collections are truncated to one or two items and long free-text fields are cut at 400 characters; e-mail
+  addresses and Indian mobile numbers appearing in institutional announcement text are redacted per the
+  enrichment PII guardrail. items_in_full_response records the size of the untruncated response so the
+  truncation is visible rather than silent.'
+examples:
+- operation: GET /events
+  url: https://gymkhana.iitb.ac.in/instiapp/api/events
+  status: 200
+  content_type: application/json
+  authenticated: false
+  items_in_full_response: 13
+  sample_truncated_to: 1
+  response:
+    count: 13
+    data:
+    - id: 562b08f2-8122-4e94-854e-837fd758f7d0
+      str_id: lecture-2-pgac-postdoctoral-opportunities-series-562b08f2
+      name: Lecture 2 PGAC Postdoctoral Opportunities Series
+      tags: null
+      description: "Dear All,\n \nGreetings from PGAC!\n \nPlanning to apply for a postdoctoral position\
+        \ but unsure where to look, how to approach potential supervisors, or what makes an application\
+        \ stand out?\n\nPGAC invites you to the next session of the PGAC's \"Post-Doc Opportunities Series\"\
+        , an initiative aimed at helping PhD students navigate postdoctoral pathways, identify suitable\
+        \ research opportunities, strengthen  …[truncated]"
+      email_subject: Lecture 2 || PGAC Postdoctoral Opportunities Series || 30 August 2026 || Online
+      longdescription: "Dear All,\n \nGreetings from PGAC!\n \nPlanning to apply for a postdoctoral position\
+        \ but unsure where to look, how to approach potential supervisors, or what makes an application\
+        \ stand out?\n\nPGAC invites you to the next session of the PGAC's \"Post-Doc Opportunities Series\"\
+        , an initiative aimed at helping PhD students navigate postdoctoral pathways, identify suitable\
+        \ research opportunities, strengthen  …[truncated]"
+      image_url: https://gymkhana.iitb.ac.in/instiapp/static/upload/6e/c1/6ec1cb9d-495e-4d70-9959-053d5aed29cf-Post_Doc_Digital_Board.png.jpg
+      start_time: '2026-08-30T18:00:00+05:30'
+      end_time: '2026-08-30T20:00:00+05:30'
+      all_day: false
+      venues:
+      - id: 4bca4730-0d05-4f3e-ac2f-4530146fcb8c
+        name: Online
+        short_name: Online
+        lat: null
+        lng: null
+      venue_room: null
+      bodies:
+      - id: 54a15b7c-fb4a-4fdc-9b5e-3b5b54352bda
+        str_id: gsaapg
+        name: PGAC
+        short_description: Post Graduate Academic Council
+        website_url: https://gymkhana.iitb.ac.in/~pgacademics/team/
+        image_url: https://api.insti.app/static/upload/06f9ae23-bc9.jpg
+        cover_url: null
+        followers_count: 192
+        short_name: null
+      interested_count: 0
+      going_count: 1
+      website_url: https://meet.google.com/rit-kvgr-kes
+      weight: 1031
+      user_ues: null
+      offered_achievements: []
+      event_interest: []
+      email_verified: true
+      email_rejected: false
+      verification_status: approved
+      rejection_reason: ''
+      time_of_creation: '2026-08-29T19:02:27.279018+05:30'
+- operation: GET /bodies
+  url: https://gymkhana.iitb.ac.in/instiapp/api/bodies
+  status: 200
+  content_type: application/json
+  authenticated: false
+  items_in_full_response: 154
+  sample_truncated_to: 2
+  response:
+  - id: 571c2d81-2206-46e6-825f-6b87b286863c
+    str_id: instiapp
+    name: InstiApp
+    short_description: The one platform of IIT Bombay
+    website_url: https://insti.app
+    image_url: https://api.insti.app/static/upload/2c/d8/2cd8bf5c-eafb-409b-8a04-f62f94ccd58d-logo.png.jpg
+    cover_url: null
+    followers_count: 12595
+    short_name: null
+  - id: 5023aff7-4407-4e75-95c9-5f691e8c3efb
+    str_id: placement-blog
+    name: Placement Blog
+    short_description: Follow for Notifications!
+    website_url: https://campus.placements.iitb.ac.in/blog/placement
+    image_url: https://api.insti.app/static/upload/3e4bf047-d48.png
+    cover_url: null
+    followers_count: 4950
+    short_name: null
+- operation: GET /news
+  url: https://gymkhana.iitb.ac.in/instiapp/api/news
+  status: 200
+  content_type: application/json
+  authenticated: false
+  items_in_full_response: 20
+  sample_truncated_to: 2
+  response:
+  - id: 70194fbe-6a3b-4c35-a95c-c71117a2fdee
+    guid: yt:video:UrPP8PsQRIM
+    link: https://www.youtube.com/watch?v=UrPP8PsQRIM
+    title: SEEDHE MAUT - Naksha | Live at Mood Indigo IIT Bombay 2025 | MI Studio
+    content: 'Experience the unmatched energy as @SeedheMaut sets the stage ablaze with a live performance
+      of "Naksha" on Day 1 (Hip Hop Night) at Gymkhana Grounds during Mood Indigo, IIT Bombay - Asia''s
+      Largest College Cultural Festival.
+
+
+      Presented by MI Studio, this performance captures the raw power of Desi Hip Hop, explosive crowd
+      choruses, and high-octane moshpits as thousands of college students turn Gymk …[truncated]'
+    published: '2026-08-23T18:26:13+05:30'
+    body:
+      id: f44e04ba-99df-446d-8431-d9a26673f7e7
+      str_id: mood-indigo
+      name: Mood Indigo
+      short_description: Asia's Largest College Cultural Festival!
+      website_url: http://moodi.org
+      image_url: https://api.insti.app/static/upload/58f7e190-3db.jpg
+      cover_url: null
+      followers_count: 1584
+      short_name: null
+    reactions_count:
+      '0': 0
+      '1': 0
+      '2': 0
+      '3': 0
+      '4': 0
+      '5': 0
+    user_reaction: -1
+  - id: 269eb42a-2899-4250-a38a-676694a2f11e
+    guid: yt:video:MC2aajs11Ic
+    link: https://www.youtube.com/watch?v=MC2aajs11Ic
+    title: MAA TUJHE SALAAM - BISMIL KI MEHFIL | INDEPENDENCE DAY SPECIAL | Mood Indigo IIT Bombay | MI
+      Studio
+    content: 'A powerful rendition of Maa Tujhe Salaam from Bismil Ki Mehfil, captured on Day 3 of Mood
+      Indigo 2025 at IIT Bombay. 🇮🇳✨
+
+
+      As we celebrate the spirit of Independence Day, relive this stirring musical moment that brought
+      together patriotism, music, and the energy of Mood Indigo.
+
+
+      🎥 Brought to you by MI Studio
+
+
+      #MaaTujheSalaam #IndependenceDay #IIT #iitb #ARRehman #MoodIndigo #IITBombay #BismilKiMehf …[truncated]'
+    published: '2026-08-15T19:32:00+05:30'
+    body:
+      id: f44e04ba-99df-446d-8431-d9a26673f7e7
+      str_id: mood-indigo
+      name: Mood Indigo
+      short_description: Asia's Largest College Cultural Festival!
+      website_url: http://moodi.org
+      image_url: https://api.insti.app/static/upload/58f7e190-3db.jpg
+      cover_url: null
+      followers_count: 1584
+      short_name: null
+    reactions_count:
+      '0': 0
+      '1': 0
+      '2': 0
+      '3': 0
+      '4': 0
+      '5': 0
+    user_reaction: -1
+- operation: GET /mess
+  url: https://gymkhana.iitb.ac.in/instiapp/api/mess
+  status: 200
+  content_type: application/json
+  authenticated: false
+  items_in_full_response: 22
+  sample_truncated_to: 2
+  response:
+  - id: 6435daa0-42f3-47d2-b237-644312cad32e
+    name: Hostel 1
+    short_name: '1'
+    long_name: Queen of the Campus
+    mess:
+    - id: 254fa2c1-6b5d-4339-8890-474d49b8cd09
+      day: 6
+      breakfast: ''
+      lunch: ''
+      snacks: ''
+      dinner: ''
+      hostel: 6435daa0-42f3-47d2-b237-644312cad32e
+    - id: 347b8f68-a762-48ef-a417-118fc6602438
+      day: 3
+      breakfast: ''
+      lunch: ''
+      snacks: ''
+      dinner: ''
+      hostel: 6435daa0-42f3-47d2-b237-644312cad32e
+    - id: 58cc680b-3a8b-47da-bf86-e34c348af098
+      day: 2
+      breakfast: ''
+      lunch: ''
+      snacks: ''
+      dinner: ''
+      hostel: 6435daa0-42f3-47d2-b237-644312cad32e
+    - id: 66455130-cd5d-4592-8e27-d4cd2cbd80bc
+      day: 7
+      breakfast: ''
+      lunch: ''
+      snacks: ''
+      dinner: ''
+      hostel: 6435daa0-42f3-47d2-b237-644312cad32e
+    - id: d75f95cc-fe6a-4cb5-a06c-56e443e0e24d
+      day: 4
+      breakfast: ''
+      lunch: ''
+      snacks: ''
+      dinner: ''
+      hostel: 6435daa0-42f3-47d2-b237-644312cad32e
+    - id: e17f7c3d-78e8-46bd-b054-27ef30d713ff
+      day: 1
+      breakfast: ''
+      lunch: ''
+      snacks: ''
+      dinner: ''
+      hostel: 6435daa0-42f3-47d2-b237-644312cad32e
+    - id: eae89460-4784-4002-bf1c-40e4ad130388
+      day: 5
+      breakfast: ''
+      lunch: ''
+      snacks: ''
+      dinner: ''
+      hostel: 6435daa0-42f3-47d2-b237-644312cad32e
+  - id: 82a8363e-99de-4b8a-b131-f67c72d8a00b
+    name: Hostel 10
+    short_name: '10'
+    long_name: Phoenix
+    mess:
+    - id: 4a24b3e9-5268-47d7-9dd3-49f877eabcb1
+      day: 7
+      breakfast: Beetroot Puri, Bhaji, Mix Sprouts, Milk, Tea /Coffee, Chocos/Bournvita, Live Counter,
+        B. B. Mixed Fruit Jam, Paneer Bhurji, Plum, Papaya
+      lunch: Black Chana Masala, Banana Dry, Roti/With /Without Ghee, Dal Tadka Fry, Plain Rice, Masala
+        Rice, Green Salad, Papad, Curd, Strawberry Sarbat, Egg Aloo Curry
+      snacks: Masala Dosa/ Schezwan Dosa, Milk, Tea/Coffee, Chocos/Bournvita, Mix Juice, B. B. J, Peanut
+        Butter
+      dinner: Malai Kofta Curry, Tindli Peas Dry, Roti/Missi Roti, Green Moong Dal, Plain Rice, Vangi
+        Bhat, Cucumber/Gajar, Fryums, Corn Soup, Rasgola, Chicken Biryani (Extra)
+      hostel: 82a8363e-99de-4b8a-b131-f67c72d8a00b
+    - id: 5452685e-5770-4f84-9cbd-8373ffc30c0d
+      day: 2
+      breakfast: Idli /Vada Sambhar, Coconut Chutney, Boil Corn, Milk, Tea/Coffee, Oats/Bornvita, Live
+        Counter, B. B. Pineapple Jam, Paneer Bhurji, Anar, Watermelon
+      lunch: Paneer Kadai Masala, Veg Hangama Dry, Roti/Ajwain Paratha, Mix Dal, Plain Rice, Tadka Rice,
+        Cucumber/Carrot, Roasted Papad, Peanut Thecha, Chhaas, Chicken Kosha
+      snacks: Pav Bhaji, Milk, Tea /Coffee, Oats/Bournvita, Sita Fal, B B J, Peanut Butter
+      dinner: Corn Palak Masala, Bhindi Do Pyaza Dry, Roti With/ Without Ghee, Dal Fry, Plain Rice, Curd
+        Rice, Mix Salad, Rice Papad, Minestrone Soup, Fruit Custard, Egg Biryani (Extra)
+      hostel: 82a8363e-99de-4b8a-b131-f67c72d8a00b
+    - id: ab3cf1b8-a6fd-4f76-956e-9b0445374486
+      day: 4
+      breakfast: Mix Veg Paratha, Curd, Boil Mathiki, Milk, Tea/Coffee, Chocos/Bournvita, Live Counter,
+        B. B. Pineapple Jam, Paneer Bhurji, Mosambi, Muskmelon
+      lunch: Dahi Pakoda Kadi, Mix Veg Dry, Roti/ With/ Without Ghee, Dal Varan, Plain Rice, Brown Onion
+        Rice, Pasta Salad, Sabudana Papad, Pineapple Chutney, Rose Sarbat, Egg Masala, Chicken Ghee Roast(Free)
+        (Extra)
+      snacks: Aloo Vadi Patra, Milk, Tea/Coffee, Chocos/Bournvita, Plum, B. B. J, Peanut Butter
+      dinner: Ghungni Masala, Mix Sagg Dry, Roti/Multigrain Roti, Dal Makhni, Plain Rice, Veg Dal Khichdi,
+        Stick Salad, Roasted Papad, Gajar Soup, Gulab Jamun, Chicken (Kali Mirch) (Extra)
+      hostel: 82a8363e-99de-4b8a-b131-f67c72d8a00b
+    - id: ad85e6b3-0c75-47ee-a441-e837b50eb5e7
+      day: 1
+      breakfast: Onion Peas Poha, Usal, Sprouts, Milk, Tea/Coffee, Muesli/Bournvita, Live Counter, B.
+        B. Orange Jam, Paneer Bhurji, Pears, Banana
+      lunch: Gobi Mutter Masala, Cabbage Dry, Roti/With /Without Ghee, Akha Masoor Dal, Plain Rice, Lemon
+        Rice, Green Moong Sprouts Salad, Rice Papad, Curd, Lemon Mint Sarbat, Chicken Malvani
+      snacks: Ragada Patice, Milk, Tea/Coffee, Muesli/Bournvita, Dragon, B B J
+      dinner: Stuff Simla Masala, Labra Dry, Roti/Rice Roti, Black Dal Fry, Plain Rice, Herb Rice, Beetroot/Carrot,
+        Roasted Papad, Lemon Coriander Soup, Sabudana Kheer, Paneer Chilly Dry (Extra)
+      hostel: 82a8363e-99de-4b8a-b131-f67c72d8a00b
+    - id: e34253dd-39fb-4813-9005-32985662bc11
+      day: 5
+      breakfast: Veg Moong Chila, Tomato Chutney, Boil Moong, Milk, Tea /Coffee, Muesli/Bournvita, Live
+        Counter, B. B. Mixed Fruit Jam, Paneer Bhurji, Guava, Pineapple
+      lunch: Rajma Masala, Aloo Jeera Lasooni, Roti/Masala Puri, Amti Dal, Plain Rice, Jeera Rice, Onion/Tomato/Cucumber,
+        Roasted Papad, Curd, Mix Sarbat, Achari Chicken
+      snacks: Veg/Fry Cheese Maggi, Milk, Tea /Coffee, Muesli/Bournvita, Anar, B.B.J
+      dinner: Methi Malai Mutter, Karela Kurukure, Roti With/ Without Ghee, Mix Dal Fry, Plain Rice, Jeera
+        Rice, Salad, Papad, Hot N Sour Soup, Sooji Halwa, Fish Curry (Extra)
+      hostel: 82a8363e-99de-4b8a-b131-f67c72d8a00b
+    - id: eca53054-8261-495b-b7e3-429c43039d94
+      day: 6
+      breakfast: Thepla, Rajasthani Chutney, Boiled Kidney Beans, Milk, Tea /Coffee, Oats/Bournvita, Live
+        Counter, B. B. Mixed Fruit Jam, Paneer Bhurji, Green Apple, Pineapple
+      lunch: Soyabean Chilli, Aviyal Dry, Roti/ With/ Without Ghee, Panchratna Dal, Plain Rice, Veg Biryani,
+        Moong Salad, Papad, Veg Raita, Rohafza, Chicken Aloo Jhol
+      snacks: Mix Bhajiya, Milk, Tea /Coffee, Oats/Bournvita, Dragon, B.B.J
+      dinner: Paneer Kadai Masala, Torai Aloo Dry, Roti With/ Paratha, Dal Tadka, Plain Rice, Masala Rice,
+        Mix Salad, Papad, Palak Soup, Sahi Tukda, Chicken Sukha (Extra)
+      hostel: 82a8363e-99de-4b8a-b131-f67c72d8a00b
+    - id: f15a5e77-9b75-4a51-850f-338fb4630509
+      day: 3
+      breakfast: Sev Upama, Coconut Chutney, Boil Chana, Milk, Tea/Coffee, Cornflakes/Bournvita, Live
+        Counter, B. B. Mixed Fruit Jam, Paneer Bhurj, Green Apple, Banana
+      lunch: Chole Bhature, Aloo Posto Dry, Roti, Akha Masoor Dal, Plain Rice, Jeera Coriander Rice, Corn
+        Salad, Fryums, Tamarind Chutney, Sweet Lassi/Salted, Fish Masala
+      snacks: Bhel Puri, Milk, Tea/Coffee, Cornflakes/Bournvita, Naspati, B.B.J
+      dinner: Veg Sahi Kuruma, Dudhi Tomato Dry, Roti With/ Without Ghee, Yellow Moong Dal, Plain Rice,
+        Sambhar Rice, Cucumber /Gajar, Roasted Papad, Clear Soup, Malpua, Chicken Tawa Masala (Extra)
+      hostel: 82a8363e-99de-4b8a-b131-f67c72d8a00b
+- operation: GET /locations
+  url: https://gymkhana.iitb.ac.in/instiapp/api/locations
+  status: 200
+  content_type: application/json
+  authenticated: false
+  items_in_full_response: 427
+  sample_truncated_to: 2
+  response:
+  - id: b1e5aa36-eb00-440b-a254-d49711f93103
+    name: A1 Director Bungalow
+    short_name: Dir. Bunglw.
+    group_id: 3
+    pixel_x: 2594
+    pixel_y: 2495
+    parent: null
+    parent_relation: null
+    description: ''
+    lat: null
+    lng: null
+    reusable: true
+  - id: 74d42757-f194-4b61-b6bd-12c8c7a83152
+    name: Advanced Centre for Research in Electronics
+    short_name: ACRE
+    group_id: 1
+    pixel_x: 4081
+    pixel_y: 1344
+    parent: c186690e-6970-49a3-b944-d73aae2cb6bd
+    parent_relation: Inside
+    description: ''
+    lat: null
+    lng: null
+    reusable: true

@@ -1,0 +1,92 @@
+generated: '2026-08-30'
+method: derived
+source: openapi/iit-bombay-instiapp-api-openapi.yml
+x-operator: institution
+note: >-
+  The working vocabulary of IIT Bombay's one substantial institution-operated API, lifted from
+  the 50 tags and 37 object definitions of the institution's own published contract. Nothing is
+  invented: every term below appears in the specification or in a live response captured in
+  examples/. This is a campus-life vocabulary, not an academic-records one — worth stating
+  plainly, because the surface classes a university is usually catalogued for (course catalog,
+  registrar, library discovery) are absent from it entirely.
+domain: campus life
+counts:
+  tags: 50
+  paths: 112
+  operations: 164
+  schemas: 37
+term_groups:
+
+- group: Student bodies and roles
+  terms: [ Body, BodySerializerMin, BodyFollowers, Role, RoleSerializerMin, FormerRole, InstituteRole, Signature ]
+  detail: >-
+    A Body is a club, council, department or hostel — 154 of them in the live /bodies response.
+    Bodies carry followers, child bodies, events and a role graph; Role and InstituteRole are how
+    authorisation is expressed in this API, in place of OAuth scopes.
+
+- group: Events and calendar
+  terms: [ EventFull, EventMin, Interest, UserInterest ]
+  detail: >-
+    The largest tag group by operation count (calendar, 27 operations). Events belong to bodies,
+    carry venues drawn from Location, and users record interest levels against them.
+
+- group: Campus geography
+  terms: [ Location, LocationSerializerMin ]
+  detail: >-
+    427 named campus locations in the live /locations response, each with a pixel_x/pixel_y
+    coordinate on the institute map plus optional lat/lng, a parent relation and a group_id. This
+    is InstiMap — a genuinely institution-specific dataset with no vendor equivalent, and the
+    single most reusable thing in IIT Bombay's public footprint.
+
+- group: Dining
+  terms: [ mess ]
+  detail: >-
+    /mess returns 22 hostel mess entities with their menus. Campus dining data, institution-run,
+    keyless.
+
+- group: News and community
+  terms: [ BlogPost, CommunitySerializers, CommunitySerializerMin, CommunityPostSerializers, CommentPost ]
+  detail: Institute news feed (20 items live) plus community posts and comments.
+
+- group: Grievance ("Venter")
+  terms: [ ComplaintPost, Tag ]
+  detail: >-
+    A public complaints surface — complaints, upvotes, subscriptions, comments and tags. Ten
+    operations. The live list is currently empty ([]).
+
+- group: Placements and internships
+  terms: [ PlacementBlogPost, PlacementCompanyThread, PlacementCompleteThread, PlacementExtractedData, CompanyThread, CompleteThread, ExtractedData ]
+  detail: >-
+    Placement and internship blogs with company threads and extracted structured fields
+    (company_name, company_slug, stipend, eligibility, domain). Authentication-gated — /placement-blog
+    and /training-blog both return 401 unauthenticated — which is the correct posture for this data.
+
+- group: Marketplace and lost-and-found
+  terms: [ Product, ProductFound, UploadedImage ]
+  detail: Student buy-and-sell listings and a lost-and-found register.
+
+- group: Achievements
+  terms: [ AchievementUser, OfferedAchievement, VerifiedAchievement ]
+  detail: Body-verified student achievements. Authentication-gated.
+
+- group: Identity and moderation
+  terms: [ UserProfile, UserProfileFull, SSOBans ]
+  detail: >-
+    User profiles are populated from Gymkhana SSO. SSOBans is a moderation register. All
+    user-scoped paths return 401 unauthenticated, confirmed by probe.
+
+most_common_properties:
+  id: 35
+  name: 16
+  description: 10
+  str_id: 8
+  body: 7
+  category: 6
+  role: 6
+  domain: 6
+  company_slug: 6
+  image_url: 5
+identifier_convention: >-
+  Every object carries both a UUID `id` and a human-readable `str_id` slug
+  (e.g. "lecture-2-pgac-postdoctoral-opportunities-series-562b08f2"). Both are accepted on
+  retrieval paths. Consistent across the surface.

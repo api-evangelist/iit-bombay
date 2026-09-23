@@ -1,0 +1,354 @@
+openapi: 3.2.0
+info:
+  title: InstiApp Calendar API
+  description: InstiApp IIT Bombay API
+  termsOfService: https://insti.app/tos.html
+  contact:
+    email: devcom@iitb.ac.in
+  license:
+    name: AGPLv3
+  version: v1
+servers:
+- url: https://gymkhana.iitb.ac.in/instiapp/api
+security:
+- Basic: []
+tags:
+- name: Calendar
+paths:
+  /calendar/feed/:
+    parameters: []
+    get:
+      operationId: calendar_feed_list
+      description: View class for the Feed
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Calendar
+      summary: Calendar feed list
+      x-summary-source: derived
+  /calendar/preferences/:
+    parameters: []
+    get:
+      operationId: calendar_preferences_list
+      description: ''
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Calendar
+      summary: Calendar preferences list
+      x-summary-source: derived
+    patch:
+      operationId: calendar_preferences_partial_update
+      description: ''
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Calendar
+      summary: Calendar preferences partial update
+      x-summary-source: derived
+  /calendar/preferences/bodies/:
+    parameters: []
+    get:
+      operationId: calendar_preferences_bodies_list
+      description: ''
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Calendar
+      summary: Calendar preferences bodies list
+      x-summary-source: derived
+  /calendar/preferences/bodies/{body_id}/:
+    parameters:
+    - name: body_id
+      in: path
+      required: true
+      schema:
+        type: string
+    patch:
+      operationId: calendar_preferences_bodies_partial_update
+      description: ''
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Calendar
+      summary: Calendar preferences bodies partial update
+      x-summary-source: derived
+  /calendar/shared/:
+    parameters: []
+    get:
+      operationId: calendar_shared_list
+      description: ''
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Calendar
+      summary: Calendar shared list
+      x-summary-source: derived
+    post:
+      operationId: calendar_shared_create
+      description: ''
+      responses:
+        '201':
+          description: ''
+      tags:
+      - Calendar
+      summary: Calendar shared create
+      x-summary-source: derived
+    patch:
+      operationId: calendar_shared_partial_update
+      description: ''
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Calendar
+      summary: Calendar shared partial update
+      x-summary-source: derived
+    delete:
+      operationId: calendar_shared_delete
+      description: ''
+      responses:
+        '204':
+          description: ''
+      tags:
+      - Calendar
+      summary: Calendar shared delete
+      x-summary-source: derived
+  /calendar/shared/{slug}/:
+    parameters:
+    - name: slug
+      in: path
+      required: true
+      schema:
+        type: string
+    get:
+      operationId: calendar_shared_read
+      description: ''
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Calendar
+      summary: Calendar shared read
+      x-summary-source: derived
+    post:
+      operationId: calendar_shared_create
+      description: ''
+      responses:
+        '201':
+          description: ''
+      tags:
+      - Calendar
+      summary: Calendar shared create
+      x-summary-source: derived
+    patch:
+      operationId: calendar_shared_partial_update
+      description: ''
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Calendar
+      summary: Calendar shared partial update
+      x-summary-source: derived
+    delete:
+      operationId: calendar_shared_delete
+      description: ''
+      responses:
+        '204':
+          description: ''
+      tags:
+      - Calendar
+      summary: Calendar shared delete
+      x-summary-source: derived
+  /calendar/shared/{slug}/events/:
+    parameters:
+    - name: slug
+      in: path
+      required: true
+      schema:
+        type: string
+    get:
+      operationId: calendar_shared_events_list
+      description: ''
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Calendar
+      summary: Calendar shared events list
+      x-summary-source: derived
+    post:
+      operationId: calendar_shared_events_create
+      description: ''
+      responses:
+        '201':
+          description: ''
+      tags:
+      - Calendar
+      summary: Calendar shared events create
+      x-summary-source: derived
+    patch:
+      operationId: calendar_shared_events_partial_update
+      description: ''
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Calendar
+      summary: Calendar shared events partial update
+      x-summary-source: derived
+    delete:
+      operationId: calendar_shared_events_delete
+      description: ''
+      responses:
+        '204':
+          description: ''
+      tags:
+      - Calendar
+      summary: Calendar shared events delete
+      x-summary-source: derived
+  /calendar/shared/{slug}/events/{event_id}/:
+    parameters:
+    - name: slug
+      in: path
+      required: true
+      schema:
+        type: string
+    - name: event_id
+      in: path
+      required: true
+      schema:
+        type: string
+    get:
+      operationId: calendar_shared_events_read
+      description: ''
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Calendar
+      summary: Calendar shared events read
+      x-summary-source: derived
+    post:
+      operationId: calendar_shared_events_create
+      description: ''
+      responses:
+        '201':
+          description: ''
+      tags:
+      - Calendar
+      summary: Calendar shared events create
+      x-summary-source: derived
+    patch:
+      operationId: calendar_shared_events_partial_update
+      description: ''
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Calendar
+      summary: Calendar shared events partial update
+      x-summary-source: derived
+    delete:
+      operationId: calendar_shared_events_delete
+      description: ''
+      responses:
+        '204':
+          description: ''
+      tags:
+      - Calendar
+      summary: Calendar shared events delete
+      x-summary-source: derived
+  /calendar/shared/{slug}/subscribe/:
+    parameters:
+    - name: slug
+      in: path
+      required: true
+      schema:
+        type: string
+    post:
+      operationId: calendar_shared_subscribe_create
+      description: ''
+      responses:
+        '201':
+          description: ''
+      tags:
+      - Calendar
+      summary: Calendar shared subscribe create
+      x-summary-source: derived
+    patch:
+      operationId: calendar_shared_subscribe_partial_update
+      description: ''
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Calendar
+      summary: Calendar shared subscribe partial update
+      x-summary-source: derived
+  /calendar/shared/{slug}/toggle/:
+    parameters:
+    - name: slug
+      in: path
+      required: true
+      schema:
+        type: string
+    post:
+      operationId: calendar_shared_toggle_create
+      description: ''
+      responses:
+        '201':
+          description: ''
+      tags:
+      - Calendar
+      summary: Calendar shared toggle create
+      x-summary-source: derived
+    patch:
+      operationId: calendar_shared_toggle_partial_update
+      description: ''
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Calendar
+      summary: Calendar shared toggle partial update
+      x-summary-source: derived
+  /calendar/shared/{slug}/unsubscribe/:
+    parameters:
+    - name: slug
+      in: path
+      required: true
+      schema:
+        type: string
+    post:
+      operationId: calendar_shared_unsubscribe_create
+      description: ''
+      responses:
+        '201':
+          description: ''
+      tags:
+      - Calendar
+      summary: Calendar shared unsubscribe create
+      x-summary-source: derived
+    patch:
+      operationId: calendar_shared_unsubscribe_partial_update
+      description: ''
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Calendar
+      summary: Calendar shared unsubscribe partial update
+      x-summary-source: derived
+components:
+  securitySchemes:
+    Basic:
+      type: http
+      scheme: basic

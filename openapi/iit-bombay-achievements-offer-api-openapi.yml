@@ -1,0 +1,156 @@
+openapi: 3.2.0
+info:
+  title: InstiApp Achievements Offer API
+  description: InstiApp IIT Bombay API
+  termsOfService: https://insti.app/tos.html
+  contact:
+    email: devcom@iitb.ac.in
+  license:
+    name: AGPLv3
+  version: v1
+servers:
+- url: https://gymkhana.iitb.ac.in/instiapp/api
+security:
+- Basic: []
+tags:
+- name: achievements-offer
+paths:
+  /achievements-offer:
+    parameters: []
+    post:
+      operationId: achievements-offer_create
+      description: Offer a new achievement for an event.
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OfferedAchievement'
+      tags:
+      - achievements-offer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OfferedAchievement'
+        required: true
+      summary: Achievements offer create
+      x-summary-source: derived
+  /achievements-offer/{id}:
+    parameters:
+    - name: id
+      in: path
+      description: A UUID string identifying this offered achievement.
+      required: true
+      schema:
+        type: string
+        format: uuid
+    get:
+      operationId: achievements-offer_read
+      description: Get a achievement offer.
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OfferedAchievement'
+      tags:
+      - achievements-offer
+      summary: Achievements offer read
+      x-summary-source: derived
+    post:
+      operationId: achievements-offer_create
+      description: Claim and try to get an achievement with its secret.
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OfferedAchievement'
+      tags:
+      - achievements-offer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OfferedAchievement'
+        required: true
+      summary: Achievements offer create
+      x-summary-source: derived
+    put:
+      operationId: achievements-offer_update
+      description: Update an offered achievement.
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OfferedAchievement'
+      tags:
+      - achievements-offer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OfferedAchievement'
+        required: true
+      summary: Achievements offer update
+      x-summary-source: derived
+    delete:
+      operationId: achievements-offer_delete
+      description: Update an offered achievement.
+      responses:
+        '204':
+          description: ''
+      tags:
+      - achievements-offer
+      summary: Achievements offer delete
+      x-summary-source: derived
+components:
+  schemas:
+    OfferedAchievement:
+      required:
+      - title
+      - body
+      - event
+      type: object
+      properties:
+        id:
+          title: Id
+          type: string
+          format: uuid
+          readOnly: true
+        priority:
+          title: Priority
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+        title:
+          title: Title
+          type: string
+          maxLength: 80
+          minLength: 1
+        description:
+          title: Description
+          type: string
+        body:
+          title: Body
+          type: string
+          format: uuid
+        event:
+          title: Event
+          type: string
+          format: uuid
+        generic:
+          title: Generic
+          type: string
+          maxLength: 20
+          minLength: 1
+  securitySchemes:
+    Basic:
+      type: http
+      scheme: basic

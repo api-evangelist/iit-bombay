@@ -1,0 +1,381 @@
+openapi: 3.2.0
+info:
+  title: InstiApp Buy API
+  description: InstiApp IIT Bombay API
+  termsOfService: https://insti.app/tos.html
+  contact:
+    email: devcom@iitb.ac.in
+  license:
+    name: AGPLv3
+  version: v1
+servers:
+- url: https://gymkhana.iitb.ac.in/instiapp/api
+security:
+- Basic: []
+tags:
+- name: Buy
+paths:
+  /buy/categories:
+    parameters: []
+    get:
+      operationId: buy_get_categories
+      description: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product'
+      tags:
+      - Buy
+      summary: Buy get categories
+      x-summary-source: derived
+  /buy/products:
+    parameters: []
+    get:
+      operationId: buy_products_list
+      description: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product'
+      tags:
+      - Buy
+      summary: Buy products list
+      x-summary-source: derived
+    post:
+      operationId: buy_products_create
+      description: 'Creates product if the user isn''t banned and form is filled
+
+        correctly. Ban checking is yet to be incorporated.'
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+      tags:
+      - Buy
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Product'
+        required: true
+      summary: Buy products create
+      x-summary-source: derived
+  /buy/products/{id}:
+    parameters:
+    - name: id
+      in: path
+      description: A UUID string identifying this Product.
+      required: true
+      schema:
+        type: string
+        format: uuid
+    get:
+      operationId: buy_products_read
+      description: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+      tags:
+      - Buy
+      summary: Buy products read
+      x-summary-source: derived
+    put:
+      operationId: buy_products_update
+      description: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+      tags:
+      - Buy
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Product'
+        required: true
+      summary: Buy products update
+      x-summary-source: derived
+    delete:
+      operationId: buy_products_delete
+      description: ''
+      responses:
+        '204':
+          description: ''
+      tags:
+      - Buy
+      summary: Buy products delete
+      x-summary-source: derived
+  /buy/products/{id}/sold:
+    parameters:
+    - name: id
+      in: path
+      description: A UUID string identifying this Product.
+      required: true
+      schema:
+        type: string
+        format: uuid
+    post:
+      operationId: buy_products_mark_sold
+      description: ''
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+      tags:
+      - Buy
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Product'
+        required: true
+      summary: Buy products mark sold
+      x-summary-source: derived
+  /buy/report/{id}:
+    parameters:
+    - name: id
+      in: path
+      description: A UUID string identifying this Product.
+      required: true
+      schema:
+        type: string
+        format: uuid
+    post:
+      operationId: buy_report
+      description: ''
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+      tags:
+      - Buy
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Product'
+        required: true
+      summary: Buy report
+      x-summary-source: derived
+  /buy/v2/products:
+    parameters: []
+    get:
+      operationId: buy_v2_products_read
+      description: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product'
+      tags:
+      - Buy
+      summary: Buy v2 products read
+      x-summary-source: derived
+    post:
+      operationId: buy_v2_products_create
+      description: 'Creates product if the user isn''t banned and form is filled
+
+        correctly. Ban checking is yet to be incorporated.'
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+      tags:
+      - Buy
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Product'
+        required: true
+      summary: Buy v2 products create
+      x-summary-source: derived
+components:
+  schemas:
+    UserProfile:
+      type: object
+      properties:
+        id:
+          title: Id
+          type: string
+          format: uuid
+          readOnly: true
+        name:
+          title: Name
+          type: string
+          maxLength: 50
+        profile_pic:
+          title: Profile pic
+          type:
+          - string
+          - 'null'
+          format: uri
+          maxLength: 200
+        ldap_id:
+          title: Ldap id
+          type:
+          - string
+          - 'null'
+          maxLength: 50
+    Product:
+      required:
+      - name
+      - contact_details
+      type: object
+      properties:
+        id:
+          title: Id
+          type: string
+          format: uuid
+          readOnly: true
+        user:
+          $ref: '#/components/schemas/UserProfile'
+        product_image:
+          title: Product image
+          type: string
+        str_id:
+          title: Str id
+          type:
+          - string
+          - 'null'
+          readOnly: true
+          minLength: 1
+        name:
+          title: Name
+          type: string
+          maxLength: 60
+          minLength: 1
+        description:
+          title: Description
+          type: string
+        category:
+          title: Category
+          type:
+          - string
+          - 'null'
+          maxLength: 100
+        brand:
+          title: Brand
+          type:
+          - string
+          - 'null'
+          maxLength: 60
+        warranty:
+          title: Warranty
+          type:
+          - boolean
+          - 'null'
+        packaging:
+          title: Packaging
+          type:
+          - boolean
+          - 'null'
+        condition:
+          title: Condition
+          type:
+          - string
+          - 'null'
+          enum:
+          - '1'
+          - '2'
+          - '3'
+          - '4'
+          - '5'
+          - '6'
+          - '7'
+          - '8'
+          - '9'
+          - '10'
+        action:
+          title: Action
+          type: string
+          enum:
+          - sell
+          - giveaway
+          - rent
+        status:
+          title: Status
+          type:
+          - boolean
+          - 'null'
+        deleted:
+          title: Deleted
+          type:
+          - boolean
+          - 'null'
+        price:
+          title: Price
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+        original_price:
+          title: Original price
+          type:
+          - integer
+          - 'null'
+          maximum: 2147483647
+          minimum: -2147483648
+        negotiable:
+          title: Negotiable
+          type: boolean
+        contact_details:
+          title: Contact details
+          type: string
+          maxLength: 300
+          minLength: 1
+        time_of_creation:
+          title: Time of creation
+          type: string
+          format: date-time
+          readOnly: true
+        time_inactive:
+          title: Time inactive
+          type:
+          - string
+          - 'null'
+          format: date-time
+          readOnly: true
+        followers:
+          type: array
+          items:
+            type: string
+            format: uuid
+          uniqueItems: true
+  securitySchemes:
+    Basic:
+      type: http
+      scheme: basic

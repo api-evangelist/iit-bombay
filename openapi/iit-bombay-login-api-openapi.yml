@@ -1,0 +1,48 @@
+openapi: 3.2.0
+info:
+  title: InstiApp Login API
+  description: InstiApp IIT Bombay API
+  termsOfService: https://insti.app/tos.html
+  contact:
+    email: devcom@iitb.ac.in
+  license:
+    name: AGPLv3
+  version: v1
+servers:
+- url: https://gymkhana.iitb.ac.in/instiapp/api
+security:
+- Basic: []
+tags:
+- name: Login
+paths:
+  /login:
+    parameters: []
+    get:
+      operationId: login
+      description: 'Log in.
+
+        Uses the `code` and `redir` query parameters.'
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Login
+      summary: Login
+      x-summary-source: derived
+  /login/get-user:
+    parameters: []
+    get:
+      operationId: login_get_user
+      description: Get session and profile.
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Login
+      summary: Login get user
+      x-summary-source: derived
+components:
+  securitySchemes:
+    Basic:
+      type: http
+      scheme: basic

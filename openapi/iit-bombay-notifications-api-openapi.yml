@@ -1,0 +1,51 @@
+openapi: 3.2.0
+info:
+  title: InstiApp Notifications API
+  description: InstiApp IIT Bombay API
+  termsOfService: https://insti.app/tos.html
+  contact:
+    email: devcom@iitb.ac.in
+  license:
+    name: AGPLv3
+  version: v1
+servers:
+- url: https://gymkhana.iitb.ac.in/instiapp/api
+security:
+- Basic: []
+tags:
+- name: Notifications
+paths:
+  /notifications/read:
+    parameters: []
+    get:
+      operationId: notifications_mark_all_notifications_read
+      description: Mark all notifications as read.
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Notifications
+      summary: Notifications mark all notifications read
+      x-summary-source: derived
+  /notifications/read/{id}:
+    parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+    get:
+      operationId: notifications_mark_notification_read
+      description: Mark one notification as read.
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Notifications
+      summary: Notifications mark notification read
+      x-summary-source: derived
+components:
+  securitySchemes:
+    Basic:
+      type: http
+      scheme: basic

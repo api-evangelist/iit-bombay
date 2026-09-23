@@ -1,0 +1,60 @@
+openapi: 3.2.0
+info:
+  title: InstiApp Interests API
+  description: InstiApp IIT Bombay API
+  termsOfService: https://insti.app/tos.html
+  contact:
+    email: devcom@iitb.ac.in
+  license:
+    name: AGPLv3
+  version: v1
+servers:
+- url: https://gymkhana.iitb.ac.in/instiapp/api
+security:
+- Basic: []
+tags:
+- name: Interests
+paths:
+  /interests:
+    parameters: []
+    post:
+      operationId: interests_create
+      description: Add a user interest.
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserInterest'
+      tags:
+      - Interests
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserInterest'
+        required: true
+      summary: Interests create
+      x-summary-source: derived
+components:
+  schemas:
+    UserInterest:
+      required:
+      - title
+      type: object
+      properties:
+        id:
+          title: Id
+          type: string
+          format: uuid
+          readOnly: true
+        title:
+          title: Title
+          type: string
+          maxLength: 80
+          minLength: 1
+  securitySchemes:
+    Basic:
+      type: http
+      scheme: basic

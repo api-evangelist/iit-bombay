@@ -1,0 +1,51 @@
+openapi: 3.2.0
+info:
+  title: InstiApp Popup Notification API
+  description: InstiApp IIT Bombay API
+  termsOfService: https://insti.app/tos.html
+  contact:
+    email: devcom@iitb.ac.in
+  license:
+    name: AGPLv3
+  version: v1
+servers:
+- url: https://gymkhana.iitb.ac.in/instiapp/api
+security:
+- Basic: []
+tags:
+- name: popup-notification
+paths:
+  /popup-notification/:
+    parameters: []
+    get:
+      operationId: popup-notification_list
+      description: Pop Up for the events
+      responses:
+        '200':
+          description: ''
+      tags:
+      - popup-notification
+      summary: Popup notification list
+      x-summary-source: derived
+  /popup-notification/{popup_id}/mark-as-read/:
+    parameters:
+    - name: popup_id
+      in: path
+      required: true
+      schema:
+        type: string
+    post:
+      operationId: popup-notification_mark-as-read_create
+      description: Marks a specific popup as read for the current user.
+      responses:
+        '201':
+          description: ''
+      tags:
+      - popup-notification
+      summary: Popup notification mark as read create
+      x-summary-source: derived
+components:
+  securitySchemes:
+    Basic:
+      type: http
+      scheme: basic

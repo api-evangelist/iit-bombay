@@ -1,0 +1,305 @@
+openapi: 3.2.0
+info:
+  title: InstiApp Venter API
+  description: InstiApp IIT Bombay API
+  termsOfService: https://insti.app/tos.html
+  contact:
+    email: devcom@iitb.ac.in
+  license:
+    name: AGPLv3
+  version: v1
+servers:
+- url: https://gymkhana.iitb.ac.in/instiapp/api
+security:
+- Basic: []
+tags:
+- name: venter
+paths:
+  /venter/comments/{id}:
+    parameters:
+    - name: id
+      in: path
+      description: A UUID string identifying this Comment.
+      required: true
+      schema:
+        type: string
+        format: uuid
+    get:
+      operationId: venter_comments_read
+      description: Get a single comment.
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommentPost'
+      tags:
+      - venter
+      summary: Venter comments read
+      x-summary-source: derived
+    put:
+      operationId: venter_comments_update
+      description: Update a comment if created by current user.
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommentPost'
+      tags:
+      - venter
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CommentPost'
+        required: true
+      summary: Venter comments update
+      x-summary-source: derived
+    delete:
+      operationId: venter_comments_delete
+      description: Delete a comment by the current user.
+      responses:
+        '204':
+          description: ''
+      tags:
+      - venter
+      summary: Venter comments delete
+      x-summary-source: derived
+  /venter/complaints:
+    parameters: []
+    get:
+      operationId: venter_complaints_list
+      description: 'Get a list of non-deleted complaints.
+
+        To filter by current user, add a query parameter {?filter}'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ComplaintPost'
+      tags:
+      - venter
+      summary: Venter complaints list
+      x-summary-source: derived
+    post:
+      operationId: venter_complaints_create
+      description: ''
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ComplaintPost'
+      tags:
+      - venter
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ComplaintPost'
+        required: true
+      summary: Venter complaints create
+      x-summary-source: derived
+  /venter/complaints/{id}:
+    parameters:
+    - name: id
+      in: path
+      description: A UUID string identifying this Complaint.
+      required: true
+      schema:
+        type: string
+        format: uuid
+    get:
+      operationId: venter_complaints_read
+      description: ComplaintViewSet to get the complaints
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ComplaintPost'
+      tags:
+      - venter
+      summary: Venter complaints read
+      x-summary-source: derived
+  /venter/complaints/{id}/comments:
+    parameters:
+    - name: id
+      in: path
+      description: A UUID string identifying this Comment.
+      required: true
+      schema:
+        type: string
+        format: uuid
+    post:
+      operationId: venter_complaints_comments_create
+      description: ''
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommentPost'
+      tags:
+      - venter
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CommentPost'
+        required: true
+      summary: Venter complaints comments create
+      x-summary-source: derived
+  /venter/complaints/{id}/subscribe:
+    parameters:
+    - name: id
+      in: path
+      description: A UUID string identifying this Complaint.
+      required: true
+      schema:
+        type: string
+        format: uuid
+    get:
+      operationId: venter_complaints_subscribe
+      description: Subscribe or Un-Subscribe from a complaint {?action}=0,1
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ComplaintPost'
+      tags:
+      - venter
+      summary: Venter complaints subscribe
+      x-summary-source: derived
+  /venter/complaints/{id}/upvote:
+    parameters:
+    - name: id
+      in: path
+      description: A UUID string identifying this Complaint.
+      required: true
+      schema:
+        type: string
+        format: uuid
+    get:
+      operationId: venter_complaints_up_vote
+      description: UpVote or un-UpVote a complaint {?action}=0,1
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ComplaintPost'
+      tags:
+      - venter
+      summary: Venter complaints up vote
+      x-summary-source: derived
+  /venter/tags:
+    parameters: []
+    get:
+      operationId: venter_tags_list
+      description: TagViewSet for the getting related tags
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Tag'
+      tags:
+      - venter
+      summary: Venter tags list
+      x-summary-source: derived
+components:
+  schemas:
+    ComplaintPost:
+      type: object
+      properties:
+        id:
+          title: Id
+          type: string
+          format: uuid
+          readOnly: true
+        description:
+          title: Description
+          type: string
+        suggestions:
+          title: Suggestions
+          type: string
+        location_details:
+          title: Location details
+          type: string
+        report_date:
+          title: Report date
+          type: string
+          format: date-time
+          readOnly: true
+        latitude:
+          title: Latitude
+          type:
+          - number
+          - 'null'
+        longitude:
+          title: Longitude
+          type:
+          - number
+          - 'null'
+        location_description:
+          title: Location description
+          type: string
+    Tag:
+      required:
+      - tag_uri
+      type: object
+      properties:
+        id:
+          title: Id
+          type: string
+          format: uuid
+          readOnly: true
+        tag_uri:
+          title: Tag uri
+          type: string
+          maxLength: 200
+          minLength: 1
+    CommentPost:
+      required:
+      - text
+      type: object
+      properties:
+        id:
+          title: Id
+          type: string
+          format: uuid
+          readOnly: true
+        time:
+          title: Time
+          type: string
+          format: date-time
+          readOnly: true
+        text:
+          title: Text
+          type: string
+          minLength: 1
+  securitySchemes:
+    Basic:
+      type: http
+      scheme: basic

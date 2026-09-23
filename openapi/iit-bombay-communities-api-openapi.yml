@@ -1,0 +1,221 @@
+openapi: 3.2.0
+info:
+  title: InstiApp Communities API
+  description: InstiApp IIT Bombay API
+  termsOfService: https://insti.app/tos.html
+  contact:
+    email: devcom@iitb.ac.in
+  license:
+    name: AGPLv3
+  version: v1
+servers:
+- url: https://gymkhana.iitb.ac.in/instiapp/api
+security:
+- Basic: []
+tags:
+- name: Communities
+paths:
+  /communities:
+    parameters: []
+    get:
+      operationId: communities_list
+      description: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CommunitySerializers'
+      tags:
+      - Communities
+      summary: Communities list
+      x-summary-source: derived
+    post:
+      operationId: communities_create
+      description: ''
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommunitySerializers'
+      tags:
+      - Communities
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CommunitySerializers'
+        required: true
+      summary: Communities create
+      x-summary-source: derived
+  /communities/{id}:
+    parameters:
+    - name: id
+      in: path
+      description: A UUID string identifying this Community.
+      required: true
+      schema:
+        type: string
+        format: uuid
+    get:
+      operationId: communities_read
+      description: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommunitySerializers'
+      tags:
+      - Communities
+      summary: Communities read
+      x-summary-source: derived
+components:
+  schemas:
+    CommunitySerializers:
+      required:
+      - name
+      - body
+      type: object
+      properties:
+        id:
+          title: Id
+          type: string
+          format: uuid
+          readOnly: true
+        str_id:
+          title: Str id
+          type:
+          - string
+          - 'null'
+          readOnly: true
+          minLength: 1
+        name:
+          title: Name
+          type: string
+          maxLength: 100
+          minLength: 1
+        about:
+          title: About
+          type:
+          - string
+          - 'null'
+        description:
+          title: Description
+          type:
+          - string
+          - 'null'
+        created_at:
+          title: Created at
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          title: Updated at
+          type: string
+          format: date-time
+          readOnly: true
+        cover_image:
+          title: Cover image
+          type:
+          - string
+          - 'null'
+          format: uri
+          maxLength: 200
+        logo_image:
+          title: Logo image
+          type:
+          - string
+          - 'null'
+          format: uri
+          maxLength: 200
+        followers_count:
+          title: Followers count
+          type: string
+          readOnly: true
+        is_user_following:
+          title: Is user following
+          type: string
+          readOnly: true
+        roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/RoleSerializerMin'
+          readOnly: true
+        posts:
+          title: Posts
+          type: string
+          readOnly: true
+        body:
+          title: Body
+          type: string
+          format: uuid
+        featured_posts:
+          title: Featured posts
+          type: string
+          readOnly: true
+    UserProfile:
+      type: object
+      properties:
+        id:
+          title: Id
+          type: string
+          format: uuid
+          readOnly: true
+        name:
+          title: Name
+          type: string
+          maxLength: 50
+        profile_pic:
+          title: Profile pic
+          type:
+          - string
+          - 'null'
+          format: uri
+          maxLength: 200
+        ldap_id:
+          title: Ldap id
+          type:
+          - string
+          - 'null'
+          maxLength: 50
+    RoleSerializerMin:
+      required:
+      - name
+      - body
+      type: object
+      properties:
+        id:
+          title: Id
+          type: string
+          format: uuid
+          readOnly: true
+        name:
+          title: Name
+          type: string
+          maxLength: 50
+          minLength: 1
+        body:
+          title: Body
+          type: string
+          format: uuid
+        users_detail:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserProfile'
+          readOnly: true
+        priority:
+          title: Priority
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+  securitySchemes:
+    Basic:
+      type: http
+      scheme: basic

@@ -1,0 +1,411 @@
+openapi: 3.2.0
+info:
+  title: InstiApp Internship API
+  description: InstiApp IIT Bombay API
+  termsOfService: https://insti.app/tos.html
+  contact:
+    email: devcom@iitb.ac.in
+  license:
+    name: AGPLv3
+  version: v1
+servers:
+- url: https://gymkhana.iitb.ac.in/instiapp/api
+security:
+- Basic: []
+tags:
+- name: Internship
+paths:
+  /internship/filters/:
+    parameters: []
+    get:
+      operationId: internship_filters_list
+      description: ''
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Internship
+      summary: Internship filters list
+      x-summary-source: derived
+  /internship/posts/:
+    parameters: []
+    get:
+      operationId: internship_posts_list
+      description: ''
+      parameters:
+      - name: page
+        in: query
+        description: A page number within the paginated result set.
+        required: false
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                required:
+                - count
+                - results
+                type: object
+                properties:
+                  count:
+                    type: integer
+                  next:
+                    type:
+                    - string
+                    - 'null'
+                    format: uri
+                  previous:
+                    type:
+                    - string
+                    - 'null'
+                    format: uri
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/BlogPost'
+      tags:
+      - Internship
+      summary: Internship posts list
+      x-summary-source: derived
+  /internship/posts/latest/:
+    parameters: []
+    get:
+      operationId: internship_posts_latest_list
+      description: ''
+      parameters:
+      - name: page
+        in: query
+        description: A page number within the paginated result set.
+        required: false
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                required:
+                - count
+                - results
+                type: object
+                properties:
+                  count:
+                    type: integer
+                  next:
+                    type:
+                    - string
+                    - 'null'
+                    format: uri
+                  previous:
+                    type:
+                    - string
+                    - 'null'
+                    format: uri
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/BlogPost'
+      tags:
+      - Internship
+      summary: Internship posts latest list
+      x-summary-source: derived
+  /internship/threads/:
+    parameters: []
+    get:
+      operationId: internship_threads_list
+      description: ''
+      parameters:
+      - name: page
+        in: query
+        description: A page number within the paginated result set.
+        required: false
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                required:
+                - count
+                - results
+                type: object
+                properties:
+                  count:
+                    type: integer
+                  next:
+                    type:
+                    - string
+                    - 'null'
+                    format: uri
+                  previous:
+                    type:
+                    - string
+                    - 'null'
+                    format: uri
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/CompanyThread'
+      tags:
+      - Internship
+      summary: Internship threads list
+      x-summary-source: derived
+  /internship/threads/{company_slug}/:
+    parameters:
+    - name: company_slug
+      in: path
+      required: true
+      schema:
+        type: string
+        format: slug
+        pattern: ^[-a-zA-Z0-9_]+$
+    get:
+      operationId: internship_threads_read
+      description: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompleteThread'
+      tags:
+      - Internship
+      summary: Internship threads read
+      x-summary-source: derived
+components:
+  schemas:
+    ExtractedData:
+      type: object
+      properties:
+        category:
+          title: Category
+          type: string
+          maxLength: 10
+        role:
+          title: Role
+          type: string
+        domain:
+          title: Domain
+          type: string
+          maxLength: 200
+        stipend:
+          title: Stipend
+          type: string
+          maxLength: 100
+        eligibility:
+          title: Eligibility
+          type: string
+        deadline:
+          title: Deadline
+          type:
+          - string
+          - 'null'
+          format: date-time
+        shortlisted_rolls:
+          title: Shortlisted rolls
+          type:
+          - object
+          - 'null'
+        event_date:
+          title: Event date
+          type:
+          - string
+          - 'null'
+          format: date-time
+        venue:
+          title: Venue
+          type: string
+          maxLength: 300
+        reporting_time:
+          title: Reporting time
+          type: string
+          maxLength: 50
+        interview_slots:
+          title: Interview slots
+          type:
+          - object
+          - 'null'
+    CompanyThread:
+      required:
+      - company_name
+      - company_slug
+      - first_post_date
+      type: object
+      properties:
+        id:
+          title: ID
+          type: integer
+          readOnly: true
+        company_name:
+          title: Company name
+          type: string
+          maxLength: 200
+          minLength: 1
+        company_slug:
+          title: Company slug
+          type: string
+          format: slug
+          pattern: ^[-a-zA-Z0-9_]+$
+          maxLength: 50
+          minLength: 1
+        first_post_date:
+          title: First post date
+          type: string
+          format: date-time
+        category:
+          title: Category
+          type: string
+          maxLength: 10
+        role:
+          title: Role
+          type: string
+        domain:
+          title: Domain
+          type: string
+          maxLength: 200
+        stipend:
+          title: Stipend
+          type: string
+          maxLength: 100
+        eligibility:
+          title: Eligibility
+          type: string
+        iaf_deadline:
+          title: Iaf deadline
+          type:
+          - string
+          - 'null'
+          format: date-time
+    BlogPost:
+      required:
+      - id
+      - post_type
+      - raw_company_name
+      - published
+      - link
+      - raw_content
+      type: object
+      properties:
+        id:
+          title: Id
+          type: string
+          format: uuid
+        company_slug:
+          title: Company slug
+          type: string
+          readOnly: true
+        post_type:
+          title: Post type
+          type: string
+          enum:
+          - IAF_OPEN
+          - TEST
+          - TEST_SHORTLIST
+          - TEST_UPDATE
+          - ASSIGNMENT_DETAILS
+          - ASSIGNMENT_SHORTLIST
+          - MANDATORY_FORM
+          - INTERVIEW_SHORTLIST
+          - INTERVIEW_SCHEDULE
+          - INTERVIEW_UPDATE
+          - GD_SCHEDULE
+          - GD_UPDATE
+          - ROUND2_SHORTLIST
+          - FINAL_SELECTION
+          - OTHER
+        post_type_display:
+          title: Post type display
+          type: string
+          readOnly: true
+          minLength: 1
+        raw_company_name:
+          title: Raw company name
+          type: string
+          maxLength: 200
+          minLength: 1
+        published:
+          title: Published
+          type: string
+          format: date-time
+        link:
+          title: Link
+          type: string
+          format: uri
+          maxLength: 200
+          minLength: 1
+        pinned:
+          title: Pinned
+          type: boolean
+        extracted_data:
+          $ref: '#/components/schemas/ExtractedData'
+        raw_content:
+          title: Raw content
+          type: string
+          minLength: 1
+    CompleteThread:
+      required:
+      - company_name
+      - company_slug
+      - first_post_date
+      type: object
+      properties:
+        id:
+          title: ID
+          type: integer
+          readOnly: true
+        company_name:
+          title: Company name
+          type: string
+          maxLength: 200
+          minLength: 1
+        company_slug:
+          title: Company slug
+          type: string
+          format: slug
+          pattern: ^[-a-zA-Z0-9_]+$
+          maxLength: 50
+          minLength: 1
+        first_post_date:
+          title: First post date
+          type: string
+          format: date-time
+        category:
+          title: Category
+          type: string
+          maxLength: 10
+        role:
+          title: Role
+          type: string
+        domain:
+          title: Domain
+          type: string
+          maxLength: 200
+        stipend:
+          title: Stipend
+          type: string
+          maxLength: 100
+        eligibility:
+          title: Eligibility
+          type: string
+        iaf_deadline:
+          title: Iaf deadline
+          type:
+          - string
+          - 'null'
+          format: date-time
+        posts:
+          type: array
+          items:
+            $ref: '#/components/schemas/BlogPost'
+          readOnly: true
+  securitySchemes:
+    Basic:
+      type: http
+      scheme: basic

@@ -1,0 +1,34 @@
+openapi: 3.2.0
+info:
+  title: InstiApp Training Blog API
+  description: InstiApp IIT Bombay API
+  termsOfService: https://insti.app/tos.html
+  contact:
+    email: devcom@iitb.ac.in
+  license:
+    name: AGPLv3
+  version: v1
+servers:
+- url: https://gymkhana.iitb.ac.in/instiapp/api
+security:
+- Basic: []
+tags:
+- name: training_blog
+paths:
+  /training-blog:
+    parameters: []
+    get:
+      operationId: training_blog
+      description: Get Training Blog.
+      responses:
+        '200':
+          description: ''
+      tags:
+      - training_blog
+      summary: Training blog
+      x-summary-source: derived
+components:
+  securitySchemes:
+    Basic:
+      type: http
+      scheme: basic

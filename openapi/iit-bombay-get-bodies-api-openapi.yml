@@ -1,0 +1,46 @@
+openapi: 3.2.0
+info:
+  title: InstiApp Get Bodies API
+  description: InstiApp IIT Bombay API
+  termsOfService: https://insti.app/tos.html
+  contact:
+    email: devcom@iitb.ac.in
+  license:
+    name: AGPLv3
+  version: v1
+servers:
+- url: https://gymkhana.iitb.ac.in/instiapp/api
+security:
+- Basic: []
+tags:
+- name: get_bodies
+paths:
+  /bodies-with-privilege:
+    parameters: []
+    get:
+      operationId: get_bodies
+      description: Get bodies with users having a specific privilege.
+      responses:
+        '200':
+          description: ''
+      tags:
+      - get_bodies
+      summary: Get bodies
+      x-summary-source: derived
+  /bodies-with-privilege/:
+    parameters: []
+    get:
+      operationId: get_bodies
+      description: Get bodies with users having a specific privilege.
+      responses:
+        '200':
+          description: ''
+      tags:
+      - get_bodies
+      summary: Get bodies
+      x-summary-source: derived
+components:
+  securitySchemes:
+    Basic:
+      type: http
+      scheme: basic

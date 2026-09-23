@@ -1,0 +1,46 @@
+openapi: 3.2.0
+info:
+  title: InstiApp Query API
+  description: InstiApp IIT Bombay API
+  termsOfService: https://insti.app/tos.html
+  contact:
+    email: devcom@iitb.ac.in
+  license:
+    name: AGPLv3
+  version: v1
+servers:
+- url: https://gymkhana.iitb.ac.in/instiapp/api
+security:
+- Basic: []
+tags:
+- name: Query
+paths:
+  /query/add:
+    parameters: []
+    post:
+      operationId: query_ask_question
+      description: New Question Asked.
+      responses:
+        '201':
+          description: ''
+      tags:
+      - Query
+      summary: Query ask question
+      x-summary-source: derived
+  /query/categories:
+    parameters: []
+    get:
+      operationId: query_get_categories
+      description: Method to get all categories
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Query
+      summary: Query get categories
+      x-summary-source: derived
+components:
+  securitySchemes:
+    Basic:
+      type: http
+      scheme: basic

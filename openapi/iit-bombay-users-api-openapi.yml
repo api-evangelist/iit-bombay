@@ -1,0 +1,487 @@
+openapi: 3.2.0
+info:
+  title: InstiApp Users API
+  description: InstiApp IIT Bombay API
+  termsOfService: https://insti.app/tos.html
+  contact:
+    email: devcom@iitb.ac.in
+  license:
+    name: AGPLv3
+  version: v1
+servers:
+- url: https://gymkhana.iitb.ac.in/instiapp/api
+security:
+- Basic: []
+tags:
+- name: Users
+paths:
+  /users/{id}:
+    parameters:
+    - name: id
+      in: path
+      description: A UUID string identifying this Profile.
+      required: true
+      schema:
+        type: string
+        format: uuid
+    get:
+      operationId: users_read
+      description: UserProfile
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserProfileFull'
+      tags:
+      - Users
+      summary: Users read
+      x-summary-source: derived
+components:
+  schemas:
+    UserProfile:
+      type: object
+      properties:
+        id:
+          title: Id
+          type: string
+          format: uuid
+          readOnly: true
+        name:
+          title: Name
+          type: string
+          maxLength: 50
+        profile_pic:
+          title: Profile pic
+          type:
+          - string
+          - 'null'
+          format: uri
+          maxLength: 200
+        ldap_id:
+          title: Ldap id
+          type:
+          - string
+          - 'null'
+          maxLength: 50
+    UserInterest:
+      required:
+      - title
+      type: object
+      properties:
+        id:
+          title: Id
+          type: string
+          format: uuid
+          readOnly: true
+        title:
+          title: Title
+          type: string
+          maxLength: 80
+          minLength: 1
+    UserProfileFull:
+      type: object
+      properties:
+        id:
+          title: Id
+          type: string
+          format: uuid
+          readOnly: true
+        name:
+          title: Name
+          type: string
+          maxLength: 50
+        department:
+          title: Department
+          type:
+          - string
+          - 'null'
+          readOnly: true
+          minLength: 1
+        department_name:
+          title: Department name
+          type:
+          - string
+          - 'null'
+          readOnly: true
+          minLength: 1
+        degree:
+          title: Degree
+          type:
+          - string
+          - 'null'
+          readOnly: true
+          minLength: 1
+        degree_name:
+          title: Degree name
+          type:
+          - string
+          - 'null'
+          readOnly: true
+          minLength: 1
+        join_year:
+          title: Join year
+          type:
+          - string
+          - 'null'
+          readOnly: true
+          minLength: 1
+        graduation_year:
+          title: Graduation year
+          type:
+          - string
+          - 'null'
+          readOnly: true
+          minLength: 1
+        profile_pic:
+          title: Profile pic
+          type:
+          - string
+          - 'null'
+          format: uri
+          maxLength: 200
+        events_interested:
+          title: Events interested
+          type: string
+          readOnly: true
+        events_going:
+          title: Events going
+          type: string
+          readOnly: true
+        email:
+          title: Email
+          type: string
+          readOnly: true
+        roll_no:
+          title: Roll no
+          type:
+          - string
+          - 'null'
+          maxLength: 30
+        contact_no:
+          title: Contact no
+          type: string
+          readOnly: true
+        show_contact_no:
+          title: Show contact no
+          type: boolean
+        about:
+          title: About
+          type:
+          - string
+          - 'null'
+        followed_bodies:
+          type: array
+          items:
+            $ref: '#/components/schemas/BodySerializerMin'
+          readOnly: true
+        fcm_id:
+          title: Fcm id
+          type:
+          - string
+          - 'null'
+          maxLength: 200
+        android_version:
+          title: Android version
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+        roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/Role'
+          readOnly: true
+        institute_roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/InstituteRole'
+          readOnly: true
+        website_url:
+          title: Website url
+          type:
+          - string
+          - 'null'
+          format: uri
+          maxLength: 200
+        ldap_id:
+          title: Ldap id
+          type:
+          - string
+          - 'null'
+          maxLength: 50
+        hostel:
+          title: Hostel
+          type:
+          - string
+          - 'null'
+          maxLength: 100
+        former_roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/FormerRole'
+          readOnly: true
+        achievements:
+          type: array
+          items:
+            $ref: '#/components/schemas/VerifiedAchievement'
+          readOnly: true
+        interests:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserInterest'
+          readOnly: true
+    EventMin:
+      required:
+      - name
+      - start_time
+      - end_time
+      type: object
+      properties:
+        id:
+          title: Id
+          type: string
+          format: uuid
+          readOnly: true
+        str_id:
+          title: Str id
+          type:
+          - string
+          - 'null'
+          readOnly: true
+          minLength: 1
+        name:
+          title: Name
+          type: string
+          maxLength: 60
+          minLength: 1
+        tags:
+          title: Tags
+          type:
+          - string
+          - 'null'
+          enum:
+          - event
+          - announcement
+        image_url:
+          title: Image url
+          type:
+          - string
+          - 'null'
+          format: uri
+          maxLength: 200
+        start_time:
+          title: Start time
+          type: string
+          format: date-time
+        end_time:
+          title: End time
+          type: string
+          format: date-time
+    Role:
+      required:
+      - name
+      - body
+      - permissions
+      - users
+      type: object
+      properties:
+        id:
+          title: Id
+          type: string
+          format: uuid
+          readOnly: true
+        name:
+          title: Name
+          type: string
+          maxLength: 50
+          minLength: 1
+        inheritable:
+          title: Inheritable
+          type: boolean
+        body:
+          title: Body
+          type: string
+          format: uuid
+        body_detail:
+          $ref: '#/components/schemas/BodySerializerMin'
+        bodies:
+          title: Bodies
+          type: string
+          readOnly: true
+        permissions:
+          type: array
+          items:
+            type: string
+            enum:
+            - AddE
+            - UpdE
+            - DelE
+            - VerE
+            - UpdB
+            - Role
+            - VerA
+            - AppP
+            - ModC
+        users:
+          type: array
+          items:
+            type: string
+            format: uuid
+          uniqueItems: true
+        users_detail:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserProfile'
+          readOnly: true
+        priority:
+          title: Priority
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+        official_post:
+          title: Official post
+          type: boolean
+    VerifiedAchievement:
+      required:
+      - title
+      type: object
+      properties:
+        id:
+          title: Id
+          type: string
+          format: uuid
+          readOnly: true
+        title:
+          title: Title
+          type: string
+          maxLength: 80
+          minLength: 1
+        description:
+          title: Description
+          type: string
+        body_detail:
+          $ref: '#/components/schemas/BodySerializerMin'
+        dismissed:
+          title: Dismissed
+          type: boolean
+        verified:
+          title: Verified
+          type: boolean
+        hidden:
+          title: Hidden
+          type: boolean
+        event_detail:
+          $ref: '#/components/schemas/EventMin'
+        isSkill:
+          title: IsSkill
+          type: boolean
+    InstituteRole:
+      required:
+      - name
+      - permissions
+      type: object
+      properties:
+        id:
+          title: Id
+          type: string
+          format: uuid
+          readOnly: true
+        name:
+          title: Name
+          type: string
+          maxLength: 50
+          minLength: 1
+        permissions:
+          type: array
+          items:
+            type: string
+            enum:
+            - AddB
+            - DelB
+            - BodyChild
+            - Location
+            - Role
+            - RoleB
+    BodySerializerMin:
+      required:
+      - name
+      type: object
+      properties:
+        id:
+          title: Id
+          type: string
+          format: uuid
+          readOnly: true
+        str_id:
+          title: Str id
+          type:
+          - string
+          - 'null'
+          readOnly: true
+          minLength: 1
+        name:
+          title: Name
+          type: string
+          maxLength: 50
+          minLength: 1
+        short_description:
+          title: Short description
+          type: string
+          maxLength: 50
+        website_url:
+          title: Website url
+          type:
+          - string
+          - 'null'
+          format: uri
+          maxLength: 200
+        image_url:
+          title: Image url
+          type:
+          - string
+          - 'null'
+          format: uri
+          maxLength: 200
+        cover_url:
+          title: Cover url
+          type:
+          - string
+          - 'null'
+          format: uri
+          maxLength: 200
+        followers_count:
+          title: Followers count
+          type: string
+          readOnly: true
+        short_name:
+          title: Short name
+          type:
+          - string
+          - 'null'
+          maxLength: 20
+    FormerRole:
+      type: object
+      properties:
+        id:
+          title: Id
+          type: string
+          readOnly: true
+        name:
+          title: Name
+          type: string
+          readOnly: true
+        body_detail:
+          $ref: '#/components/schemas/BodySerializerMin'
+        priority:
+          title: Priority
+          type: string
+          readOnly: true
+        year:
+          title: Year
+          type: string
+          maxLength: 20
+  securitySchemes:
+    Basic:
+      type: http
+      scheme: basic

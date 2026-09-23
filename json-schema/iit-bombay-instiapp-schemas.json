@@ -1,0 +1,2477 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/iit-bombay/main/json-schema/iit-bombay-instiapp-schemas.json",
+  "title": "IIT Bombay InstiApp API \u2014 data model",
+  "description": "The 37 object definitions the InstiApp API returns, lifted verbatim from the institution's own published specification and re-expressed as JSON Schema 2020-12. Derived, not authored: no property, type, requirement or description was added or changed. Operator: institution (gymkhana.iitb.ac.in, contact devcom@iitb.ac.in).",
+  "x-provenance": {
+    "generated": "2026-08-30",
+    "method": "derived",
+    "source": "openapi/iit-bombay-instiapp-api-openapi.yml",
+    "upstream": "https://gymkhana.iitb.ac.in/instiapp/api/docs/?format=openapi",
+    "x-operator": "institution"
+  },
+  "$defs": {
+    "BodySerializerMin": {
+      "required": [
+        "name"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string",
+          "format": "uuid",
+          "readOnly": true
+        },
+        "str_id": {
+          "title": "Str id",
+          "type": "string",
+          "readOnly": true,
+          "minLength": 1,
+          "nullable": true
+        },
+        "name": {
+          "title": "Name",
+          "type": "string",
+          "maxLength": 50,
+          "minLength": 1
+        },
+        "short_description": {
+          "title": "Short description",
+          "type": "string",
+          "maxLength": 50
+        },
+        "website_url": {
+          "title": "Website url",
+          "type": "string",
+          "format": "uri",
+          "maxLength": 200,
+          "nullable": true
+        },
+        "image_url": {
+          "title": "Image url",
+          "type": "string",
+          "format": "uri",
+          "maxLength": 200,
+          "nullable": true
+        },
+        "cover_url": {
+          "title": "Cover url",
+          "type": "string",
+          "format": "uri",
+          "maxLength": 200,
+          "nullable": true
+        },
+        "followers_count": {
+          "title": "Followers count",
+          "type": "string",
+          "readOnly": true
+        },
+        "short_name": {
+          "title": "Short name",
+          "type": "string",
+          "maxLength": 20,
+          "nullable": true
+        }
+      }
+    },
+    "UserProfile": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string",
+          "format": "uuid",
+          "readOnly": true
+        },
+        "name": {
+          "title": "Name",
+          "type": "string",
+          "maxLength": 50
+        },
+        "profile_pic": {
+          "title": "Profile pic",
+          "type": "string",
+          "format": "uri",
+          "maxLength": 200,
+          "nullable": true
+        },
+        "ldap_id": {
+          "title": "Ldap id",
+          "type": "string",
+          "maxLength": 50,
+          "nullable": true
+        }
+      }
+    },
+    "EventMin": {
+      "required": [
+        "name",
+        "start_time",
+        "end_time"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string",
+          "format": "uuid",
+          "readOnly": true
+        },
+        "str_id": {
+          "title": "Str id",
+          "type": "string",
+          "readOnly": true,
+          "minLength": 1,
+          "nullable": true
+        },
+        "name": {
+          "title": "Name",
+          "type": "string",
+          "maxLength": 60,
+          "minLength": 1
+        },
+        "tags": {
+          "title": "Tags",
+          "type": "string",
+          "enum": [
+            "event",
+            "announcement"
+          ],
+          "nullable": true
+        },
+        "image_url": {
+          "title": "Image url",
+          "type": "string",
+          "format": "uri",
+          "maxLength": 200,
+          "nullable": true
+        },
+        "start_time": {
+          "title": "Start time",
+          "type": "string",
+          "format": "date-time"
+        },
+        "end_time": {
+          "title": "End time",
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "AchievementUser": {
+      "required": [
+        "title"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string",
+          "format": "uuid",
+          "readOnly": true
+        },
+        "title": {
+          "title": "Title",
+          "type": "string",
+          "maxLength": 80,
+          "minLength": 1
+        },
+        "description": {
+          "title": "Description",
+          "type": "string"
+        },
+        "admin_note": {
+          "title": "Admin note",
+          "type": "string",
+          "nullable": true
+        },
+        "body_detail": {
+          "$ref": "#/$defs/BodySerializerMin"
+        },
+        "dismissed": {
+          "title": "Dismissed",
+          "type": "boolean"
+        },
+        "verified": {
+          "title": "Verified",
+          "type": "boolean"
+        },
+        "user": {
+          "$ref": "#/$defs/UserProfile"
+        },
+        "body": {
+          "title": "Body",
+          "type": "string",
+          "format": "uuid",
+          "nullable": true
+        },
+        "verified_by": {
+          "title": "Verified by",
+          "type": "string",
+          "format": "uuid",
+          "nullable": true
+        },
+        "event": {
+          "title": "Event",
+          "type": "string",
+          "format": "uuid",
+          "nullable": true
+        },
+        "event_detail": {
+          "$ref": "#/$defs/EventMin"
+        },
+        "offer": {
+          "title": "Offer",
+          "type": "string",
+          "format": "uuid",
+          "nullable": true
+        },
+        "isSkill": {
+          "title": "IsSkill",
+          "type": "boolean"
+        }
+      }
+    },
+    "OfferedAchievement": {
+      "required": [
+        "title",
+        "body",
+        "event"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string",
+          "format": "uuid",
+          "readOnly": true
+        },
+        "priority": {
+          "title": "Priority",
+          "type": "integer",
+          "maximum": 2147483647,
+          "minimum": -2147483648
+        },
+        "title": {
+          "title": "Title",
+          "type": "string",
+          "maxLength": 80,
+          "minLength": 1
+        },
+        "description": {
+          "title": "Description",
+          "type": "string"
+        },
+        "body": {
+          "title": "Body",
+          "type": "string",
+          "format": "uuid"
+        },
+        "event": {
+          "title": "Event",
+          "type": "string",
+          "format": "uuid"
+        },
+        "generic": {
+          "title": "Generic",
+          "type": "string",
+          "maxLength": 20,
+          "minLength": 1
+        }
+      }
+    },
+    "SSOBans": {
+      "required": [
+        "banned_by",
+        "reason",
+        "duration_of_ban"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string",
+          "format": "uuid"
+        },
+        "banned_by": {
+          "$ref": "#/$defs/UserProfile"
+        },
+        "time_of_creation": {
+          "title": "Time of creation",
+          "type": "string",
+          "format": "date-time",
+          "readOnly": true
+        },
+        "reason": {
+          "title": "Reason",
+          "type": "string",
+          "enum": [
+            "IDF",
+            "Buy&Sell",
+            "Graduated ",
+            "InstiBan"
+          ]
+        },
+        "detailed_reason": {
+          "title": "Detailed reason",
+          "type": "string"
+        },
+        "duration_of_ban": {
+          "title": "Duration of ban",
+          "type": "string",
+          "enum": [
+            "1 month",
+            "3 months",
+            "6 months",
+            "12 months",
+            "Permanent"
+          ]
+        },
+        "banned_user_ldapid": {
+          "title": "Banned user ldapid",
+          "type": "string",
+          "maxLength": 20,
+          "nullable": true
+        },
+        "banned_user": {
+          "title": "Banned user",
+          "type": "string",
+          "format": "uuid",
+          "nullable": true
+        }
+      }
+    },
+    "RoleSerializerMin": {
+      "required": [
+        "name",
+        "body"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string",
+          "format": "uuid",
+          "readOnly": true
+        },
+        "name": {
+          "title": "Name",
+          "type": "string",
+          "maxLength": 50,
+          "minLength": 1
+        },
+        "body": {
+          "title": "Body",
+          "type": "string",
+          "format": "uuid"
+        },
+        "users_detail": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/UserProfile"
+          },
+          "readOnly": true
+        },
+        "priority": {
+          "title": "Priority",
+          "type": "integer",
+          "maximum": 2147483647,
+          "minimum": -2147483648
+        }
+      }
+    },
+    "Body": {
+      "required": [
+        "name"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string",
+          "format": "uuid",
+          "readOnly": true
+        },
+        "str_id": {
+          "title": "Str id",
+          "type": "string",
+          "readOnly": true,
+          "minLength": 1,
+          "nullable": true
+        },
+        "name": {
+          "title": "Name",
+          "type": "string",
+          "maxLength": 50,
+          "minLength": 1
+        },
+        "short_description": {
+          "title": "Short description",
+          "type": "string",
+          "maxLength": 50
+        },
+        "description": {
+          "title": "Description",
+          "type": "string"
+        },
+        "image_url": {
+          "title": "Image url",
+          "type": "string",
+          "format": "uri",
+          "maxLength": 200,
+          "nullable": true
+        },
+        "children": {
+          "title": "Children",
+          "type": "string",
+          "readOnly": true
+        },
+        "parents": {
+          "title": "Parents",
+          "type": "string",
+          "readOnly": true
+        },
+        "events": {
+          "title": "Events",
+          "type": "string",
+          "readOnly": true
+        },
+        "followers_count": {
+          "title": "Followers count",
+          "type": "integer",
+          "readOnly": true
+        },
+        "user_follows": {
+          "title": "User follows",
+          "type": "boolean",
+          "readOnly": true
+        },
+        "roles": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/RoleSerializerMin"
+          },
+          "readOnly": true
+        },
+        "website_url": {
+          "title": "Website url",
+          "type": "string",
+          "format": "uri",
+          "maxLength": 200,
+          "nullable": true
+        },
+        "blog_url": {
+          "title": "Blog url",
+          "type": "string",
+          "format": "uri",
+          "maxLength": 200,
+          "nullable": true
+        },
+        "cover_url": {
+          "title": "Cover url",
+          "type": "string",
+          "format": "uri",
+          "maxLength": 200,
+          "nullable": true
+        },
+        "whatsapp_group_url": {
+          "title": "Whatsapp group url",
+          "type": "string",
+          "format": "uri",
+          "maxLength": 200,
+          "nullable": true
+        },
+        "instagram_url": {
+          "title": "Instagram url",
+          "type": "string",
+          "format": "uri",
+          "maxLength": 200,
+          "nullable": true
+        },
+        "photoalbum_urls": {
+          "title": "Photoalbum urls",
+          "type": "string",
+          "nullable": true
+        },
+        "short_name": {
+          "title": "Short name",
+          "type": "string",
+          "maxLength": 20,
+          "nullable": true
+        }
+      }
+    },
+    "BodyFollowers": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string",
+          "format": "uuid",
+          "readOnly": true
+        },
+        "followers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/UserProfile"
+          },
+          "readOnly": true
+        }
+      }
+    },
+    "Product": {
+      "required": [
+        "name",
+        "contact_details"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string",
+          "format": "uuid",
+          "readOnly": true
+        },
+        "user": {
+          "$ref": "#/$defs/UserProfile"
+        },
+        "product_image": {
+          "title": "Product image",
+          "type": "string"
+        },
+        "str_id": {
+          "title": "Str id",
+          "type": "string",
+          "readOnly": true,
+          "minLength": 1,
+          "nullable": true
+        },
+        "name": {
+          "title": "Name",
+          "type": "string",
+          "maxLength": 60,
+          "minLength": 1
+        },
+        "description": {
+          "title": "Description",
+          "type": "string"
+        },
+        "category": {
+          "title": "Category",
+          "type": "string",
+          "maxLength": 100,
+          "nullable": true
+        },
+        "brand": {
+          "title": "Brand",
+          "type": "string",
+          "maxLength": 60,
+          "nullable": true
+        },
+        "warranty": {
+          "title": "Warranty",
+          "type": "boolean",
+          "nullable": true
+        },
+        "packaging": {
+          "title": "Packaging",
+          "type": "boolean",
+          "nullable": true
+        },
+        "condition": {
+          "title": "Condition",
+          "type": "string",
+          "enum": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10"
+          ],
+          "nullable": true
+        },
+        "action": {
+          "title": "Action",
+          "type": "string",
+          "enum": [
+            "sell",
+            "giveaway",
+            "rent"
+          ]
+        },
+        "status": {
+          "title": "Status",
+          "type": "boolean",
+          "nullable": true
+        },
+        "deleted": {
+          "title": "Deleted",
+          "type": "boolean",
+          "nullable": true
+        },
+        "price": {
+          "title": "Price",
+          "type": "integer",
+          "maximum": 2147483647,
+          "minimum": -2147483648
+        },
+        "original_price": {
+          "title": "Original price",
+          "type": "integer",
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "nullable": true
+        },
+        "negotiable": {
+          "title": "Negotiable",
+          "type": "boolean"
+        },
+        "contact_details": {
+          "title": "Contact details",
+          "type": "string",
+          "maxLength": 300,
+          "minLength": 1
+        },
+        "time_of_creation": {
+          "title": "Time of creation",
+          "type": "string",
+          "format": "date-time",
+          "readOnly": true
+        },
+        "time_inactive": {
+          "title": "Time inactive",
+          "type": "string",
+          "format": "date-time",
+          "readOnly": true,
+          "nullable": true
+        },
+        "followers": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "uniqueItems": true
+        }
+      }
+    },
+    "CommunitySerializers": {
+      "required": [
+        "name",
+        "body"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string",
+          "format": "uuid",
+          "readOnly": true
+        },
+        "str_id": {
+          "title": "Str id",
+          "type": "string",
+          "readOnly": true,
+          "minLength": 1,
+          "nullable": true
+        },
+        "name": {
+          "title": "Name",
+          "type": "string",
+          "maxLength": 100,
+          "minLength": 1
+        },
+        "about": {
+          "title": "About",
+          "type": "string",
+          "nullable": true
+        },
+        "description": {
+          "title": "Description",
+          "type": "string",
+          "nullable": true
+        },
+        "created_at": {
+          "title": "Created at",
+          "type": "string",
+          "format": "date-time",
+          "readOnly": true
+        },
+        "updated_at": {
+          "title": "Updated at",
+          "type": "string",
+          "format": "date-time",
+          "readOnly": true
+        },
+        "cover_image": {
+          "title": "Cover image",
+          "type": "string",
+          "format": "uri",
+          "maxLength": 200,
+          "nullable": true
+        },
+        "logo_image": {
+          "title": "Logo image",
+          "type": "string",
+          "format": "uri",
+          "maxLength": 200,
+          "nullable": true
+        },
+        "followers_count": {
+          "title": "Followers count",
+          "type": "string",
+          "readOnly": true
+        },
+        "is_user_following": {
+          "title": "Is user following",
+          "type": "string",
+          "readOnly": true
+        },
+        "roles": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/RoleSerializerMin"
+          },
+          "readOnly": true
+        },
+        "posts": {
+          "title": "Posts",
+          "type": "string",
+          "readOnly": true
+        },
+        "body": {
+          "title": "Body",
+          "type": "string",
+          "format": "uuid"
+        },
+        "featured_posts": {
+          "title": "Featured posts",
+          "type": "string",
+          "readOnly": true
+        }
+      }
+    },
+    "CommunitySerializerMin": {
+      "required": [
+        "name",
+        "body"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string",
+          "format": "uuid",
+          "readOnly": true
+        },
+        "str_id": {
+          "title": "Str id",
+          "type": "string",
+          "readOnly": true,
+          "minLength": 1,
+          "nullable": true
+        },
+        "name": {
+          "title": "Name",
+          "type": "string",
+          "maxLength": 100,
+          "minLength": 1
+        },
+        "about": {
+          "title": "About",
+          "type": "string",
+          "nullable": true
+        },
+        "cover_image": {
+          "title": "Cover image",
+          "type": "string",
+          "format": "uri",
+          "maxLength": 200,
+          "nullable": true
+        },
+        "logo_image": {
+          "title": "Logo image",
+          "type": "string",
+          "format": "uri",
+          "maxLength": 200,
+          "nullable": true
+        },
+        "followers_count": {
+          "title": "Followers count",
+          "type": "string",
+          "readOnly": true
+        },
+        "body": {
+          "title": "Body",
+          "type": "string",
+          "format": "uuid"
+        },
+        "is_user_following": {
+          "title": "Is user following",
+          "type": "string",
+          "readOnly": true
+        }
+      }
+    },
+    "Interest": {
+      "required": [
+        "title"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string",
+          "format": "uuid",
+          "readOnly": true
+        },
+        "title": {
+          "title": "Title",
+          "type": "string",
+          "maxLength": 80,
+          "minLength": 1
+        }
+      }
+    },
+    "CommunityPostSerializers": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string",
+          "format": "uuid",
+          "readOnly": true
+        },
+        "str_id": {
+          "title": "Str id",
+          "type": "string",
+          "readOnly": true,
+          "minLength": 1,
+          "nullable": true
+        },
+        "content": {
+          "title": "Content",
+          "type": "string",
+          "nullable": true
+        },
+        "posted_by": {
+          "title": "Posted by",
+          "type": "string",
+          "readOnly": true
+        },
+        "reactions_count": {
+          "title": "Reactions count",
+          "type": "string",
+          "readOnly": true
+        },
+        "user_reaction": {
+          "title": "User reaction",
+          "type": "string",
+          "readOnly": true
+        },
+        "comments_count": {
+          "title": "Comments count",
+          "type": "string",
+          "readOnly": true
+        },
+        "time_of_creation": {
+          "title": "Time of creation",
+          "type": "string",
+          "format": "date-time",
+          "readOnly": true
+        },
+        "time_of_modification": {
+          "title": "Time of modification",
+          "type": "string",
+          "format": "date-time",
+          "readOnly": true
+        },
+        "image_url": {
+          "title": "Image url",
+          "type": "string",
+          "readOnly": true
+        },
+        "comments": {
+          "title": "Comments",
+          "type": "string",
+          "readOnly": true
+        },
+        "thread_rank": {
+          "title": "Thread rank",
+          "type": "integer",
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "nullable": true
+        },
+        "community": {
+          "$ref": "#/$defs/CommunitySerializerMin"
+        },
+        "status": {
+          "title": "Status",
+          "type": "integer",
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "nullable": true
+        },
+        "tag_body": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/BodySerializerMin"
+          },
+          "readOnly": true
+        },
+        "tag_user": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/UserProfile"
+          },
+          "readOnly": true
+        },
+        "interests": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Interest"
+          },
+          "readOnly": true
+        },
+        "featured": {
+          "title": "Featured",
+          "type": "boolean",
+          "nullable": true
+        },
+        "deleted": {
+          "title": "Deleted",
+          "type": "boolean",
+          "nullable": true
+        },
+        "anonymous": {
+          "title": "Anonymous",
+          "type": "boolean"
+        },
+        "reported_by": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "uniqueItems": true
+        }
+      }
+    },
+    "LocationSerializerMin": {
+      "required": [
+        "name"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string",
+          "format": "uuid",
+          "readOnly": true
+        },
+        "name": {
+          "title": "Name",
+          "type": "string",
+          "maxLength": 150,
+          "minLength": 1
+        },
+        "short_name": {
+          "title": "Short name",
+          "type": "string",
+          "maxLength": 80,
+          "nullable": true
+        },
+        "lat": {
+          "title": "Lat",
+          "type": "string",
+          "format": "decimal",
+          "nullable": true
+        },
+        "lng": {
+          "title": "Lng",
+          "type": "string",
+          "format": "decimal",
+          "nullable": true
+        }
+      }
+    },
+    "EventFull": {
+      "required": [
+        "name",
+        "verification_bodies_id",
+        "start_time",
+        "end_time",
+        "bodies_id",
+        "interests_id"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string",
+          "format": "uuid",
+          "readOnly": true
+        },
+        "str_id": {
+          "title": "Str id",
+          "type": "string",
+          "readOnly": true,
+          "minLength": 1,
+          "nullable": true
+        },
+        "name": {
+          "title": "Name",
+          "type": "string",
+          "maxLength": 60,
+          "minLength": 1
+        },
+        "tags": {
+          "title": "Tags",
+          "type": "string",
+          "enum": [
+            "event",
+            "announcement"
+          ],
+          "nullable": true
+        },
+        "description": {
+          "title": "Description",
+          "type": "string"
+        },
+        "email_subject": {
+          "title": "Email subject",
+          "type": "string",
+          "minLength": 1
+        },
+        "longdescription": {
+          "title": "Longdescription",
+          "type": "string",
+          "minLength": 1
+        },
+        "email_verified": {
+          "title": "Email verified",
+          "type": "boolean"
+        },
+        "email_rejected": {
+          "title": "Email rejected",
+          "type": "boolean"
+        },
+        "verification_bodies": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/BodySerializerMin"
+          },
+          "readOnly": true
+        },
+        "verification_bodies_id": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "uniqueItems": true
+        },
+        "image_url": {
+          "title": "Image url",
+          "type": "string",
+          "format": "uri",
+          "maxLength": 200,
+          "nullable": true
+        },
+        "start_time": {
+          "title": "Start time",
+          "type": "string",
+          "format": "date-time"
+        },
+        "end_time": {
+          "title": "End time",
+          "type": "string",
+          "format": "date-time"
+        },
+        "all_day": {
+          "title": "All day",
+          "type": "boolean"
+        },
+        "venues": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/LocationSerializerMin"
+          },
+          "readOnly": true
+        },
+        "venue_room": {
+          "title": "Venue room",
+          "type": "string",
+          "nullable": true
+        },
+        "venue_names": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "uniqueItems": true
+        },
+        "bodies": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/BodySerializerMin"
+          },
+          "readOnly": true
+        },
+        "bodies_id": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "uniqueItems": true
+        },
+        "interested_count": {
+          "title": "Interested count",
+          "type": "integer",
+          "readOnly": true
+        },
+        "going_count": {
+          "title": "Going count",
+          "type": "integer",
+          "readOnly": true
+        },
+        "interested": {
+          "title": "Interested",
+          "type": "string",
+          "readOnly": true
+        },
+        "going": {
+          "title": "Going",
+          "type": "string",
+          "readOnly": true
+        },
+        "venue_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "uniqueItems": true
+        },
+        "website_url": {
+          "title": "Website url",
+          "type": "string",
+          "format": "uri",
+          "maxLength": 200,
+          "nullable": true
+        },
+        "user_ues": {
+          "title": "User ues",
+          "type": "string",
+          "readOnly": true
+        },
+        "notify": {
+          "title": "Notify",
+          "type": "boolean"
+        },
+        "user_tags": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          },
+          "default": [],
+          "uniqueItems": true
+        },
+        "offered_achievements": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/OfferedAchievement"
+          },
+          "readOnly": true
+        },
+        "event_interest": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Interest"
+          },
+          "readOnly": true
+        },
+        "interests_id": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "uniqueItems": true
+        },
+        "verification_status": {
+          "title": "Verification status",
+          "type": "string",
+          "readOnly": true,
+          "minLength": 1
+        },
+        "rejection_reason": {
+          "title": "Rejection reason",
+          "type": "string",
+          "default": ""
+        },
+        "time_of_creation": {
+          "title": "Time of creation",
+          "type": "string",
+          "format": "date-time",
+          "readOnly": true
+        }
+      }
+    },
+    "UserInterest": {
+      "required": [
+        "title"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string",
+          "format": "uuid",
+          "readOnly": true
+        },
+        "title": {
+          "title": "Title",
+          "type": "string",
+          "maxLength": 80,
+          "minLength": 1
+        }
+      }
+    },
+    "ExtractedData": {
+      "type": "object",
+      "properties": {
+        "category": {
+          "title": "Category",
+          "type": "string",
+          "maxLength": 10
+        },
+        "role": {
+          "title": "Role",
+          "type": "string"
+        },
+        "domain": {
+          "title": "Domain",
+          "type": "string",
+          "maxLength": 200
+        },
+        "stipend": {
+          "title": "Stipend",
+          "type": "string",
+          "maxLength": 100
+        },
+        "eligibility": {
+          "title": "Eligibility",
+          "type": "string"
+        },
+        "deadline": {
+          "title": "Deadline",
+          "type": "string",
+          "format": "date-time",
+          "nullable": true
+        },
+        "shortlisted_rolls": {
+          "title": "Shortlisted rolls",
+          "type": "object",
+          "nullable": true
+        },
+        "event_date": {
+          "title": "Event date",
+          "type": "string",
+          "format": "date-time",
+          "nullable": true
+        },
+        "venue": {
+          "title": "Venue",
+          "type": "string",
+          "maxLength": 300
+        },
+        "reporting_time": {
+          "title": "Reporting time",
+          "type": "string",
+          "maxLength": 50
+        },
+        "interview_slots": {
+          "title": "Interview slots",
+          "type": "object",
+          "nullable": true
+        }
+      }
+    },
+    "BlogPost": {
+      "required": [
+        "id",
+        "post_type",
+        "raw_company_name",
+        "published",
+        "link",
+        "raw_content"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string",
+          "format": "uuid"
+        },
+        "company_slug": {
+          "title": "Company slug",
+          "type": "string",
+          "readOnly": true
+        },
+        "post_type": {
+          "title": "Post type",
+          "type": "string",
+          "enum": [
+            "IAF_OPEN",
+            "TEST",
+            "TEST_SHORTLIST",
+            "TEST_UPDATE",
+            "ASSIGNMENT_DETAILS",
+            "ASSIGNMENT_SHORTLIST",
+            "MANDATORY_FORM",
+            "INTERVIEW_SHORTLIST",
+            "INTERVIEW_SCHEDULE",
+            "INTERVIEW_UPDATE",
+            "GD_SCHEDULE",
+            "GD_UPDATE",
+            "ROUND2_SHORTLIST",
+            "FINAL_SELECTION",
+            "OTHER"
+          ]
+        },
+        "post_type_display": {
+          "title": "Post type display",
+          "type": "string",
+          "readOnly": true,
+          "minLength": 1
+        },
+        "raw_company_name": {
+          "title": "Raw company name",
+          "type": "string",
+          "maxLength": 200,
+          "minLength": 1
+        },
+        "published": {
+          "title": "Published",
+          "type": "string",
+          "format": "date-time"
+        },
+        "link": {
+          "title": "Link",
+          "type": "string",
+          "format": "uri",
+          "maxLength": 200,
+          "minLength": 1
+        },
+        "pinned": {
+          "title": "Pinned",
+          "type": "boolean"
+        },
+        "extracted_data": {
+          "$ref": "#/$defs/ExtractedData"
+        },
+        "raw_content": {
+          "title": "Raw content",
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "CompanyThread": {
+      "required": [
+        "company_name",
+        "company_slug",
+        "first_post_date"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "ID",
+          "type": "integer",
+          "readOnly": true
+        },
+        "company_name": {
+          "title": "Company name",
+          "type": "string",
+          "maxLength": 200,
+          "minLength": 1
+        },
+        "company_slug": {
+          "title": "Company slug",
+          "type": "string",
+          "format": "slug",
+          "pattern": "^[-a-zA-Z0-9_]+$",
+          "maxLength": 50,
+          "minLength": 1
+        },
+        "first_post_date": {
+          "title": "First post date",
+          "type": "string",
+          "format": "date-time"
+        },
+        "category": {
+          "title": "Category",
+          "type": "string",
+          "maxLength": 10
+        },
+        "role": {
+          "title": "Role",
+          "type": "string"
+        },
+        "domain": {
+          "title": "Domain",
+          "type": "string",
+          "maxLength": 200
+        },
+        "stipend": {
+          "title": "Stipend",
+          "type": "string",
+          "maxLength": 100
+        },
+        "eligibility": {
+          "title": "Eligibility",
+          "type": "string"
+        },
+        "iaf_deadline": {
+          "title": "Iaf deadline",
+          "type": "string",
+          "format": "date-time",
+          "nullable": true
+        }
+      }
+    },
+    "CompleteThread": {
+      "required": [
+        "company_name",
+        "company_slug",
+        "first_post_date"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "ID",
+          "type": "integer",
+          "readOnly": true
+        },
+        "company_name": {
+          "title": "Company name",
+          "type": "string",
+          "maxLength": 200,
+          "minLength": 1
+        },
+        "company_slug": {
+          "title": "Company slug",
+          "type": "string",
+          "format": "slug",
+          "pattern": "^[-a-zA-Z0-9_]+$",
+          "maxLength": 50,
+          "minLength": 1
+        },
+        "first_post_date": {
+          "title": "First post date",
+          "type": "string",
+          "format": "date-time"
+        },
+        "category": {
+          "title": "Category",
+          "type": "string",
+          "maxLength": 10
+        },
+        "role": {
+          "title": "Role",
+          "type": "string"
+        },
+        "domain": {
+          "title": "Domain",
+          "type": "string",
+          "maxLength": 200
+        },
+        "stipend": {
+          "title": "Stipend",
+          "type": "string",
+          "maxLength": 100
+        },
+        "eligibility": {
+          "title": "Eligibility",
+          "type": "string"
+        },
+        "iaf_deadline": {
+          "title": "Iaf deadline",
+          "type": "string",
+          "format": "date-time",
+          "nullable": true
+        },
+        "posts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/BlogPost"
+          },
+          "readOnly": true
+        }
+      }
+    },
+    "ProductFound": {
+      "required": [
+        "name",
+        "contact_details"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string",
+          "format": "uuid",
+          "readOnly": true
+        },
+        "name": {
+          "title": "Name",
+          "type": "string",
+          "maxLength": 60,
+          "minLength": 1
+        },
+        "description": {
+          "title": "Description",
+          "type": "string"
+        },
+        "product_image": {
+          "title": "Product image",
+          "type": "string",
+          "readOnly": true
+        },
+        "category": {
+          "title": "Category",
+          "type": "string",
+          "enum": [
+            "electronics",
+            "stationery",
+            "Other"
+          ],
+          "nullable": true
+        },
+        "found_at": {
+          "title": "Found at",
+          "type": "string",
+          "maxLength": 60
+        },
+        "claimed": {
+          "title": "Claimed",
+          "type": "string",
+          "readOnly": true
+        },
+        "claimed_by": {
+          "title": "Claimed by",
+          "type": "string",
+          "readOnly": true
+        },
+        "contact_details": {
+          "title": "Contact details",
+          "type": "string",
+          "maxLength": 300,
+          "minLength": 1
+        },
+        "time_of_creation": {
+          "title": "Time of creation",
+          "type": "string",
+          "format": "date-time",
+          "readOnly": true
+        }
+      }
+    },
+    "Location": {
+      "required": [
+        "name"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string",
+          "format": "uuid",
+          "readOnly": true
+        },
+        "name": {
+          "title": "Name",
+          "type": "string",
+          "maxLength": 150,
+          "minLength": 1
+        },
+        "short_name": {
+          "title": "Short name",
+          "type": "string",
+          "maxLength": 80,
+          "nullable": true
+        },
+        "group_id": {
+          "title": "Group id",
+          "type": "integer",
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "nullable": true
+        },
+        "pixel_x": {
+          "title": "Pixel x",
+          "type": "integer",
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "nullable": true
+        },
+        "pixel_y": {
+          "title": "Pixel y",
+          "type": "integer",
+          "maximum": 2147483647,
+          "minimum": -2147483648,
+          "nullable": true
+        },
+        "parent": {
+          "title": "Parent",
+          "type": "string",
+          "format": "uuid",
+          "nullable": true
+        },
+        "parent_relation": {
+          "title": "Parent relation",
+          "type": "string",
+          "maxLength": 50,
+          "nullable": true
+        },
+        "description": {
+          "title": "Description",
+          "type": "string",
+          "nullable": true
+        },
+        "lat": {
+          "title": "Lat",
+          "type": "string",
+          "format": "decimal",
+          "nullable": true
+        },
+        "lng": {
+          "title": "Lng",
+          "type": "string",
+          "format": "decimal",
+          "nullable": true
+        },
+        "reusable": {
+          "title": "Reusable",
+          "type": "boolean"
+        }
+      }
+    },
+    "PlacementExtractedData": {
+      "type": "object",
+      "properties": {
+        "category": {
+          "title": "Category",
+          "type": "string",
+          "maxLength": 10
+        },
+        "role": {
+          "title": "Role",
+          "type": "string"
+        },
+        "domain": {
+          "title": "Domain",
+          "type": "string",
+          "maxLength": 200
+        },
+        "bonus_jaf": {
+          "title": "Bonus jaf",
+          "type": "string",
+          "maxLength": 100
+        },
+        "cpi_cutoff": {
+          "title": "Cpi cutoff",
+          "type": "string"
+        },
+        "bond": {
+          "title": "Bond",
+          "type": "string",
+          "maxLength": 255,
+          "nullable": true
+        },
+        "mode": {
+          "title": "Mode",
+          "type": "string",
+          "maxLength": 255,
+          "nullable": true
+        },
+        "deadline": {
+          "title": "Deadline",
+          "type": "string",
+          "format": "date-time",
+          "nullable": true
+        },
+        "shortlisted_rolls": {
+          "title": "Shortlisted rolls",
+          "type": "object",
+          "nullable": true
+        },
+        "event_date": {
+          "title": "Event date",
+          "type": "string",
+          "format": "date-time",
+          "nullable": true
+        },
+        "venue": {
+          "title": "Venue",
+          "type": "string",
+          "maxLength": 300
+        },
+        "time": {
+          "title": "Time",
+          "type": "string",
+          "maxLength": 50
+        },
+        "placement_slots": {
+          "title": "Placement slots",
+          "type": "object",
+          "nullable": true
+        }
+      }
+    },
+    "PlacementBlogPost": {
+      "required": [
+        "id",
+        "post_type",
+        "raw_company_name",
+        "published",
+        "link",
+        "raw_content"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string",
+          "format": "uuid"
+        },
+        "company_slug": {
+          "title": "Company slug",
+          "type": "string",
+          "readOnly": true
+        },
+        "post_type": {
+          "title": "Post type",
+          "type": "string",
+          "enum": [
+            "JAF_OPEN",
+            "TEST",
+            "TEST_SHORTLIST",
+            "TEST_UPDATE",
+            "ASSIGNMENT_DETAILS",
+            "ASSIGNMENT_SHORTLIST",
+            "MANDATORY_FORM",
+            "INTERVIEW_SHORTLIST",
+            "INTERVIEW_SCHEDULE",
+            "INTERVIEW_UPDATE",
+            "GD_SCHEDULE",
+            "GD_UPDATE",
+            "ROUND2_SHORTLIST",
+            "FINAL_SELECTION",
+            "OTHER"
+          ]
+        },
+        "post_type_display": {
+          "title": "Post type display",
+          "type": "string",
+          "readOnly": true,
+          "minLength": 1
+        },
+        "raw_company_name": {
+          "title": "Raw company name",
+          "type": "string",
+          "maxLength": 200,
+          "minLength": 1
+        },
+        "published": {
+          "title": "Published",
+          "type": "string",
+          "format": "date-time"
+        },
+        "link": {
+          "title": "Link",
+          "type": "string",
+          "format": "uri",
+          "maxLength": 200,
+          "minLength": 1
+        },
+        "pinned": {
+          "title": "Pinned",
+          "type": "boolean"
+        },
+        "extracted_data": {
+          "$ref": "#/$defs/PlacementExtractedData"
+        },
+        "raw_content": {
+          "title": "Raw content",
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "PlacementCompanyThread": {
+      "required": [
+        "company_name",
+        "company_slug",
+        "first_post_date"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "ID",
+          "type": "integer",
+          "readOnly": true
+        },
+        "company_name": {
+          "title": "Company name",
+          "type": "string",
+          "maxLength": 200,
+          "minLength": 1
+        },
+        "company_slug": {
+          "title": "Company slug",
+          "type": "string",
+          "format": "slug",
+          "pattern": "^[-a-zA-Z0-9_]+$",
+          "maxLength": 50,
+          "minLength": 1
+        },
+        "first_post_date": {
+          "title": "First post date",
+          "type": "string",
+          "format": "date-time"
+        },
+        "role": {
+          "title": "Role",
+          "type": "string"
+        },
+        "domain": {
+          "title": "Domain",
+          "type": "string",
+          "maxLength": 200
+        },
+        "bonus_jaf": {
+          "title": "Bonus jaf",
+          "type": "string",
+          "maxLength": 100
+        },
+        "cpi_cutoff": {
+          "title": "Cpi cutoff",
+          "type": "string"
+        },
+        "bond": {
+          "title": "Bond",
+          "type": "string",
+          "maxLength": 255,
+          "nullable": true
+        },
+        "mode": {
+          "title": "Mode",
+          "type": "string",
+          "maxLength": 255,
+          "nullable": true
+        },
+        "jaf_deadline": {
+          "title": "Jaf deadline",
+          "type": "string",
+          "format": "date-time",
+          "nullable": true
+        }
+      }
+    },
+    "PlacementCompleteThread": {
+      "required": [
+        "company_name",
+        "company_slug",
+        "first_post_date"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "ID",
+          "type": "integer",
+          "readOnly": true
+        },
+        "company_name": {
+          "title": "Company name",
+          "type": "string",
+          "maxLength": 200,
+          "minLength": 1
+        },
+        "company_slug": {
+          "title": "Company slug",
+          "type": "string",
+          "format": "slug",
+          "pattern": "^[-a-zA-Z0-9_]+$",
+          "maxLength": 50,
+          "minLength": 1
+        },
+        "first_post_date": {
+          "title": "First post date",
+          "type": "string",
+          "format": "date-time"
+        },
+        "role": {
+          "title": "Role",
+          "type": "string"
+        },
+        "domain": {
+          "title": "Domain",
+          "type": "string",
+          "maxLength": 200
+        },
+        "bonus_jaf": {
+          "title": "Bonus jaf",
+          "type": "string",
+          "maxLength": 100
+        },
+        "cpi_cutoff": {
+          "title": "Cpi cutoff",
+          "type": "string"
+        },
+        "bond": {
+          "title": "Bond",
+          "type": "string",
+          "maxLength": 255,
+          "nullable": true
+        },
+        "mode": {
+          "title": "Mode",
+          "type": "string",
+          "maxLength": 255,
+          "nullable": true
+        },
+        "jaf_deadline": {
+          "title": "Jaf deadline",
+          "type": "string",
+          "format": "date-time",
+          "nullable": true
+        },
+        "posts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/PlacementBlogPost"
+          },
+          "readOnly": true
+        }
+      }
+    },
+    "Role": {
+      "required": [
+        "name",
+        "body",
+        "permissions",
+        "users"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string",
+          "format": "uuid",
+          "readOnly": true
+        },
+        "name": {
+          "title": "Name",
+          "type": "string",
+          "maxLength": 50,
+          "minLength": 1
+        },
+        "inheritable": {
+          "title": "Inheritable",
+          "type": "boolean"
+        },
+        "body": {
+          "title": "Body",
+          "type": "string",
+          "format": "uuid"
+        },
+        "body_detail": {
+          "$ref": "#/$defs/BodySerializerMin"
+        },
+        "bodies": {
+          "title": "Bodies",
+          "type": "string",
+          "readOnly": true
+        },
+        "permissions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "AddE",
+              "UpdE",
+              "DelE",
+              "VerE",
+              "UpdB",
+              "Role",
+              "VerA",
+              "AppP",
+              "ModC"
+            ]
+          }
+        },
+        "users": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "uniqueItems": true
+        },
+        "users_detail": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/UserProfile"
+          },
+          "readOnly": true
+        },
+        "priority": {
+          "title": "Priority",
+          "type": "integer",
+          "maximum": 2147483647,
+          "minimum": -2147483648
+        },
+        "official_post": {
+          "title": "Official post",
+          "type": "boolean"
+        }
+      }
+    },
+    "UploadedImage": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string",
+          "format": "uuid",
+          "readOnly": true
+        },
+        "picture": {
+          "title": "Picture",
+          "type": "string",
+          "readOnly": true,
+          "format": "uri"
+        }
+      }
+    },
+    "InstituteRole": {
+      "required": [
+        "name",
+        "permissions"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string",
+          "format": "uuid",
+          "readOnly": true
+        },
+        "name": {
+          "title": "Name",
+          "type": "string",
+          "maxLength": 50,
+          "minLength": 1
+        },
+        "permissions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "AddB",
+              "DelB",
+              "BodyChild",
+              "Location",
+              "Role",
+              "RoleB"
+            ]
+          }
+        }
+      }
+    },
+    "FormerRole": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string",
+          "readOnly": true
+        },
+        "name": {
+          "title": "Name",
+          "type": "string",
+          "readOnly": true
+        },
+        "body_detail": {
+          "$ref": "#/$defs/BodySerializerMin"
+        },
+        "priority": {
+          "title": "Priority",
+          "type": "string",
+          "readOnly": true
+        },
+        "year": {
+          "title": "Year",
+          "type": "string",
+          "maxLength": 20
+        }
+      }
+    },
+    "VerifiedAchievement": {
+      "required": [
+        "title"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string",
+          "format": "uuid",
+          "readOnly": true
+        },
+        "title": {
+          "title": "Title",
+          "type": "string",
+          "maxLength": 80,
+          "minLength": 1
+        },
+        "description": {
+          "title": "Description",
+          "type": "string"
+        },
+        "body_detail": {
+          "$ref": "#/$defs/BodySerializerMin"
+        },
+        "dismissed": {
+          "title": "Dismissed",
+          "type": "boolean"
+        },
+        "verified": {
+          "title": "Verified",
+          "type": "boolean"
+        },
+        "hidden": {
+          "title": "Hidden",
+          "type": "boolean"
+        },
+        "event_detail": {
+          "$ref": "#/$defs/EventMin"
+        },
+        "isSkill": {
+          "title": "IsSkill",
+          "type": "boolean"
+        }
+      }
+    },
+    "UserProfileFull": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string",
+          "format": "uuid",
+          "readOnly": true
+        },
+        "name": {
+          "title": "Name",
+          "type": "string",
+          "maxLength": 50
+        },
+        "department": {
+          "title": "Department",
+          "type": "string",
+          "readOnly": true,
+          "minLength": 1,
+          "nullable": true
+        },
+        "department_name": {
+          "title": "Department name",
+          "type": "string",
+          "readOnly": true,
+          "minLength": 1,
+          "nullable": true
+        },
+        "degree": {
+          "title": "Degree",
+          "type": "string",
+          "readOnly": true,
+          "minLength": 1,
+          "nullable": true
+        },
+        "degree_name": {
+          "title": "Degree name",
+          "type": "string",
+          "readOnly": true,
+          "minLength": 1,
+          "nullable": true
+        },
+        "join_year": {
+          "title": "Join year",
+          "type": "string",
+          "readOnly": true,
+          "minLength": 1,
+          "nullable": true
+        },
+        "graduation_year": {
+          "title": "Graduation year",
+          "type": "string",
+          "readOnly": true,
+          "minLength": 1,
+          "nullable": true
+        },
+        "profile_pic": {
+          "title": "Profile pic",
+          "type": "string",
+          "format": "uri",
+          "maxLength": 200,
+          "nullable": true
+        },
+        "events_interested": {
+          "title": "Events interested",
+          "type": "string",
+          "readOnly": true
+        },
+        "events_going": {
+          "title": "Events going",
+          "type": "string",
+          "readOnly": true
+        },
+        "email": {
+          "title": "Email",
+          "type": "string",
+          "readOnly": true
+        },
+        "roll_no": {
+          "title": "Roll no",
+          "type": "string",
+          "maxLength": 30,
+          "nullable": true
+        },
+        "contact_no": {
+          "title": "Contact no",
+          "type": "string",
+          "readOnly": true
+        },
+        "show_contact_no": {
+          "title": "Show contact no",
+          "type": "boolean"
+        },
+        "about": {
+          "title": "About",
+          "type": "string",
+          "nullable": true
+        },
+        "followed_bodies": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/BodySerializerMin"
+          },
+          "readOnly": true
+        },
+        "fcm_id": {
+          "title": "Fcm id",
+          "type": "string",
+          "maxLength": 200,
+          "nullable": true
+        },
+        "android_version": {
+          "title": "Android version",
+          "type": "integer",
+          "maximum": 2147483647,
+          "minimum": -2147483648
+        },
+        "roles": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Role"
+          },
+          "readOnly": true
+        },
+        "institute_roles": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/InstituteRole"
+          },
+          "readOnly": true
+        },
+        "website_url": {
+          "title": "Website url",
+          "type": "string",
+          "format": "uri",
+          "maxLength": 200,
+          "nullable": true
+        },
+        "ldap_id": {
+          "title": "Ldap id",
+          "type": "string",
+          "maxLength": 50,
+          "nullable": true
+        },
+        "hostel": {
+          "title": "Hostel",
+          "type": "string",
+          "maxLength": 100,
+          "nullable": true
+        },
+        "former_roles": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/FormerRole"
+          },
+          "readOnly": true
+        },
+        "achievements": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/VerifiedAchievement"
+          },
+          "readOnly": true
+        },
+        "interests": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/UserInterest"
+          },
+          "readOnly": true
+        }
+      }
+    },
+    "Signature": {
+      "required": [
+        "body",
+        "signature"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "ID",
+          "type": "integer",
+          "readOnly": true
+        },
+        "user": {
+          "title": "User",
+          "type": "string",
+          "format": "uuid",
+          "readOnly": true
+        },
+        "body": {
+          "title": "Body",
+          "type": "string",
+          "format": "uuid",
+          "nullable": true
+        },
+        "signature": {
+          "title": "Signature",
+          "type": "string",
+          "maxLength": 200,
+          "minLength": 1
+        },
+        "timestamp": {
+          "title": "Timestamp",
+          "type": "string",
+          "format": "date-time",
+          "readOnly": true
+        }
+      }
+    },
+    "CommentPost": {
+      "required": [
+        "text"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string",
+          "format": "uuid",
+          "readOnly": true
+        },
+        "time": {
+          "title": "Time",
+          "type": "string",
+          "format": "date-time",
+          "readOnly": true
+        },
+        "text": {
+          "title": "Text",
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "ComplaintPost": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string",
+          "format": "uuid",
+          "readOnly": true
+        },
+        "description": {
+          "title": "Description",
+          "type": "string"
+        },
+        "suggestions": {
+          "title": "Suggestions",
+          "type": "string"
+        },
+        "location_details": {
+          "title": "Location details",
+          "type": "string"
+        },
+        "report_date": {
+          "title": "Report date",
+          "type": "string",
+          "format": "date-time",
+          "readOnly": true
+        },
+        "latitude": {
+          "title": "Latitude",
+          "type": "number",
+          "nullable": true
+        },
+        "longitude": {
+          "title": "Longitude",
+          "type": "number",
+          "nullable": true
+        },
+        "location_description": {
+          "title": "Location description",
+          "type": "string"
+        }
+      }
+    },
+    "Tag": {
+      "required": [
+        "tag_uri"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string",
+          "format": "uuid",
+          "readOnly": true
+        },
+        "tag_uri": {
+          "title": "Tag uri",
+          "type": "string",
+          "maxLength": 200,
+          "minLength": 1
+        }
+      }
+    }
+  }
+}

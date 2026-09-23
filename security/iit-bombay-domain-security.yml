@@ -1,4 +1,4 @@
-generated: '2026-07-11'
+generated: '2026-08-30'
 method: probed
 source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
 hosts:
@@ -14,11 +14,11 @@ hosts:
   cert_expires: Feb  9 15:26:03 2027 GMT
   hsts: true
   hsts_max_age: 31536000
-- host: sso.tech-iitb.org
+- host: sso.iitb.ac.in
   https: true
   tls_version: TLSv1.3
-  cert_expires: Sep 13 18:25:35 2026 GMT
-  hsts: false
+  cert_expires: Feb  9 23:59:59 2027 GMT
+  hsts: null
 domains:
 - domain: iitb.ac.in
   dnssec: false
@@ -26,8 +26,3 @@ domains:
   spf: true
   dmarc: true
   dmarc_policy: reject
-- domain: tech-iitb.org
-  dnssec: false
-  caa: []
-  spf: false
-  dmarc: false

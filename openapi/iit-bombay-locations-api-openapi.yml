@@ -1,0 +1,196 @@
+openapi: 3.2.0
+info:
+  title: InstiApp Locations API
+  description: InstiApp IIT Bombay API
+  termsOfService: https://insti.app/tos.html
+  contact:
+    email: devcom@iitb.ac.in
+  license:
+    name: AGPLv3
+  version: v1
+servers:
+- url: https://gymkhana.iitb.ac.in/instiapp/api
+security:
+- Basic: []
+tags:
+- name: Locations
+paths:
+  /locations:
+    parameters: []
+    get:
+      operationId: locations_list
+      description: List reusable locations.
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Location'
+      tags:
+      - Locations
+      summary: Locations list
+      x-summary-source: derived
+    post:
+      operationId: locations_create
+      description: 'Create a Location.
+
+        Needs ''Location'' institute permission.'
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Location'
+      tags:
+      - Locations
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Location'
+        required: true
+      summary: Locations create
+      x-summary-source: derived
+  /locations/{id}:
+    parameters:
+    - name: id
+      in: path
+      description: A UUID string identifying this Location.
+      required: true
+      schema:
+        type: string
+        format: uuid
+    get:
+      operationId: locations_read
+      description: Location
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Location'
+      tags:
+      - Locations
+      summary: Locations read
+      x-summary-source: derived
+    put:
+      operationId: locations_update
+      description: 'Update Location.
+
+        This requires the user to have the ''Location'' institute permission
+
+        or BodyRole for the event using the location if the it is not reusable.'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Location'
+      tags:
+      - Locations
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Location'
+        required: true
+      summary: Locations update
+      x-summary-source: derived
+    delete:
+      operationId: locations_delete
+      description: 'Delete a Location.
+
+        Needs ''Location'' institute permission.'
+      responses:
+        '204':
+          description: ''
+      tags:
+      - Locations
+      summary: Locations delete
+      x-summary-source: derived
+components:
+  schemas:
+    Location:
+      required:
+      - name
+      type: object
+      properties:
+        id:
+          title: Id
+          type: string
+          format: uuid
+          readOnly: true
+        name:
+          title: Name
+          type: string
+          maxLength: 150
+          minLength: 1
+        short_name:
+          title: Short name
+          type:
+          - string
+          - 'null'
+          maxLength: 80
+        group_id:
+          title: Group id
+          type:
+          - integer
+          - 'null'
+          maximum: 2147483647
+          minimum: -2147483648
+        pixel_x:
+          title: Pixel x
+          type:
+          - integer
+          - 'null'
+          maximum: 2147483647
+          minimum: -2147483648
+        pixel_y:
+          title: Pixel y
+          type:
+          - integer
+          - 'null'
+          maximum: 2147483647
+          minimum: -2147483648
+        parent:
+          title: Parent
+          type:
+          - string
+          - 'null'
+          format: uuid
+        parent_relation:
+          title: Parent relation
+          type:
+          - string
+          - 'null'
+          maxLength: 50
+        description:
+          title: Description
+          type:
+          - string
+          - 'null'
+        lat:
+          title: Lat
+          type:
+          - string
+          - 'null'
+          format: decimal
+        lng:
+          title: Lng
+          type:
+          - string
+          - 'null'
+          format: decimal
+        reusable:
+          title: Reusable
+          type: boolean
+  securitySchemes:
+    Basic:
+      type: http
+      scheme: basic

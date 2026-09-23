@@ -1,0 +1,34 @@
+openapi: 3.2.0
+info:
+  title: InstiApp User Tags API
+  description: InstiApp IIT Bombay API
+  termsOfService: https://insti.app/tos.html
+  contact:
+    email: devcom@iitb.ac.in
+  license:
+    name: AGPLv3
+  version: v1
+servers:
+- url: https://gymkhana.iitb.ac.in/instiapp/api
+security:
+- Basic: []
+tags:
+- name: User Tags
+paths:
+  /user-tags/reach:
+    parameters: []
+    post:
+      operationId: user-tags_get_user_tags_reach
+      description: Get reach of selected user tags.
+      responses:
+        '201':
+          description: ''
+      tags:
+      - User Tags
+      summary: User tags get user tags reach
+      x-summary-source: derived
+components:
+  securitySchemes:
+    Basic:
+      type: http
+      scheme: basic

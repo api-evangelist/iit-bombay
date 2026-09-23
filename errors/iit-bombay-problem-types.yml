@@ -1,0 +1,79 @@
+generated: '2026-08-30'
+method: probed
+source: https://gymkhana.iitb.ac.in/instiapp/api
+spec: openapi/iit-bombay-instiapp-api-openapi.yml
+x-operator: institution
+rfc9457: false
+format: django-rest-framework-detail
+note: >-
+  Error shapes below were captured live on 2026-08-30 by calling the institution's own endpoints
+  without credentials and with bad identifiers. None are quoted from documentation — IIT Bombay
+  publishes no error reference. The API does NOT use RFC 9457 application/problem+json; it emits
+  the Django REST Framework default envelope, a flat JSON object whose one reliable key is
+  `detail`. One endpoint (/user-me) uses a second, inconsistent envelope with `message` and
+  `detail`, and one 404 escapes JSON entirely and returns an HTML page.
+envelopes:
+- name: drf-detail
+  content_type: application/json
+  shape: { detail: string }
+  observed_on: [ 401, 403, 404 ]
+- name: instiapp-message
+  content_type: application/json
+  shape: { message: string, detail: string }
+  observed_on: [ 401 ]
+  note: Used by /user-me only, out of step with the rest of the surface.
+- name: html-not-found
+  content_type: text/html; charset=utf-8
+  shape: HTML document titled "Not Found"
+  observed_on: [ 404 ]
+  note: >-
+    Returned for a path that does not resolve to any route at all (e.g. /messmenu, which the
+    source routes as /mess). A machine client parsing JSON gets a parse failure rather than an
+    error object. Recorded as a real inconsistency in the deployed surface.
+observed:
+- status: 401
+  url: https://gymkhana.iitb.ac.in/instiapp/api/user-me
+  content_type: application/json
+  body: '{"message":"unauthenticated","detail":"Log in to continue!"}'
+  meaning: No session. Retryable only after authenticating.
+- status: 403
+  url: https://gymkhana.iitb.ac.in/instiapp/api/calendar/feed/
+  content_type: application/json
+  body: '{"detail":"Authentication credentials were not provided."}'
+  meaning: >-
+    Same underlying cause as the 401 above but reported as 403 — the two are used
+    interchangeably across the surface depending on which layer rejects the call.
+- status: 404
+  url: https://gymkhana.iitb.ac.in/instiapp/api/bodies/nonexistent-id
+  content_type: application/json
+  body: '{"detail":"No Body matches the given query."}'
+  meaning: Resource identifier did not resolve. Not retryable.
+- status: 404
+  url: https://gymkhana.iitb.ac.in/instiapp/api/messmenu
+  content_type: text/html; charset=utf-8
+  body: HTML "Not Found" page
+  meaning: No such route.
+- status: 401
+  url: https://gymkhana.iitb.ac.in/profiles/user/api/user/
+  content_type: application/json
+  body: '{"detail":"Authentication credentials were not provided."}'
+  api: Gymkhana Profiles OAuth API
+- status: 400
+  url: https://sso.iitb.ac.in/token
+  content_type: application/json
+  body: '{"statusCode":400,"status":400,"code":400,"message":"Invalid request: method must be POST","name":"invalid_request"}'
+  api: IITB Central SSO
+  meaning: >-
+    A third envelope again — statusCode/status/code/message/name. The central SSO does not share
+    an error contract with either Gymkhana surface.
+- status: 401
+  url: https://sso.iitb.ac.in/user
+  content_type: application/json
+  body: '{"statusCode":401,"status":401,"code":401,"message":"Unauthorized request: no authentication given","name":"unauthorized_request"}'
+  api: IITB Central SSO
+spec_declared_error_responses:
+  count: 0
+  detail: >-
+    Not one of the 164 operations across the 112 paths in the published specification declares a
+    4xx or 5xx response. The only response codes present are 200 (112), 201 (36) and 204 (16). The error behaviour recorded above exists entirely outside
+    the contract, which is the single largest contract-quality gap in this footprint.

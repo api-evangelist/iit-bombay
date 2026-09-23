@@ -1,0 +1,84 @@
+generated: '2026-08-30'
+method: searched
+source: https://gymkhana.iitb.ac.in/profiles/doc/
+note: >-
+  Two of IIT Bombay's three institution-operated auth surfaces declare scopes. The Gymkhana
+  Profiles list below is transcribed verbatim from the institution's own published documentation
+  (searched, not inferred); the IITB Central SSO list is read from its live OIDC discovery
+  document (probed). The InstiApp API declares no scopes at all — its specification carries a
+  single HTTP Basic scheme and no oauth2 flow — so no scope set is asserted for it.
+surfaces:
+
+- api: Gymkhana Profiles OAuth API
+  x-operator: institution
+  base: https://gymkhana.iitb.ac.in/profiles/
+  method: searched
+  source: https://gymkhana.iitb.ac.in/profiles/doc/
+  delivery: space-separated `scope` query parameter on the authorize request
+  default_when_omitted: basic
+  count: 10
+  scopes:
+  - name: basic
+    grants: User id from the SSO server (not the LDAP id).
+    default: true
+  - name: profile
+    grants: first_name, last_name and account type.
+  - name: picture
+    grants: Profile picture.
+  - name: sex
+    grants: Sex — Male, Female or Other.
+  - name: ldap
+    grants: LDAP username and e-mail address.
+    sensitivity: identifies the individual against the institutional directory
+  - name: phone
+    grants: Contact number, including additional numbers.
+    sensitivity: personal contact data
+  - name: insti_address
+    grants: Address inside the institute.
+    sensitivity: personal location data
+  - name: program
+    grants: Roll number, department, course, joining year and graduation year.
+    sensitivity: student record data
+  - name: secondary_emails
+    grants: Alternate e-mail addresses.
+    sensitivity: personal contact data
+  - name: send_mail
+    grants: Permission for the application to send the user e-mail via the SSO server.
+    kind: write / action scope
+  observations: >-
+    This is a genuinely granular consent model for a student-operated service — ten scopes with
+    contact, directory identity and student-record data each separated rather than bundled into
+    a single "profile" grant. It is also the only place in IIT Bombay's public footprint where
+    student-record fields (roll number, department, graduation year) are exposed under explicit
+    user consent, which is the fact that matters for the education regime.
+
+- api: IITB Central SSO (OpenID Connect)
+  x-operator: institution
+  base: https://sso.iitb.ac.in
+  method: probed
+  source: https://sso.iitb.ac.in/.well-known/openid-configuration
+  probe_status: 200
+  count: 1
+  scopes:
+  - name: openid
+    grants: >-
+      Authentication only. The discovery document advertises scopes_supported: ["openid"] and
+      nothing further — no profile, email or offline_access. Claims beyond the subject are
+      obtained from the userinfo endpoint (https://sso.iitb.ac.in/user, probed 401
+      unauthenticated) rather than requested by scope.
+  observations: >-
+    A single-scope OIDC provider. Correct and minimal for a campus identity broker, and worth
+    noting that the institution's central SSO deliberately exposes LESS through scopes than the
+    student body's Profiles service does.
+
+- api: InstiApp API
+  x-operator: institution
+  base: https://gymkhana.iitb.ac.in/instiapp/api
+  method: derived
+  source: openapi/iit-bombay-instiapp-api-openapi.yml
+  count: 0
+  scopes: []
+  observations: >-
+    No scopes are declared. components.securitySchemes holds one entry, Basic (http/basic),
+    applied globally. Authorisation in this API is enforced by per-body roles inside the
+    application (see the roles tag and the BodyRole schema), not by OAuth scope.

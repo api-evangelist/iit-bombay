@@ -4,32 +4,42 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Indian Institute of Technology Bombay
 providerId: iit-bombay
 created: '2026-06-03'
-modified: '2026-06-03'
+modified: '2026-08-30'
 reconciled: false
 tags:
 - Education
 - Higher Education
 - University
 - Rate Limiting
-description: >-
-  Indian Institute of Technology Bombay does not publish a unified public rate-limit table across its APIs. Open
-  metadata and harvesting endpoints (OAI-PMH, IIIF, library) may throttle large-scale
-  or automated harvesting; clients should harvest politely, honor Retry-After, and
-  contact the relevant service for bulk access.
-notes: Confirm per-service limits with each API's documentation; harvest responsibly.
+description: 'IIT Bombay publishes no rate-limit table for any of its API surfaces. This entry is now
+  measured rather than assumed: on 2026-08-30 eight unauthenticated GETs against the InstiApp API at https://gymkhana.iitb.ac.in/instiapp/api
+  (events, bodies, news, mess, locations, buy/products, venter/complaints, venter/tags) all returned 200
+  with no rate-limit headers of any kind — no X-RateLimit-*, no RateLimit-*, no Retry-After. No 429 was
+  observed. The one throttling-adjacent behaviour actually found on an institution host is not a rate
+  limit at all but a blanket 403 on the Central Library DSpace /oai path, which denies OAI-PMH harvesting
+  outright rather than pacing it.'
+notes: The previous version of this file asserted that OAI-PMH, IIIF and library endpoints may throttle
+  harvesting. No IIIF surface exists on any IIT Bombay host and none was ever probed; that claim is withdrawn.
+  Harvest politely regardless — absence of a published limit is not permission for volume.
 sources:
 - https://raw.githubusercontent.com/api-evangelist/iit-bombay/refs/heads/main/apis.yml
+- https://gymkhana.iitb.ac.in/instiapp/api/docs/?format=openapi
+- examples/iit-bombay-instiapp-examples.yml
 responseCodes:
   throttled: 429
+  observed: none — no 429 returned by any probe
 limits:
 - name: Default
   scope: client
   metric: requests-per-minute
-  limit: see service documentation
-  notes: No published global limit; large harvests may be rate-limited.
+  limit: none published, none observed
+  notes: No rate-limit headers on any of eight probed unauthenticated InstiApp API responses (2026-08-30).
 policies:
 - name: Backoff Strategy
-  description: Exponential backoff with jitter; honor Retry-After; harvest during off-peak hours.
+  description: Exponential backoff with jitter; honor Retry-After if it ever appears; harvest during off-peak
+    hours.
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
+method: probed
+generated: '2026-08-30'
