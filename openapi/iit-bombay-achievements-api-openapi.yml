@@ -99,7 +99,7 @@ paths:
       summary: Achievements update
       x-summary-source: derived
     patch:
-      operationId: achievements_update
+      operationId: patchAchievementsById
       description: 'Update/Verify an achievement.
 
         Needs BodyRole with `VerA` or can patch own achievement'
@@ -120,6 +120,8 @@ paths:
         required: true
       summary: Achievements update
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: achievements_update
     delete:
       operationId: achievements_delete
       description: 'Delete an achievement or request.
@@ -134,63 +136,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    BodySerializerMin:
-      required:
-      - name
-      type: object
-      properties:
-        id:
-          title: Id
-          type: string
-          format: uuid
-          readOnly: true
-        str_id:
-          title: Str id
-          type:
-          - string
-          - 'null'
-          readOnly: true
-          minLength: 1
-        name:
-          title: Name
-          type: string
-          maxLength: 50
-          minLength: 1
-        short_description:
-          title: Short description
-          type: string
-          maxLength: 50
-        website_url:
-          title: Website url
-          type:
-          - string
-          - 'null'
-          format: uri
-          maxLength: 200
-        image_url:
-          title: Image url
-          type:
-          - string
-          - 'null'
-          format: uri
-          maxLength: 200
-        cover_url:
-          title: Cover url
-          type:
-          - string
-          - 'null'
-          format: uri
-          maxLength: 200
-        followers_count:
-          title: Followers count
-          type: string
-          readOnly: true
-        short_name:
-          title: Short name
-          type:
-          - string
-          - 'null'
-          maxLength: 20
     AchievementUser:
       required:
       - title
@@ -253,7 +198,9 @@ components:
         isSkill:
           title: IsSkill
           type: boolean
-    UserProfile:
+    BodySerializerMin:
+      required:
+      - name
       type: object
       properties:
         id:
@@ -261,23 +208,53 @@ components:
           type: string
           format: uuid
           readOnly: true
+        str_id:
+          title: Str id
+          type:
+          - string
+          - 'null'
+          readOnly: true
+          minLength: 1
         name:
           title: Name
           type: string
           maxLength: 50
-        profile_pic:
-          title: Profile pic
+          minLength: 1
+        short_description:
+          title: Short description
+          type: string
+          maxLength: 50
+        website_url:
+          title: Website url
           type:
           - string
           - 'null'
           format: uri
           maxLength: 200
-        ldap_id:
-          title: Ldap id
+        image_url:
+          title: Image url
           type:
           - string
           - 'null'
-          maxLength: 50
+          format: uri
+          maxLength: 200
+        cover_url:
+          title: Cover url
+          type:
+          - string
+          - 'null'
+          format: uri
+          maxLength: 200
+        followers_count:
+          title: Followers count
+          type: string
+          readOnly: true
+        short_name:
+          title: Short name
+          type:
+          - string
+          - 'null'
+          maxLength: 20
     EventMin:
       required:
       - name
@@ -325,6 +302,31 @@ components:
           title: End time
           type: string
           format: date-time
+    UserProfile:
+      type: object
+      properties:
+        id:
+          title: Id
+          type: string
+          format: uuid
+          readOnly: true
+        name:
+          title: Name
+          type: string
+          maxLength: 50
+        profile_pic:
+          title: Profile pic
+          type:
+          - string
+          - 'null'
+          format: uri
+          maxLength: 200
+        ldap_id:
+          title: Ldap id
+          type:
+          - string
+          - 'null'
+          maxLength: 50
   securitySchemes:
     Basic:
       type: http

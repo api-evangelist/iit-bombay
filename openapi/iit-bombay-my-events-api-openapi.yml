@@ -35,11 +35,9 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    OfferedAchievement:
+    BodySerializerMin:
       required:
-      - title
-      - body
-      - event
+      - name
       type: object
       properties:
         id:
@@ -47,32 +45,53 @@ components:
           type: string
           format: uuid
           readOnly: true
-        priority:
-          title: Priority
-          type: integer
-          maximum: 2147483647
-          minimum: -2147483648
-        title:
-          title: Title
-          type: string
-          maxLength: 80
+        str_id:
+          title: Str id
+          type:
+          - string
+          - 'null'
+          readOnly: true
           minLength: 1
-        description:
-          title: Description
+        name:
+          title: Name
           type: string
-        body:
-          title: Body
+          maxLength: 50
+          minLength: 1
+        short_description:
+          title: Short description
           type: string
-          format: uuid
-        event:
-          title: Event
+          maxLength: 50
+        website_url:
+          title: Website url
+          type:
+          - string
+          - 'null'
+          format: uri
+          maxLength: 200
+        image_url:
+          title: Image url
+          type:
+          - string
+          - 'null'
+          format: uri
+          maxLength: 200
+        cover_url:
+          title: Cover url
+          type:
+          - string
+          - 'null'
+          format: uri
+          maxLength: 200
+        followers_count:
+          title: Followers count
           type: string
-          format: uuid
-        generic:
-          title: Generic
-          type: string
+          readOnly: true
+        short_name:
+          title: Short name
+          type:
+          - string
+          - 'null'
           maxLength: 20
-          minLength: 1
     EventFull:
       required:
       - name
@@ -253,6 +272,44 @@ components:
           type: string
           format: date-time
           readOnly: true
+    OfferedAchievement:
+      required:
+      - title
+      - body
+      - event
+      type: object
+      properties:
+        id:
+          title: Id
+          type: string
+          format: uuid
+          readOnly: true
+        priority:
+          title: Priority
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+        title:
+          title: Title
+          type: string
+          maxLength: 80
+          minLength: 1
+        description:
+          title: Description
+          type: string
+        body:
+          title: Body
+          type: string
+          format: uuid
+        event:
+          title: Event
+          type: string
+          format: uuid
+        generic:
+          title: Generic
+          type: string
+          maxLength: 20
+          minLength: 1
     LocationSerializerMin:
       required:
       - name
@@ -301,63 +358,6 @@ components:
           type: string
           maxLength: 80
           minLength: 1
-    BodySerializerMin:
-      required:
-      - name
-      type: object
-      properties:
-        id:
-          title: Id
-          type: string
-          format: uuid
-          readOnly: true
-        str_id:
-          title: Str id
-          type:
-          - string
-          - 'null'
-          readOnly: true
-          minLength: 1
-        name:
-          title: Name
-          type: string
-          maxLength: 50
-          minLength: 1
-        short_description:
-          title: Short description
-          type: string
-          maxLength: 50
-        website_url:
-          title: Website url
-          type:
-          - string
-          - 'null'
-          format: uri
-          maxLength: 200
-        image_url:
-          title: Image url
-          type:
-          - string
-          - 'null'
-          format: uri
-          maxLength: 200
-        cover_url:
-          title: Cover url
-          type:
-          - string
-          - 'null'
-          format: uri
-          maxLength: 200
-        followers_count:
-          title: Followers count
-          type: string
-          readOnly: true
-        short_name:
-          title: Short name
-          type:
-          - string
-          - 'null'
-          maxLength: 20
   securitySchemes:
     Basic:
       type: http

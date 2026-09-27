@@ -97,7 +97,7 @@ paths:
       summary: Bans update
       x-summary-source: derived
     patch:
-      operationId: bans_update
+      operationId: patchBansById
       description: ''
       responses:
         '200':
@@ -116,6 +116,8 @@ paths:
         required: true
       summary: Bans update
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: bans_update
     delete:
       operationId: bans_delete
       description: ''
@@ -128,31 +130,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    UserProfile:
-      type: object
-      properties:
-        id:
-          title: Id
-          type: string
-          format: uuid
-          readOnly: true
-        name:
-          title: Name
-          type: string
-          maxLength: 50
-        profile_pic:
-          title: Profile pic
-          type:
-          - string
-          - 'null'
-          format: uri
-          maxLength: 200
-        ldap_id:
-          title: Ldap id
-          type:
-          - string
-          - 'null'
-          maxLength: 50
     SSOBans:
       required:
       - banned_by
@@ -203,6 +180,31 @@ components:
           - string
           - 'null'
           format: uuid
+    UserProfile:
+      type: object
+      properties:
+        id:
+          title: Id
+          type: string
+          format: uuid
+          readOnly: true
+        name:
+          title: Name
+          type: string
+          maxLength: 50
+        profile_pic:
+          title: Profile pic
+          type:
+          - string
+          - 'null'
+          format: uri
+          maxLength: 200
+        ldap_id:
+          title: Ldap id
+          type:
+          - string
+          - 'null'
+          maxLength: 50
   securitySchemes:
     Basic:
       type: http

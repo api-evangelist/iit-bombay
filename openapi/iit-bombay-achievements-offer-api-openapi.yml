@@ -61,7 +61,7 @@ paths:
       summary: Achievements offer read
       x-summary-source: derived
     post:
-      operationId: achievements-offer_create
+      operationId: postAchievementsOfferById
       description: Claim and try to get an achievement with its secret.
       responses:
         '201':
@@ -80,6 +80,8 @@ paths:
         required: true
       summary: Achievements offer create
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: achievements-offer_create
     put:
       operationId: achievements-offer_update
       description: Update an offered achievement.

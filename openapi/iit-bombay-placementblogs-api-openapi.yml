@@ -247,13 +247,33 @@ components:
           title: Raw content
           type: string
           minLength: 1
-    PlacementExtractedData:
+    PlacementCompanyThread:
+      required:
+      - company_name
+      - company_slug
+      - first_post_date
       type: object
       properties:
-        category:
-          title: Category
+        id:
+          title: ID
+          type: integer
+          readOnly: true
+        company_name:
+          title: Company name
           type: string
-          maxLength: 10
+          maxLength: 200
+          minLength: 1
+        company_slug:
+          title: Company slug
+          type: string
+          format: slug
+          pattern: ^[-a-zA-Z0-9_]+$
+          maxLength: 50
+          minLength: 1
+        first_post_date:
+          title: First post date
+          type: string
+          format: date-time
         role:
           title: Role
           type: string
@@ -280,36 +300,12 @@ components:
           - string
           - 'null'
           maxLength: 255
-        deadline:
-          title: Deadline
+        jaf_deadline:
+          title: Jaf deadline
           type:
           - string
           - 'null'
           format: date-time
-        shortlisted_rolls:
-          title: Shortlisted rolls
-          type:
-          - object
-          - 'null'
-        event_date:
-          title: Event date
-          type:
-          - string
-          - 'null'
-          format: date-time
-        venue:
-          title: Venue
-          type: string
-          maxLength: 300
-        time:
-          title: Time
-          type: string
-          maxLength: 50
-        placement_slots:
-          title: Placement slots
-          type:
-          - object
-          - 'null'
     PlacementCompleteThread:
       required:
       - company_name
@@ -374,33 +370,13 @@ components:
           items:
             $ref: '#/components/schemas/PlacementBlogPost'
           readOnly: true
-    PlacementCompanyThread:
-      required:
-      - company_name
-      - company_slug
-      - first_post_date
+    PlacementExtractedData:
       type: object
       properties:
-        id:
-          title: ID
-          type: integer
-          readOnly: true
-        company_name:
-          title: Company name
+        category:
+          title: Category
           type: string
-          maxLength: 200
-          minLength: 1
-        company_slug:
-          title: Company slug
-          type: string
-          format: slug
-          pattern: ^[-a-zA-Z0-9_]+$
-          maxLength: 50
-          minLength: 1
-        first_post_date:
-          title: First post date
-          type: string
-          format: date-time
+          maxLength: 10
         role:
           title: Role
           type: string
@@ -427,12 +403,36 @@ components:
           - string
           - 'null'
           maxLength: 255
-        jaf_deadline:
-          title: Jaf deadline
+        deadline:
+          title: Deadline
           type:
           - string
           - 'null'
           format: date-time
+        shortlisted_rolls:
+          title: Shortlisted rolls
+          type:
+          - object
+          - 'null'
+        event_date:
+          title: Event date
+          type:
+          - string
+          - 'null'
+          format: date-time
+        venue:
+          title: Venue
+          type: string
+          maxLength: 300
+        time:
+          title: Time
+          type: string
+          maxLength: 50
+        placement_slots:
+          title: Placement slots
+          type:
+          - object
+          - 'null'
   securitySchemes:
     Basic:
       type: http

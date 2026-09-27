@@ -30,7 +30,7 @@ paths:
   /bodies-with-privilege/:
     parameters: []
     get:
-      operationId: get_bodies
+      operationId: getBodiesWithPrivilege
       description: Get bodies with users having a specific privilege.
       responses:
         '200':
@@ -39,6 +39,8 @@ paths:
       - get_bodies
       summary: Get bodies
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: get_bodies
 components:
   securitySchemes:
     Basic:

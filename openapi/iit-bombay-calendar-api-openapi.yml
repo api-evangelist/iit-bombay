@@ -138,7 +138,7 @@ paths:
       summary: Calendar shared read
       x-summary-source: derived
     post:
-      operationId: calendar_shared_create
+      operationId: postCalendarSharedBySlug
       description: ''
       responses:
         '201':
@@ -147,8 +147,10 @@ paths:
       - Calendar
       summary: Calendar shared create
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: calendar_shared_create
     patch:
-      operationId: calendar_shared_partial_update
+      operationId: patchCalendarSharedBySlug
       description: ''
       responses:
         '200':
@@ -157,8 +159,10 @@ paths:
       - Calendar
       summary: Calendar shared partial update
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: calendar_shared_partial_update
     delete:
-      operationId: calendar_shared_delete
+      operationId: deleteCalendarSharedBySlug
       description: ''
       responses:
         '204':
@@ -167,6 +171,8 @@ paths:
       - Calendar
       summary: Calendar shared delete
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: calendar_shared_delete
   /calendar/shared/{slug}/events/:
     parameters:
     - name: slug
@@ -237,7 +243,7 @@ paths:
       summary: Calendar shared events read
       x-summary-source: derived
     post:
-      operationId: calendar_shared_events_create
+      operationId: postCalendarSharedBySlugEventsByEventId
       description: ''
       responses:
         '201':
@@ -246,8 +252,10 @@ paths:
       - Calendar
       summary: Calendar shared events create
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: calendar_shared_events_create
     patch:
-      operationId: calendar_shared_events_partial_update
+      operationId: patchCalendarSharedBySlugEventsByEventId
       description: ''
       responses:
         '200':
@@ -256,8 +264,10 @@ paths:
       - Calendar
       summary: Calendar shared events partial update
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: calendar_shared_events_partial_update
     delete:
-      operationId: calendar_shared_events_delete
+      operationId: deleteCalendarSharedBySlugEventsByEventId
       description: ''
       responses:
         '204':
@@ -266,6 +276,8 @@ paths:
       - Calendar
       summary: Calendar shared events delete
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: calendar_shared_events_delete
   /calendar/shared/{slug}/subscribe/:
     parameters:
     - name: slug

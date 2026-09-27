@@ -61,7 +61,7 @@ tags:
   - OpenID Connect
   - Campus Life
   - Research Repository
-  - Open-Source
+  - Open Source
 tags_raw:
   - University
   - Higher Education
@@ -75,6 +75,7 @@ tags_raw:
   - Campus Life
   - Research Repository
   - Open Source
+  - Open-Source
 created: '2026-06-03'
 modified: '2026-08-30'
 specificationVersion: '0.23'
@@ -639,9 +640,10 @@ apis:
   humanURL: https://gymkhana.iitb.ac.in/instiapp/api/docs/
   baseURL: https://gymkhana.iitb.ac.in/instiapp/api
   tags:
-  - Communities
+  - Community
   tags_raw:
   - communities
+  - Communities
   properties:
   - type: OpenAPI
     url: openapi/iit-bombay-communities-api-openapi.yml

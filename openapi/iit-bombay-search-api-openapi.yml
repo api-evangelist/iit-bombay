@@ -30,7 +30,7 @@ paths:
   /search:
     parameters: []
     get:
-      operationId: search
+      operationId: getSearch
       description: ''
       responses:
         '200':
@@ -39,6 +39,8 @@ paths:
       - Search
       summary: Search
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: search
 components:
   securitySchemes:
     Basic:
