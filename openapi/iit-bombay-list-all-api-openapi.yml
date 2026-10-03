@@ -37,6 +37,92 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    Interest:
+      required:
+      - title
+      type: object
+      properties:
+        id:
+          title: Id
+          type: string
+          format: uuid
+          readOnly: true
+        title:
+          title: Title
+          type: string
+          maxLength: 80
+          minLength: 1
+    OfferedAchievement:
+      required:
+      - title
+      - body
+      - event
+      type: object
+      properties:
+        id:
+          title: Id
+          type: string
+          format: uuid
+          readOnly: true
+        priority:
+          title: Priority
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+        title:
+          title: Title
+          type: string
+          maxLength: 80
+          minLength: 1
+        description:
+          title: Description
+          type: string
+        body:
+          title: Body
+          type: string
+          format: uuid
+        event:
+          title: Event
+          type: string
+          format: uuid
+        generic:
+          title: Generic
+          type: string
+          maxLength: 20
+          minLength: 1
+    LocationSerializerMin:
+      required:
+      - name
+      type: object
+      properties:
+        id:
+          title: Id
+          type: string
+          format: uuid
+          readOnly: true
+        name:
+          title: Name
+          type: string
+          maxLength: 150
+          minLength: 1
+        short_name:
+          title: Short name
+          type:
+          - string
+          - 'null'
+          maxLength: 80
+        lat:
+          title: Lat
+          type:
+          - string
+          - 'null'
+          format: decimal
+        lng:
+          title: Lng
+          type:
+          - string
+          - 'null'
+          format: decimal
     BodySerializerMin:
       required:
       - name
@@ -274,92 +360,6 @@ components:
           type: string
           format: date-time
           readOnly: true
-    OfferedAchievement:
-      required:
-      - title
-      - body
-      - event
-      type: object
-      properties:
-        id:
-          title: Id
-          type: string
-          format: uuid
-          readOnly: true
-        priority:
-          title: Priority
-          type: integer
-          maximum: 2147483647
-          minimum: -2147483648
-        title:
-          title: Title
-          type: string
-          maxLength: 80
-          minLength: 1
-        description:
-          title: Description
-          type: string
-        body:
-          title: Body
-          type: string
-          format: uuid
-        event:
-          title: Event
-          type: string
-          format: uuid
-        generic:
-          title: Generic
-          type: string
-          maxLength: 20
-          minLength: 1
-    LocationSerializerMin:
-      required:
-      - name
-      type: object
-      properties:
-        id:
-          title: Id
-          type: string
-          format: uuid
-          readOnly: true
-        name:
-          title: Name
-          type: string
-          maxLength: 150
-          minLength: 1
-        short_name:
-          title: Short name
-          type:
-          - string
-          - 'null'
-          maxLength: 80
-        lat:
-          title: Lat
-          type:
-          - string
-          - 'null'
-          format: decimal
-        lng:
-          title: Lng
-          type:
-          - string
-          - 'null'
-          format: decimal
-    Interest:
-      required:
-      - title
-      type: object
-      properties:
-        id:
-          title: Id
-          type: string
-          format: uuid
-          readOnly: true
-        title:
-          title: Title
-          type: string
-          maxLength: 80
-          minLength: 1
   securitySchemes:
     Basic:
       type: http

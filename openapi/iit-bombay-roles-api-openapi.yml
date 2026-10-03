@@ -149,31 +149,6 @@ components:
           - string
           - 'null'
           maxLength: 20
-    UserProfile:
-      type: object
-      properties:
-        id:
-          title: Id
-          type: string
-          format: uuid
-          readOnly: true
-        name:
-          title: Name
-          type: string
-          maxLength: 50
-        profile_pic:
-          title: Profile pic
-          type:
-          - string
-          - 'null'
-          format: uri
-          maxLength: 200
-        ldap_id:
-          title: Ldap id
-          type:
-          - string
-          - 'null'
-          maxLength: 50
     Role:
       required:
       - name
@@ -238,6 +213,31 @@ components:
         official_post:
           title: Official post
           type: boolean
+    UserProfile:
+      type: object
+      properties:
+        id:
+          title: Id
+          type: string
+          format: uuid
+          readOnly: true
+        name:
+          title: Name
+          type: string
+          maxLength: 50
+        profile_pic:
+          title: Profile pic
+          type:
+          - string
+          - 'null'
+          format: uri
+          maxLength: 200
+        ldap_id:
+          title: Ldap id
+          type:
+          - string
+          - 'null'
+          maxLength: 50
   securitySchemes:
     Basic:
       type: http

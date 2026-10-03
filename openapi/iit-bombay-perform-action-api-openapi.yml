@@ -51,9 +51,25 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    BodySerializerMin:
+    Interest:
+      required:
+      - title
+      type: object
+      properties:
+        id:
+          title: Id
+          type: string
+          format: uuid
+          readOnly: true
+        title:
+          title: Title
+          type: string
+          maxLength: 80
+          minLength: 1
+    CommunitySerializerMin:
       required:
       - name
+      - body
       type: object
       properties:
         id:
@@ -71,28 +87,22 @@ components:
         name:
           title: Name
           type: string
-          maxLength: 50
+          maxLength: 100
           minLength: 1
-        short_description:
-          title: Short description
-          type: string
-          maxLength: 50
-        website_url:
-          title: Website url
+        about:
+          title: About
+          type:
+          - string
+          - 'null'
+        cover_image:
+          title: Cover image
           type:
           - string
           - 'null'
           format: uri
           maxLength: 200
-        image_url:
-          title: Image url
-          type:
-          - string
-          - 'null'
-          format: uri
-          maxLength: 200
-        cover_url:
-          title: Cover url
+        logo_image:
+          title: Logo image
           type:
           - string
           - 'null'
@@ -102,12 +112,14 @@ components:
           title: Followers count
           type: string
           readOnly: true
-        short_name:
-          title: Short name
-          type:
-          - string
-          - 'null'
-          maxLength: 20
+        body:
+          title: Body
+          type: string
+          format: uuid
+        is_user_following:
+          title: Is user following
+          type: string
+          readOnly: true
     CommunityPostSerializers:
       type: object
       properties:
@@ -212,10 +224,9 @@ components:
             type: string
             format: uuid
           uniqueItems: true
-    CommunitySerializerMin:
+    BodySerializerMin:
       required:
       - name
-      - body
       type: object
       properties:
         id:
@@ -233,22 +244,28 @@ components:
         name:
           title: Name
           type: string
-          maxLength: 100
+          maxLength: 50
           minLength: 1
-        about:
-          title: About
-          type:
-          - string
-          - 'null'
-        cover_image:
-          title: Cover image
+        short_description:
+          title: Short description
+          type: string
+          maxLength: 50
+        website_url:
+          title: Website url
           type:
           - string
           - 'null'
           format: uri
           maxLength: 200
-        logo_image:
-          title: Logo image
+        image_url:
+          title: Image url
+          type:
+          - string
+          - 'null'
+          format: uri
+          maxLength: 200
+        cover_url:
+          title: Cover url
           type:
           - string
           - 'null'
@@ -258,14 +275,12 @@ components:
           title: Followers count
           type: string
           readOnly: true
-        body:
-          title: Body
-          type: string
-          format: uuid
-        is_user_following:
-          title: Is user following
-          type: string
-          readOnly: true
+        short_name:
+          title: Short name
+          type:
+          - string
+          - 'null'
+          maxLength: 20
     UserProfile:
       type: object
       properties:
@@ -291,21 +306,6 @@ components:
           - string
           - 'null'
           maxLength: 50
-    Interest:
-      required:
-      - title
-      type: object
-      properties:
-        id:
-          title: Id
-          type: string
-          format: uuid
-          readOnly: true
-        title:
-          title: Title
-          type: string
-          maxLength: 80
-          minLength: 1
   securitySchemes:
     Basic:
       type: http

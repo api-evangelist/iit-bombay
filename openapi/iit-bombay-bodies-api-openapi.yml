@@ -191,36 +191,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    RoleSerializerMin:
-      required:
-      - name
-      - body
-      type: object
-      properties:
-        id:
-          title: Id
-          type: string
-          format: uuid
-          readOnly: true
-        name:
-          title: Name
-          type: string
-          maxLength: 50
-          minLength: 1
-        body:
-          title: Body
-          type: string
-          format: uuid
-        users_detail:
-          type: array
-          items:
-            $ref: '#/components/schemas/UserProfile'
-          readOnly: true
-        priority:
-          title: Priority
-          type: integer
-          maximum: 2147483647
-          minimum: -2147483648
     Body:
       required:
       - name
@@ -328,19 +298,6 @@ components:
           - string
           - 'null'
           maxLength: 20
-    BodyFollowers:
-      type: object
-      properties:
-        id:
-          title: Id
-          type: string
-          format: uuid
-          readOnly: true
-        followers:
-          type: array
-          items:
-            $ref: '#/components/schemas/UserProfile'
-          readOnly: true
     UserProfile:
       type: object
       properties:
@@ -366,6 +323,49 @@ components:
           - string
           - 'null'
           maxLength: 50
+    BodyFollowers:
+      type: object
+      properties:
+        id:
+          title: Id
+          type: string
+          format: uuid
+          readOnly: true
+        followers:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserProfile'
+          readOnly: true
+    RoleSerializerMin:
+      required:
+      - name
+      - body
+      type: object
+      properties:
+        id:
+          title: Id
+          type: string
+          format: uuid
+          readOnly: true
+        name:
+          title: Name
+          type: string
+          maxLength: 50
+          minLength: 1
+        body:
+          title: Body
+          type: string
+          format: uuid
+        users_detail:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserProfile'
+          readOnly: true
+        priority:
+          title: Priority
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
   securitySchemes:
     Basic:
       type: http

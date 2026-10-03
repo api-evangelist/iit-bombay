@@ -136,6 +136,88 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    BodySerializerMin:
+      required:
+      - name
+      type: object
+      properties:
+        id:
+          title: Id
+          type: string
+          format: uuid
+          readOnly: true
+        str_id:
+          title: Str id
+          type:
+          - string
+          - 'null'
+          readOnly: true
+          minLength: 1
+        name:
+          title: Name
+          type: string
+          maxLength: 50
+          minLength: 1
+        short_description:
+          title: Short description
+          type: string
+          maxLength: 50
+        website_url:
+          title: Website url
+          type:
+          - string
+          - 'null'
+          format: uri
+          maxLength: 200
+        image_url:
+          title: Image url
+          type:
+          - string
+          - 'null'
+          format: uri
+          maxLength: 200
+        cover_url:
+          title: Cover url
+          type:
+          - string
+          - 'null'
+          format: uri
+          maxLength: 200
+        followers_count:
+          title: Followers count
+          type: string
+          readOnly: true
+        short_name:
+          title: Short name
+          type:
+          - string
+          - 'null'
+          maxLength: 20
+    UserProfile:
+      type: object
+      properties:
+        id:
+          title: Id
+          type: string
+          format: uuid
+          readOnly: true
+        name:
+          title: Name
+          type: string
+          maxLength: 50
+        profile_pic:
+          title: Profile pic
+          type:
+          - string
+          - 'null'
+          format: uri
+          maxLength: 200
+        ldap_id:
+          title: Ldap id
+          type:
+          - string
+          - 'null'
+          maxLength: 50
     AchievementUser:
       required:
       - title
@@ -198,63 +280,6 @@ components:
         isSkill:
           title: IsSkill
           type: boolean
-    BodySerializerMin:
-      required:
-      - name
-      type: object
-      properties:
-        id:
-          title: Id
-          type: string
-          format: uuid
-          readOnly: true
-        str_id:
-          title: Str id
-          type:
-          - string
-          - 'null'
-          readOnly: true
-          minLength: 1
-        name:
-          title: Name
-          type: string
-          maxLength: 50
-          minLength: 1
-        short_description:
-          title: Short description
-          type: string
-          maxLength: 50
-        website_url:
-          title: Website url
-          type:
-          - string
-          - 'null'
-          format: uri
-          maxLength: 200
-        image_url:
-          title: Image url
-          type:
-          - string
-          - 'null'
-          format: uri
-          maxLength: 200
-        cover_url:
-          title: Cover url
-          type:
-          - string
-          - 'null'
-          format: uri
-          maxLength: 200
-        followers_count:
-          title: Followers count
-          type: string
-          readOnly: true
-        short_name:
-          title: Short name
-          type:
-          - string
-          - 'null'
-          maxLength: 20
     EventMin:
       required:
       - name
@@ -302,31 +327,6 @@ components:
           title: End time
           type: string
           format: date-time
-    UserProfile:
-      type: object
-      properties:
-        id:
-          title: Id
-          type: string
-          format: uuid
-          readOnly: true
-        name:
-          title: Name
-          type: string
-          maxLength: 50
-        profile_pic:
-          title: Profile pic
-          type:
-          - string
-          - 'null'
-          format: uri
-          maxLength: 200
-        ldap_id:
-          title: Ldap id
-          type:
-          - string
-          - 'null'
-          maxLength: 50
   securitySchemes:
     Basic:
       type: http

@@ -288,63 +288,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    BodySerializerMin:
-      required:
-      - name
-      type: object
-      properties:
-        id:
-          title: Id
-          type: string
-          format: uuid
-          readOnly: true
-        str_id:
-          title: Str id
-          type:
-          - string
-          - 'null'
-          readOnly: true
-          minLength: 1
-        name:
-          title: Name
-          type: string
-          maxLength: 50
-          minLength: 1
-        short_description:
-          title: Short description
-          type: string
-          maxLength: 50
-        website_url:
-          title: Website url
-          type:
-          - string
-          - 'null'
-          format: uri
-          maxLength: 200
-        image_url:
-          title: Image url
-          type:
-          - string
-          - 'null'
-          format: uri
-          maxLength: 200
-        cover_url:
-          title: Cover url
-          type:
-          - string
-          - 'null'
-          format: uri
-          maxLength: 200
-        followers_count:
-          title: Followers count
-          type: string
-          readOnly: true
-        short_name:
-          title: Short name
-          type:
-          - string
-          - 'null'
-          maxLength: 20
     VerifiedAchievement:
       required:
       - title
@@ -443,7 +386,11 @@ components:
         official_post:
           title: Official post
           type: boolean
-    UserProfile:
+    EventMin:
+      required:
+      - name
+      - start_time
+      - end_time
       type: object
       properties:
         id:
@@ -451,96 +398,41 @@ components:
           type: string
           format: uuid
           readOnly: true
+        str_id:
+          title: Str id
+          type:
+          - string
+          - 'null'
+          readOnly: true
+          minLength: 1
         name:
           title: Name
           type: string
-          maxLength: 50
-        profile_pic:
-          title: Profile pic
+          maxLength: 60
+          minLength: 1
+        tags:
+          title: Tags
+          type:
+          - string
+          - 'null'
+          enum:
+          - event
+          - announcement
+        image_url:
+          title: Image url
           type:
           - string
           - 'null'
           format: uri
           maxLength: 200
-        ldap_id:
-          title: Ldap id
-          type:
-          - string
-          - 'null'
-          maxLength: 50
-    InstituteRole:
-      required:
-      - name
-      - permissions
-      type: object
-      properties:
-        id:
-          title: Id
-          type: string
-          format: uuid
-          readOnly: true
-        name:
-          title: Name
-          type: string
-          maxLength: 50
-          minLength: 1
-        permissions:
-          type: array
-          items:
-            type: string
-            enum:
-            - AddB
-            - DelB
-            - BodyChild
-            - Location
-            - Role
-            - RoleB
-    Signature:
-      required:
-      - body
-      - signature
-      type: object
-      properties:
-        id:
-          title: ID
-          type: integer
-          readOnly: true
-        user:
-          title: User
-          type: string
-          format: uuid
-          readOnly: true
-        body:
-          title: Body
-          type:
-          - string
-          - 'null'
-          format: uuid
-        signature:
-          title: Signature
-          type: string
-          maxLength: 200
-          minLength: 1
-        timestamp:
-          title: Timestamp
+        start_time:
+          title: Start time
           type: string
           format: date-time
-          readOnly: true
-    UserInterest:
-      required:
-      - title
-      type: object
-      properties:
-        id:
-          title: Id
+        end_time:
+          title: End time
           type: string
-          format: uuid
-          readOnly: true
-        title:
-          title: Title
-          type: string
-          maxLength: 80
-          minLength: 1
+          format: date-time
     UserProfileFull:
       type: object
       properties:
@@ -692,53 +584,37 @@ components:
           items:
             $ref: '#/components/schemas/UserInterest'
           readOnly: true
-    EventMin:
+    Signature:
       required:
-      - name
-      - start_time
-      - end_time
+      - body
+      - signature
       type: object
       properties:
         id:
-          title: Id
+          title: ID
+          type: integer
+          readOnly: true
+        user:
+          title: User
           type: string
           format: uuid
           readOnly: true
-        str_id:
-          title: Str id
+        body:
+          title: Body
           type:
           - string
           - 'null'
-          readOnly: true
-          minLength: 1
-        name:
-          title: Name
+          format: uuid
+        signature:
+          title: Signature
           type: string
-          maxLength: 60
-          minLength: 1
-        tags:
-          title: Tags
-          type:
-          - string
-          - 'null'
-          enum:
-          - event
-          - announcement
-        image_url:
-          title: Image url
-          type:
-          - string
-          - 'null'
-          format: uri
           maxLength: 200
-        start_time:
-          title: Start time
+          minLength: 1
+        timestamp:
+          title: Timestamp
           type: string
           format: date-time
-        end_time:
-          title: End time
-          type: string
-          format: date-time
+          readOnly: true
     FormerRole:
       type: object
       properties:
@@ -760,6 +636,130 @@ components:
           title: Year
           type: string
           maxLength: 20
+    InstituteRole:
+      required:
+      - name
+      - permissions
+      type: object
+      properties:
+        id:
+          title: Id
+          type: string
+          format: uuid
+          readOnly: true
+        name:
+          title: Name
+          type: string
+          maxLength: 50
+          minLength: 1
+        permissions:
+          type: array
+          items:
+            type: string
+            enum:
+            - AddB
+            - DelB
+            - BodyChild
+            - Location
+            - Role
+            - RoleB
+    UserInterest:
+      required:
+      - title
+      type: object
+      properties:
+        id:
+          title: Id
+          type: string
+          format: uuid
+          readOnly: true
+        title:
+          title: Title
+          type: string
+          maxLength: 80
+          minLength: 1
+    BodySerializerMin:
+      required:
+      - name
+      type: object
+      properties:
+        id:
+          title: Id
+          type: string
+          format: uuid
+          readOnly: true
+        str_id:
+          title: Str id
+          type:
+          - string
+          - 'null'
+          readOnly: true
+          minLength: 1
+        name:
+          title: Name
+          type: string
+          maxLength: 50
+          minLength: 1
+        short_description:
+          title: Short description
+          type: string
+          maxLength: 50
+        website_url:
+          title: Website url
+          type:
+          - string
+          - 'null'
+          format: uri
+          maxLength: 200
+        image_url:
+          title: Image url
+          type:
+          - string
+          - 'null'
+          format: uri
+          maxLength: 200
+        cover_url:
+          title: Cover url
+          type:
+          - string
+          - 'null'
+          format: uri
+          maxLength: 200
+        followers_count:
+          title: Followers count
+          type: string
+          readOnly: true
+        short_name:
+          title: Short name
+          type:
+          - string
+          - 'null'
+          maxLength: 20
+    UserProfile:
+      type: object
+      properties:
+        id:
+          title: Id
+          type: string
+          format: uuid
+          readOnly: true
+        name:
+          title: Name
+          type: string
+          maxLength: 50
+        profile_pic:
+          title: Profile pic
+          type:
+          - string
+          - 'null'
+          format: uri
+          maxLength: 200
+        ldap_id:
+          title: Ldap id
+          type:
+          - string
+          - 'null'
+          maxLength: 50
   securitySchemes:
     Basic:
       type: http

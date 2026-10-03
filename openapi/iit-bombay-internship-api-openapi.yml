@@ -181,113 +181,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    CompleteThread:
-      required:
-      - company_name
-      - company_slug
-      - first_post_date
-      type: object
-      properties:
-        id:
-          title: ID
-          type: integer
-          readOnly: true
-        company_name:
-          title: Company name
-          type: string
-          maxLength: 200
-          minLength: 1
-        company_slug:
-          title: Company slug
-          type: string
-          format: slug
-          pattern: ^[-a-zA-Z0-9_]+$
-          maxLength: 50
-          minLength: 1
-        first_post_date:
-          title: First post date
-          type: string
-          format: date-time
-        category:
-          title: Category
-          type: string
-          maxLength: 10
-        role:
-          title: Role
-          type: string
-        domain:
-          title: Domain
-          type: string
-          maxLength: 200
-        stipend:
-          title: Stipend
-          type: string
-          maxLength: 100
-        eligibility:
-          title: Eligibility
-          type: string
-        iaf_deadline:
-          title: Iaf deadline
-          type:
-          - string
-          - 'null'
-          format: date-time
-        posts:
-          type: array
-          items:
-            $ref: '#/components/schemas/BlogPost'
-          readOnly: true
-    CompanyThread:
-      required:
-      - company_name
-      - company_slug
-      - first_post_date
-      type: object
-      properties:
-        id:
-          title: ID
-          type: integer
-          readOnly: true
-        company_name:
-          title: Company name
-          type: string
-          maxLength: 200
-          minLength: 1
-        company_slug:
-          title: Company slug
-          type: string
-          format: slug
-          pattern: ^[-a-zA-Z0-9_]+$
-          maxLength: 50
-          minLength: 1
-        first_post_date:
-          title: First post date
-          type: string
-          format: date-time
-        category:
-          title: Category
-          type: string
-          maxLength: 10
-        role:
-          title: Role
-          type: string
-        domain:
-          title: Domain
-          type: string
-          maxLength: 200
-        stipend:
-          title: Stipend
-          type: string
-          maxLength: 100
-        eligibility:
-          title: Eligibility
-          type: string
-        iaf_deadline:
-          title: Iaf deadline
-          type:
-          - string
-          - 'null'
-          format: date-time
     BlogPost:
       required:
       - id
@@ -354,6 +247,113 @@ components:
           title: Raw content
           type: string
           minLength: 1
+    CompanyThread:
+      required:
+      - company_name
+      - company_slug
+      - first_post_date
+      type: object
+      properties:
+        id:
+          title: ID
+          type: integer
+          readOnly: true
+        company_name:
+          title: Company name
+          type: string
+          maxLength: 200
+          minLength: 1
+        company_slug:
+          title: Company slug
+          type: string
+          format: slug
+          pattern: ^[-a-zA-Z0-9_]+$
+          maxLength: 50
+          minLength: 1
+        first_post_date:
+          title: First post date
+          type: string
+          format: date-time
+        category:
+          title: Category
+          type: string
+          maxLength: 10
+        role:
+          title: Role
+          type: string
+        domain:
+          title: Domain
+          type: string
+          maxLength: 200
+        stipend:
+          title: Stipend
+          type: string
+          maxLength: 100
+        eligibility:
+          title: Eligibility
+          type: string
+        iaf_deadline:
+          title: Iaf deadline
+          type:
+          - string
+          - 'null'
+          format: date-time
+    CompleteThread:
+      required:
+      - company_name
+      - company_slug
+      - first_post_date
+      type: object
+      properties:
+        id:
+          title: ID
+          type: integer
+          readOnly: true
+        company_name:
+          title: Company name
+          type: string
+          maxLength: 200
+          minLength: 1
+        company_slug:
+          title: Company slug
+          type: string
+          format: slug
+          pattern: ^[-a-zA-Z0-9_]+$
+          maxLength: 50
+          minLength: 1
+        first_post_date:
+          title: First post date
+          type: string
+          format: date-time
+        category:
+          title: Category
+          type: string
+          maxLength: 10
+        role:
+          title: Role
+          type: string
+        domain:
+          title: Domain
+          type: string
+          maxLength: 200
+        stipend:
+          title: Stipend
+          type: string
+          maxLength: 100
+        eligibility:
+          title: Eligibility
+          type: string
+        iaf_deadline:
+          title: Iaf deadline
+          type:
+          - string
+          - 'null'
+          format: date-time
+        posts:
+          type: array
+          items:
+            $ref: '#/components/schemas/BlogPost'
+          readOnly: true
     ExtractedData:
       type: object
       properties:

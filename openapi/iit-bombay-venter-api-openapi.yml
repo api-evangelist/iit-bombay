@@ -230,40 +230,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    CommentPost:
-      required:
-      - text
-      type: object
-      properties:
-        id:
-          title: Id
-          type: string
-          format: uuid
-          readOnly: true
-        time:
-          title: Time
-          type: string
-          format: date-time
-          readOnly: true
-        text:
-          title: Text
-          type: string
-          minLength: 1
-    Tag:
-      required:
-      - tag_uri
-      type: object
-      properties:
-        id:
-          title: Id
-          type: string
-          format: uuid
-          readOnly: true
-        tag_uri:
-          title: Tag uri
-          type: string
-          maxLength: 200
-          minLength: 1
     ComplaintPost:
       type: object
       properties:
@@ -299,6 +265,40 @@ components:
         location_description:
           title: Location description
           type: string
+    Tag:
+      required:
+      - tag_uri
+      type: object
+      properties:
+        id:
+          title: Id
+          type: string
+          format: uuid
+          readOnly: true
+        tag_uri:
+          title: Tag uri
+          type: string
+          maxLength: 200
+          minLength: 1
+    CommentPost:
+      required:
+      - text
+      type: object
+      properties:
+        id:
+          title: Id
+          type: string
+          format: uuid
+          readOnly: true
+        time:
+          title: Time
+          type: string
+          format: date-time
+          readOnly: true
+        text:
+          title: Text
+          type: string
+          minLength: 1
   securitySchemes:
     Basic:
       type: http
