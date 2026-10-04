@@ -42,6 +42,68 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    AchievementUser:
+      required:
+      - title
+      type: object
+      properties:
+        id:
+          title: Id
+          type: string
+          format: uuid
+          readOnly: true
+        title:
+          title: Title
+          type: string
+          maxLength: 80
+          minLength: 1
+        description:
+          title: Description
+          type: string
+        admin_note:
+          title: Admin note
+          type:
+          - string
+          - 'null'
+        body_detail:
+          $ref: '#/components/schemas/BodySerializerMin'
+        dismissed:
+          title: Dismissed
+          type: boolean
+        verified:
+          title: Verified
+          type: boolean
+        user:
+          $ref: '#/components/schemas/UserProfile'
+        body:
+          title: Body
+          type:
+          - string
+          - 'null'
+          format: uuid
+        verified_by:
+          title: Verified by
+          type:
+          - string
+          - 'null'
+          format: uuid
+        event:
+          title: Event
+          type:
+          - string
+          - 'null'
+          format: uuid
+        event_detail:
+          $ref: '#/components/schemas/EventMin'
+        offer:
+          title: Offer
+          type:
+          - string
+          - 'null'
+          format: uuid
+        isSkill:
+          title: IsSkill
+          type: boolean
     BodySerializerMin:
       required:
       - name
@@ -124,68 +186,6 @@ components:
           - string
           - 'null'
           maxLength: 50
-    AchievementUser:
-      required:
-      - title
-      type: object
-      properties:
-        id:
-          title: Id
-          type: string
-          format: uuid
-          readOnly: true
-        title:
-          title: Title
-          type: string
-          maxLength: 80
-          minLength: 1
-        description:
-          title: Description
-          type: string
-        admin_note:
-          title: Admin note
-          type:
-          - string
-          - 'null'
-        body_detail:
-          $ref: '#/components/schemas/BodySerializerMin'
-        dismissed:
-          title: Dismissed
-          type: boolean
-        verified:
-          title: Verified
-          type: boolean
-        user:
-          $ref: '#/components/schemas/UserProfile'
-        body:
-          title: Body
-          type:
-          - string
-          - 'null'
-          format: uuid
-        verified_by:
-          title: Verified by
-          type:
-          - string
-          - 'null'
-          format: uuid
-        event:
-          title: Event
-          type:
-          - string
-          - 'null'
-          format: uuid
-        event_detail:
-          $ref: '#/components/schemas/EventMin'
-        offer:
-          title: Offer
-          type:
-          - string
-          - 'null'
-          format: uuid
-        isSkill:
-          title: IsSkill
-          type: boolean
     EventMin:
       required:
       - name

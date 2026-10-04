@@ -141,75 +141,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    Interest:
-      required:
-      - title
-      type: object
-      properties:
-        id:
-          title: Id
-          type: string
-          format: uuid
-          readOnly: true
-        title:
-          title: Title
-          type: string
-          maxLength: 80
-          minLength: 1
-    CommunitySerializerMin:
-      required:
-      - name
-      - body
-      type: object
-      properties:
-        id:
-          title: Id
-          type: string
-          format: uuid
-          readOnly: true
-        str_id:
-          title: Str id
-          type:
-          - string
-          - 'null'
-          readOnly: true
-          minLength: 1
-        name:
-          title: Name
-          type: string
-          maxLength: 100
-          minLength: 1
-        about:
-          title: About
-          type:
-          - string
-          - 'null'
-        cover_image:
-          title: Cover image
-          type:
-          - string
-          - 'null'
-          format: uri
-          maxLength: 200
-        logo_image:
-          title: Logo image
-          type:
-          - string
-          - 'null'
-          format: uri
-          maxLength: 200
-        followers_count:
-          title: Followers count
-          type: string
-          readOnly: true
-        body:
-          title: Body
-          type: string
-          format: uuid
-        is_user_following:
-          title: Is user following
-          type: string
-          readOnly: true
     CommunityPostSerializers:
       type: object
       properties:
@@ -396,6 +327,75 @@ components:
           - string
           - 'null'
           maxLength: 50
+    CommunitySerializerMin:
+      required:
+      - name
+      - body
+      type: object
+      properties:
+        id:
+          title: Id
+          type: string
+          format: uuid
+          readOnly: true
+        str_id:
+          title: Str id
+          type:
+          - string
+          - 'null'
+          readOnly: true
+          minLength: 1
+        name:
+          title: Name
+          type: string
+          maxLength: 100
+          minLength: 1
+        about:
+          title: About
+          type:
+          - string
+          - 'null'
+        cover_image:
+          title: Cover image
+          type:
+          - string
+          - 'null'
+          format: uri
+          maxLength: 200
+        logo_image:
+          title: Logo image
+          type:
+          - string
+          - 'null'
+          format: uri
+          maxLength: 200
+        followers_count:
+          title: Followers count
+          type: string
+          readOnly: true
+        body:
+          title: Body
+          type: string
+          format: uuid
+        is_user_following:
+          title: Is user following
+          type: string
+          readOnly: true
+    Interest:
+      required:
+      - title
+      type: object
+      properties:
+        id:
+          title: Id
+          type: string
+          format: uuid
+          readOnly: true
+        title:
+          title: Title
+          type: string
+          maxLength: 80
+          minLength: 1
   securitySchemes:
     Basic:
       type: http

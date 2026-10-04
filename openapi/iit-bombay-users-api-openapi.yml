@@ -40,9 +40,9 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    VerifiedAchievement:
+    BodySerializerMin:
       required:
-      - title
+      - name
       type: object
       properties:
         id:
@@ -50,30 +50,53 @@ components:
           type: string
           format: uuid
           readOnly: true
-        title:
-          title: Title
-          type: string
-          maxLength: 80
+        str_id:
+          title: Str id
+          type:
+          - string
+          - 'null'
+          readOnly: true
           minLength: 1
-        description:
-          title: Description
+        name:
+          title: Name
           type: string
-        body_detail:
-          $ref: '#/components/schemas/BodySerializerMin'
-        dismissed:
-          title: Dismissed
-          type: boolean
-        verified:
-          title: Verified
-          type: boolean
-        hidden:
-          title: Hidden
-          type: boolean
-        event_detail:
-          $ref: '#/components/schemas/EventMin'
-        isSkill:
-          title: IsSkill
-          type: boolean
+          maxLength: 50
+          minLength: 1
+        short_description:
+          title: Short description
+          type: string
+          maxLength: 50
+        website_url:
+          title: Website url
+          type:
+          - string
+          - 'null'
+          format: uri
+          maxLength: 200
+        image_url:
+          title: Image url
+          type:
+          - string
+          - 'null'
+          format: uri
+          maxLength: 200
+        cover_url:
+          title: Cover url
+          type:
+          - string
+          - 'null'
+          format: uri
+          maxLength: 200
+        followers_count:
+          title: Followers count
+          type: string
+          readOnly: true
+        short_name:
+          title: Short name
+          type:
+          - string
+          - 'null'
+          maxLength: 20
     Role:
       required:
       - name
@@ -138,6 +161,68 @@ components:
         official_post:
           title: Official post
           type: boolean
+    UserInterest:
+      required:
+      - title
+      type: object
+      properties:
+        id:
+          title: Id
+          type: string
+          format: uuid
+          readOnly: true
+        title:
+          title: Title
+          type: string
+          maxLength: 80
+          minLength: 1
+    EventMin:
+      required:
+      - name
+      - start_time
+      - end_time
+      type: object
+      properties:
+        id:
+          title: Id
+          type: string
+          format: uuid
+          readOnly: true
+        str_id:
+          title: Str id
+          type:
+          - string
+          - 'null'
+          readOnly: true
+          minLength: 1
+        name:
+          title: Name
+          type: string
+          maxLength: 60
+          minLength: 1
+        tags:
+          title: Tags
+          type:
+          - string
+          - 'null'
+          enum:
+          - event
+          - announcement
+        image_url:
+          title: Image url
+          type:
+          - string
+          - 'null'
+          format: uri
+          maxLength: 200
+        start_time:
+          title: Start time
+          type: string
+          format: date-time
+        end_time:
+          title: End time
+          type: string
+          format: date-time
     UserProfile:
       type: object
       properties:
@@ -163,6 +248,27 @@ components:
           - string
           - 'null'
           maxLength: 50
+    FormerRole:
+      type: object
+      properties:
+        id:
+          title: Id
+          type: string
+          readOnly: true
+        name:
+          title: Name
+          type: string
+          readOnly: true
+        body_detail:
+          $ref: '#/components/schemas/BodySerializerMin'
+        priority:
+          title: Priority
+          type: string
+          readOnly: true
+        year:
+          title: Year
+          type: string
+          maxLength: 20
     UserProfileFull:
       type: object
       properties:
@@ -314,27 +420,6 @@ components:
           items:
             $ref: '#/components/schemas/UserInterest'
           readOnly: true
-    FormerRole:
-      type: object
-      properties:
-        id:
-          title: Id
-          type: string
-          readOnly: true
-        name:
-          title: Name
-          type: string
-          readOnly: true
-        body_detail:
-          $ref: '#/components/schemas/BodySerializerMin'
-        priority:
-          title: Priority
-          type: string
-          readOnly: true
-        year:
-          title: Year
-          type: string
-          maxLength: 20
     InstituteRole:
       required:
       - name
@@ -362,7 +447,7 @@ components:
             - Location
             - Role
             - RoleB
-    UserInterest:
+    VerifiedAchievement:
       required:
       - title
       type: object
@@ -377,110 +462,25 @@ components:
           type: string
           maxLength: 80
           minLength: 1
-    BodySerializerMin:
-      required:
-      - name
-      type: object
-      properties:
-        id:
-          title: Id
+        description:
+          title: Description
           type: string
-          format: uuid
-          readOnly: true
-        str_id:
-          title: Str id
-          type:
-          - string
-          - 'null'
-          readOnly: true
-          minLength: 1
-        name:
-          title: Name
-          type: string
-          maxLength: 50
-          minLength: 1
-        short_description:
-          title: Short description
-          type: string
-          maxLength: 50
-        website_url:
-          title: Website url
-          type:
-          - string
-          - 'null'
-          format: uri
-          maxLength: 200
-        image_url:
-          title: Image url
-          type:
-          - string
-          - 'null'
-          format: uri
-          maxLength: 200
-        cover_url:
-          title: Cover url
-          type:
-          - string
-          - 'null'
-          format: uri
-          maxLength: 200
-        followers_count:
-          title: Followers count
-          type: string
-          readOnly: true
-        short_name:
-          title: Short name
-          type:
-          - string
-          - 'null'
-          maxLength: 20
-    EventMin:
-      required:
-      - name
-      - start_time
-      - end_time
-      type: object
-      properties:
-        id:
-          title: Id
-          type: string
-          format: uuid
-          readOnly: true
-        str_id:
-          title: Str id
-          type:
-          - string
-          - 'null'
-          readOnly: true
-          minLength: 1
-        name:
-          title: Name
-          type: string
-          maxLength: 60
-          minLength: 1
-        tags:
-          title: Tags
-          type:
-          - string
-          - 'null'
-          enum:
-          - event
-          - announcement
-        image_url:
-          title: Image url
-          type:
-          - string
-          - 'null'
-          format: uri
-          maxLength: 200
-        start_time:
-          title: Start time
-          type: string
-          format: date-time
-        end_time:
-          title: End time
-          type: string
-          format: date-time
+        body_detail:
+          $ref: '#/components/schemas/BodySerializerMin'
+        dismissed:
+          title: Dismissed
+          type: boolean
+        verified:
+          title: Verified
+          type: boolean
+        hidden:
+          title: Hidden
+          type: boolean
+        event_detail:
+          $ref: '#/components/schemas/EventMin'
+        isSkill:
+          title: IsSkill
+          type: boolean
   securitySchemes:
     Basic:
       type: http
