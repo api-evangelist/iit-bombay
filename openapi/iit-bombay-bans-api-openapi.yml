@@ -130,6 +130,31 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    UserProfile:
+      type: object
+      properties:
+        id:
+          title: Id
+          type: string
+          format: uuid
+          readOnly: true
+        name:
+          title: Name
+          type: string
+          maxLength: 50
+        profile_pic:
+          title: Profile pic
+          type:
+          - string
+          - 'null'
+          format: uri
+          maxLength: 200
+        ldap_id:
+          title: Ldap id
+          type:
+          - string
+          - 'null'
+          maxLength: 50
     SSOBans:
       required:
       - banned_by
@@ -180,31 +205,6 @@ components:
           - string
           - 'null'
           format: uuid
-    UserProfile:
-      type: object
-      properties:
-        id:
-          title: Id
-          type: string
-          format: uuid
-          readOnly: true
-        name:
-          title: Name
-          type: string
-          maxLength: 50
-        profile_pic:
-          title: Profile pic
-          type:
-          - string
-          - 'null'
-          format: uri
-          maxLength: 200
-        ldap_id:
-          title: Ldap id
-          type:
-          - string
-          - 'null'
-          maxLength: 50
   securitySchemes:
     Basic:
       type: http
